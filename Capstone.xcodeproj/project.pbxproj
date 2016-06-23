@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */; };
-		0B0F7F141D1C5B0300CFF61F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F131D1C5B0300CFF61F /* ViewController.swift */; };
 		0B0F7F171D1C5B0300CFF61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F151D1C5B0300CFF61F /* Main.storyboard */; };
 		0B0F7F191D1C5B0300CFF61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */; };
 		0B0F7F1C1D1C5B0300CFF61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F1A1D1C5B0300CFF61F /* LaunchScreen.storyboard */; };
+		0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */; };
+		0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */; };
+		0B0F7F2C1D1C6C6A00CFF61F /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */; };
+		0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */; };
+		0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */; };
+		0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */; };
+		0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B0F7F0E1D1C5B0300CFF61F /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B0F7F131D1C5B0300CFF61F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0B0F7F161D1C5B0300CFF61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B0F7F1B1D1C5B0300CFF61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B0F7F1D1D1C5B0300CFF61F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToModalVC.swift; sourceTree = "<group>"; };
+		0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
+		0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceVC.swift; sourceTree = "<group>"; };
+		0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +67,27 @@
 			isa = PBXGroup;
 			children = (
 				0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */,
-				0B0F7F131D1C5B0300CFF61F /* ViewController.swift */,
+				0B0F7F351D1C6D8400CFF61F /* ViewControllers */,
 				0B0F7F151D1C5B0300CFF61F /* Main.storyboard */,
 				0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */,
 				0B0F7F1A1D1C5B0300CFF61F /* LaunchScreen.storyboard */,
 				0B0F7F1D1D1C5B0300CFF61F /* Info.plist */,
 			);
 			path = Capstone;
+			sourceTree = "<group>";
+		};
+		0B0F7F351D1C6D8400CFF61F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */,
+				0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */,
+				0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */,
+				0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */,
+				0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */,
+				0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */,
+				0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B0F7F141D1C5B0300CFF61F /* ViewController.swift in Sources */,
+				0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */,
+				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
+				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
+				0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */,
+				0B0F7F2C1D1C6C6A00CFF61F /* SearchResultsVC.swift in Sources */,
+				0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */,
+				0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */,
 				0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +284,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -263,6 +296,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

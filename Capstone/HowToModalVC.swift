@@ -1,25 +1,23 @@
-//
-//  ViewController.swift
-//  Capstone
-//
-//  Created by Angela Liu on 6/23/16.
-//  Copyright © 2016 amliu. All rights reserved.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class HowToModalVC: UIViewController {
+    
+    
+    @IBAction func dismiss() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
