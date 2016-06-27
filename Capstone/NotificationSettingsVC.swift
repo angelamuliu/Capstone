@@ -6,7 +6,7 @@
 //  Copyright © 2016 amliu. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class NotificationSettingsVC: UIViewController {
 

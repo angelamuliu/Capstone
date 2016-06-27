@@ -18,6 +18,8 @@
 		0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */; };
 		0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */; };
 		0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */; };
+		6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */; };
+		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceVC.swift; sourceTree = "<group>"; };
 		0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
+		6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongLatVC.swift; sourceTree = "<group>"; };
+		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,7 @@
 		0B0F7F051D1C5B0300CFF61F = {
 			isa = PBXGroup;
 			children = (
+				6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */,
 				0B0F7F101D1C5B0300CFF61F /* Capstone */,
 				0B0F7F0F1D1C5B0300CFF61F /* Products */,
 			);
@@ -86,6 +92,7 @@
 				0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */,
 				0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */,
 				0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */,
+				6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */,
+				6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */,
 				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
 				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
 				0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */,
@@ -319,6 +327,7 @@
 				0B0F7F221D1C5B0300CFF61F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
