@@ -264,7 +264,7 @@ class SQLiteDatabase {
             let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 11)))
             
         
-            placesArr.append(Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags))
+            placesArr.append(Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name!, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags)!)
         }
         return placesArr
     }

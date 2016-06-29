@@ -41,13 +41,9 @@ class LongLatVC: UIViewController, CLLocationManagerDelegate {
         
         
         if startLocation == nil {
+            // TODO: Make this value accessible from the Places UI View
             startLocation = latestLocation as! CLLocation
         }
-        
-        //        var distanceBetween: CLLocationDistance =
-        //            latestLocation.distanceFromLocation(startLocation)
-        //
-        //        distance.text = String(format: "%.2f", distanceBetween)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
