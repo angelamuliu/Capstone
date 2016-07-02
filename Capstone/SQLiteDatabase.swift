@@ -144,10 +144,25 @@ class SQLiteDatabase {
         sqlite3_step(createPlaceStatement)
         sqlite3_finalize(createPlaceStatement)
         
+        let createGuide: String = "CREATE TABLE Guide(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "Title CHARACTER(255), Category CHARACTER(255), Subcategory CHARACTER(255)," +
+            "Hidden BOOLEAN, Image_url VARCHAR(255)" +
+        ");"
+        var createGuideStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createGuide, -1, &createGuideStatement, nil)
+        sqlite3_step(createGuideStatement)
+        sqlite3_finalize(createGuideStatement)
+        
+        let createPlaceGuide: String = "CREATE Table PlaceGuide(place_id INTEGER NOT NULL REFERENCES places(id)," +
+            "guide_id INTEGER NOT NULL REFERENCES guides(id), PRIMARY KEY (place_id, guide_id));"
+        var createPlaceGuideStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createPlaceGuide, -1, &createPlaceGuideStatement, nil)
+        sqlite3_step(createPlaceGuideStatement)
+        sqlite3_finalize(createPlaceGuideStatement)
     }
     
     /**
-     Reads from a JSON file to add in records
+     Reads from a JSON file to add in records (places, guides, pages)
     */
     static private func populate(db:COpaquePointer) {
         if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json") {
@@ -156,12 +171,15 @@ class SQLiteDatabase {
                 let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                 let placesArr = jsonDict.valueForKey("Places") as! NSArray
                 insertPlaces(db, placesArr: placesArr)
+                
+                let guidesArr = jsonDict.valueForKey("Guides") as! NSArray
+                insertGuides(db, guidesArr: guidesArr)
             } catch { }
         }
     }
     
     /**
-     Given content from the JSON, inserts a place
+     Given starter content from the JSON, populates the DB with the places
     */
     static private func insertPlaces(db:COpaquePointer, placesArr : NSArray) {
         let insertStatementString = "INSERT INTO Place (Longitude,Latitude,Category,Subcategory,Name,Address,Phone,Open_hour,Close_hour,Image_url,Tags)" +
@@ -197,6 +215,14 @@ class SQLiteDatabase {
             print(sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil))
             print("Could not prepare statement")
         }
+    }
+    
+    /**
+     Given starter content from the JSON, populates the DB with the guides and pages (parts of the guide)
+    */
+    static private func insertGuides(db:COpaquePointer, guidesArr: NSArray) {
+        // TODO
+        
     }
     
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
