@@ -72,5 +72,16 @@
                 }
             ]
         }
+    ],
+
+    "PlaceGuides" : [
+        {
+            "Place" : 1,
+            "Guide" : 1
+        },
+        {
+            "Place" : 1,
+            "Guide" : 2
+        }
     ]
 }

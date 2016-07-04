@@ -153,8 +153,16 @@ class SQLiteDatabase {
         sqlite3_step(createGuideStatement)
         sqlite3_finalize(createGuideStatement)
         
-        let createPlaceGuide: String = "CREATE Table PlaceGuide(place_id INTEGER NOT NULL REFERENCES places(id)," +
-            "guide_id INTEGER NOT NULL REFERENCES guides(id), PRIMARY KEY (place_id, guide_id));"
+        let createPage: String = "CREATE TABLE Page(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "Title CHARACTER(255), Description TEXT, Image_url CHARACTER(255)," +
+            "Guide_id INTEGER NOT NULL REFERENCES Guides(id));"
+        var createPageStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createPage, -1, &createPageStatement, nil)
+        sqlite3_step(createPageStatement)
+        sqlite3_finalize(createPageStatement)
+        
+        let createPlaceGuide: String = "CREATE Table PlaceGuide(Place_id INTEGER NOT NULL REFERENCES Places(id)," +
+        "Guide_id INTEGER NOT NULL REFERENCES Guides(id), PRIMARY KEY (Place_id, Guide_id));"
         var createPlaceGuideStatement: COpaquePointer = nil
         sqlite3_prepare_v2(db, createPlaceGuide, -1, &createPlaceGuideStatement, nil)
         sqlite3_step(createPlaceGuideStatement)
@@ -173,7 +181,10 @@ class SQLiteDatabase {
                 insertPlaces(db, placesArr: placesArr)
                 
                 let guidesArr = jsonDict.valueForKey("Guides") as! NSArray
-                insertGuides(db, guidesArr: guidesArr)
+                insertGuidesAndPages(db, guidesArr: guidesArr)
+                
+                let placeGuidesArr = jsonDict.valueForKey("PlaceGuides") as! NSArray
+                insertPlaceGuides(db, placeGuidesArr: placeGuidesArr)
             } catch { }
         }
     }
@@ -204,7 +215,7 @@ class SQLiteDatabase {
                 sqlite3_bind_text(insertStatement, 11, (placeDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" "), -1 ,nil)
                 
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
-                    print("Successfully inserted row.")
+                    print("Successfully inserted place row.")
                 } else {
                     print("Could not insert row.")
                 }
@@ -213,16 +224,83 @@ class SQLiteDatabase {
             sqlite3_finalize(insertStatement)
         } else {
             print(sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil))
-            print("Could not prepare statement")
+            print("Could not prepare insert places statement")
         }
     }
     
     /**
      Given starter content from the JSON, populates the DB with the guides and pages (parts of the guide)
     */
-    static private func insertGuides(db:COpaquePointer, guidesArr: NSArray) {
-        // TODO
+    static private func insertGuidesAndPages(db:COpaquePointer, guidesArr: NSArray) {
+        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url) VALUES (?, ?, ?, ?, ?);"
+        let insertPageStatementString = "INSERT INTO Page (Title,Description,Image_url,Guide_id) VALUES (?, ?, ?, ?);"
         
+        var insertGuideStatement: COpaquePointer = nil
+        var insertPageStatement: COpaquePointer = nil
+        if sqlite3_prepare_v2(db, insertGuideStatementString, -1, &insertGuideStatement, nil) == SQLITE_OK {
+            
+            for (var i = 0; i < guidesArr.count; i++) {
+                let guideDict = guidesArr[i] as! NSDictionary
+                sqlite3_bind_text(insertGuideStatement, 1, (guideDict.valueForKey("Title")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 2, (guideDict.valueForKey("Category")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 3, (guideDict.valueForKey("Subcategory")?.UTF8String)!, -1, nil)
+                sqlite3_bind_int(insertGuideStatement, 4, guideDict.valueForKey("Hidden") as! Bool == true ? 1 : 0)
+                sqlite3_bind_text(insertGuideStatement, 5, (guideDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                if sqlite3_step(insertGuideStatement) == SQLITE_DONE {
+                    print("Successfully inserted guide row")
+                    
+                    // Checking if pages are connected to this guide and inserting them now
+                    if guideDict.valueForKey("Pages") != nil && sqlite3_prepare_v2(db, insertPageStatementString, -1, &insertPageStatement, nil) == SQLITE_OK {
+                        let pageArr = guideDict.valueForKey("Pages") as! NSArray
+                        for page in pageArr {
+                            let pageDict = page as! NSDictionary
+                            sqlite3_bind_text(insertPageStatement, 1, (pageDict.valueForKey("Title")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_text(insertPageStatement, 2, (pageDict.valueForKey("Description")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_text(insertPageStatement, 3, (pageDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_int(insertPageStatement, 4, i+1)
+                            if sqlite3_step(insertPageStatement) == SQLITE_DONE {
+                                print("Successfully inserted a page associated to guide")
+                            } else {
+                                print("Could not insert page row")
+                            }
+                            sqlite3_reset(insertPageStatement)
+                        }
+                    }
+                } else {
+                    print("Could not insert guide row")
+                }
+                sqlite3_reset(insertGuideStatement)
+            }
+            sqlite3_finalize(insertPageStatement)
+            sqlite3_finalize(insertGuideStatement)
+        } else {
+            print(sqlite3_prepare_v2(db, insertGuideStatementString, -1, &insertGuideStatement, nil))
+            print("Could not prepare insert guides statement")
+        }
+    }
+    
+    /**
+     Given starter content from the JSON, populates teh DB with placeGuides, which connect places and guides (many-to-many)
+    */
+    static private func insertPlaceGuides(db:COpaquePointer, placeGuidesArr: NSArray) {
+        let insertPlaceGuideStatementString = "INSERT INTO PlaceGuide(Place_id,Guide_id) VALUES (?,?);"
+        var insertPlaceGuideStatement: COpaquePointer = nil
+        if sqlite3_prepare_v2(db, insertPlaceGuideStatementString, -1, &insertPlaceGuideStatement, nil) == SQLITE_OK {
+            for placeGuide in placeGuidesArr {
+                let placeGuideDict = placeGuide as! NSDictionary
+                sqlite3_bind_double(insertPlaceGuideStatement, 1, placeGuideDict.valueForKey("Place") as! Double)
+                sqlite3_bind_double(insertPlaceGuideStatement, 2, placeGuideDict.valueForKey("Guide") as! Double)
+                if sqlite3_step(insertPlaceGuideStatement) == SQLITE_DONE {
+                    print("Successfully inserted placeGuide row.")
+                } else {
+                    print("Could not insert placeGuide row.")
+                }
+                sqlite3_reset(insertPlaceGuideStatement)
+            }
+            sqlite3_finalize(insertPlaceGuideStatement)
+        } else {
+            print("Could not prepare insert placeGuides statement")
+        }
     }
     
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
