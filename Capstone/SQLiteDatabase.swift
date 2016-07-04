@@ -373,6 +373,20 @@ class SQLiteDatabase {
         return placesArr
     }
     
+    /**
+      Given a place, returns all associated guides (and pages attached to the guide) as an array
+    */
+    func getGuidesForPlace(place:Place) -> [Guide] {
+        return []
+    }
+    
+    /**
+     Given a guide, returns all associate places as an array
+    */
+    func getPlacesForGuide(guide:Guide) -> [Place] {
+        return []
+    }
+    
     
 
 }

@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+// FYI: These are all global variables, may want to do something else
 let defaultCategory:String = "none";
 let defaultSubCategory:String = "none";
 let defaultAddress:String = "300 South Craig Street, Pittsburgh, PA 15213";
