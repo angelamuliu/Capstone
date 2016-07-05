@@ -10,10 +10,6 @@ import Foundation
 
 class Page {
     
-    static private let defaultTitle = "none"
-    static private let defaultDescription = "none"
-    static private let defaultImageUrl = "none"
-    
     var id: Int // SQL Id, unique
     var title: String
     var description: String
@@ -21,9 +17,9 @@ class Page {
     
     init(id: Int, title:String?, description:String?, image_url:String?) {
         self.id = id
-        self.title = title != nil ? title! : Page.defaultTitle
-        self.description = description != nil ? description! : Page.defaultDescription
-        self.image_url = image_url != nil ? image_url! : Page.defaultImageUrl
+        self.title = title != nil ? title! : Constants.defaultTitle
+        self.description = description != nil ? description! : Constants.defaultDescription
+        self.image_url = image_url != nil ? image_url! : Constants.defaultUrl
     }
     
 }

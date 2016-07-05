@@ -20,6 +20,7 @@
 		0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */; };
 		0B363FC21D2A093600CD8AF5 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B363FC11D2A093600CD8AF5 /* Guide.swift */; };
 		0B363FC41D2A0A2B00CD8AF5 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B363FC31D2A0A2B00CD8AF5 /* Page.swift */; };
+		0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B63F80E1D2C03D3003A4E11 /* Constants.swift */; };
 		0B7A3D5F1D22D6A600C68B93 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5C1D22D6A600C68B93 /* data.json */; };
 		0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5D1D22D6A600C68B93 /* Place.swift */; };
 		0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */; };
@@ -44,6 +45,7 @@
 		0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
 		0B363FC11D2A093600CD8AF5 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		0B363FC31D2A0A2B00CD8AF5 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		0B63F80E1D2C03D3003A4E11 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0B7A3D5B1D22D6A600C68B93 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		0B7A3D5C1D22D6A600C68B93 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		0B7A3D5D1D22D6A600C68B93 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				0B7A3D5B1D22D6A600C68B93 /* BridgingHeader.h */,
 				0B7A3D5C1D22D6A600C68B93 /* data.json */,
 				0B7A3D5D1D22D6A600C68B93 /* Place.swift */,
+				0B63F80E1D2C03D3003A4E11 /* Constants.swift */,
 				0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */,
 				0B363FC11D2A093600CD8AF5 /* Guide.swift */,
 				0B363FC31D2A0A2B00CD8AF5 /* Page.swift */,
@@ -202,6 +205,7 @@
 				0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */,
 				0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */,
 				0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */,
+				0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */,
 				0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */,
 				0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */,
 			);

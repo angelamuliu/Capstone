@@ -10,11 +10,6 @@ import Foundation
 
 class Guide {
     
-    private static let defaultTitle = "none"
-    private static let defaultCategory = "none"
-    private static let defaultSubCategory = "none"
-    private static let defaultImageUrl = "none"
-    
     var id : Int // SQL ID, unique
     var title: String
     var category: String
@@ -25,11 +20,11 @@ class Guide {
     
     init(id: Int, title:String?, category:String?, subcategory:String?, hidden: Bool?, image_url:String?) {
         self.id = id
-        self.title = title != nil ? title! : Guide.defaultTitle
-        self.category = category != nil ? category! : Guide.defaultCategory
-        self.subcategory = subcategory != nil ? subcategory! : Guide.defaultSubCategory
+        self.title = title != nil ? title! : Constants.defaultTitle
+        self.category = category != nil ? category! : Constants.defaultCategory
+        self.subcategory = subcategory != nil ? subcategory! : Constants.defaultSubCategory
         self.hidden = hidden != nil ? hidden! : true
-        self.image_url = image_url != nil ? image_url! : Guide.defaultImageUrl
+        self.image_url = image_url != nil ? image_url! : Constants.defaultUrl
         self.pages = []
     }
     
