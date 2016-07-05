@@ -11,7 +11,7 @@
 		0B0F7F171D1C5B0300CFF61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F151D1C5B0300CFF61F /* Main.storyboard */; };
 		0B0F7F191D1C5B0300CFF61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */; };
 		0B0F7F1C1D1C5B0300CFF61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F7F1A1D1C5B0300CFF61F /* LaunchScreen.storyboard */; };
-		0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */; };
+		0B0F7F281D1C630600CFF61F /* GuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F271D1C630600CFF61F /* GuideVC.swift */; };
 		0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */; };
 		0B0F7F2C1D1C6C6A00CFF61F /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */; };
 		0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */; };
@@ -25,6 +25,10 @@
 		0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5D1D22D6A600C68B93 /* Place.swift */; };
 		0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */; };
 		0B7A3D631D22D6E600C68B93 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */; };
+		0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */; };
+		0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41761D2C451E006B6F8B /* GuideCardView.swift */; };
+		0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */; };
+		0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */; };
 		23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */; };
 		6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */; };
 		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
@@ -37,7 +41,7 @@
 		0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B0F7F1B1D1C5B0300CFF61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B0F7F1D1D1C5B0300CFF61F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToModalVC.swift; sourceTree = "<group>"; };
+		0B0F7F271D1C630600CFF61F /* GuideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideVC.swift; sourceTree = "<group>"; };
 		0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 		0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
@@ -52,6 +56,10 @@
 		0B7A3D5D1D22D6A600C68B93 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		0BAA41761D2C451E006B6F8B /* GuideCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCardView.swift; sourceTree = "<group>"; };
+		0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewList.swift; sourceTree = "<group>"; };
 		23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
 		6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongLatVC.swift; sourceTree = "<group>"; };
 		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -91,6 +99,7 @@
 		0B0F7F101D1C5B0300CFF61F /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
+				0BAA41781D2C471F006B6F8B /* CardView */,
 				0B7A3D5B1D22D6A600C68B93 /* BridgingHeader.h */,
 				0B7A3D5C1D22D6A600C68B93 /* data.json */,
 				0B7A3D5D1D22D6A600C68B93 /* Place.swift */,
@@ -112,7 +121,7 @@
 		0B0F7F351D1C6D8400CFF61F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0B0F7F271D1C630600CFF61F /* HowToModalVC.swift */,
+				0B0F7F271D1C630600CFF61F /* GuideVC.swift */,
 				0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */,
 				0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */,
 				0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */,
@@ -122,6 +131,17 @@
 				6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0BAA41781D2C471F006B6F8B /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */,
+				0BAA41761D2C451E006B6F8B /* GuideCardView.swift */,
+				0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */,
+				0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */,
+			);
+			name = CardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,18 +219,22 @@
 			files = (
 				0B363FC21D2A093600CD8AF5 /* Guide.swift in Sources */,
 				0B363FC41D2A0A2B00CD8AF5 /* Page.swift in Sources */,
+				0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */,
 				0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */,
 				6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */,
+				0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */,
 				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
 				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
 				0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */,
 				23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */,
 				0B0F7F2C1D1C6C6A00CFF61F /* SearchResultsVC.swift in Sources */,
 				0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */,
-				0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */,
+				0B0F7F281D1C630600CFF61F /* GuideVC.swift in Sources */,
 				0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */,
 				0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */,
+				0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */,
 				0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */,
+				0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */,
 				0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

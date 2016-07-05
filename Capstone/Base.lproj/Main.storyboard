@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FgI-vs-eH1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FgI-vs-eH1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--HomeVC-->
@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="315" y="1029"/>
         </scene>
-        <!--How To ModalVC-->
+        <!--GuideVC-->
         <scene sceneID="9dO-tq-1De">
             <objects>
-                <viewController id="5Lo-aA-dYN" customClass="HowToModalVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuideVC" id="5Lo-aA-dYN" customClass="GuideVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xta-rY-Psn"/>
                         <viewControllerLayoutGuide type="bottom" id="TIx-cf-ygZ"/>
@@ -193,7 +193,7 @@
         <!--PlaceVC-->
         <scene sceneID="Xhr-Vv-A8a">
             <objects>
-                <viewController id="kIP-ID-QN4" customClass="PlaceVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceVC" id="kIP-ID-QN4" customClass="PlaceVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5pl-rI-MuO"/>
                         <viewControllerLayoutGuide type="bottom" id="dch-Ul-AmO"/>
@@ -208,6 +208,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5L-Tu-SXX">
+                                <rect key="frame" x="139" y="315" width="52" height="30"/>
+                                <state key="normal" title="dismiss"/>
+                                <connections>
+                                    <action selector="dismiss" destination="kIP-ID-QN4" eventType="touchUpInside" id="Web-fY-2Hf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

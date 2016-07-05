@@ -18,6 +18,8 @@ class Guide {
     var image_url: String
     var pages: [Page]
     
+    var places: [Place]? // Connected places, ordered by relevance (location, time, etc)
+    
     init(id: Int, title:String, category:String, subcategory:String?, hidden: Bool?, image_url:String?) {
         self.id = id
         self.title = title
@@ -27,7 +29,5 @@ class Guide {
         self.image_url = image_url != nil ? image_url! : Constants.defaultUrl
         self.pages = []
     }
-    
-    
     
 }

@@ -9,6 +9,9 @@
 import Foundation
 import CoreLocation
 
+/**
+ Handles sorting of places and contains the list of places in memory
+*/
 class PlacesManager
 {
     var places : [Place]

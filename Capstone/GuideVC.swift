@@ -1,15 +1,20 @@
 
 import UIKit
 
-class HowToModalVC: UIViewController {
+class GuideVC: UIViewController {
+    
+    var guide:Guide?
     
     
     @IBAction func dismiss() {
-        self.navigationController?.popViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        modalTransitionStyle = .PartialCurl
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     

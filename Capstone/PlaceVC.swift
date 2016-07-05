@@ -9,5 +9,16 @@
 import UIKit
 
 class PlaceVC: UIViewController {
+    
+    var place:Place?
 
+    @IBAction func dismiss() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        modalTransitionStyle = .FlipHorizontal
+    }
+    
 }
