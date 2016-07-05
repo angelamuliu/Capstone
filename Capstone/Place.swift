@@ -8,15 +8,6 @@
 import Foundation
 import CoreLocation
 
-let defaultCategory:String = "none";
-let defaultSubCategory:String = "none";
-let defaultAddress:String = "300 South Craig Street, Pittsburgh, PA 15213";
-let defaultPhone:String = "000-000-0000"
-let defaultTags:[String] = ["none"]
-let defaultOpenTime:String = "09:00"
-let defaultCloseTime:String = "18:00"
-let defaultUrl:String = "http://odigo.travel"
-
 // Encapsulates information about spots, and converts data into a form presentable in the UIViews
 class Place {
     
@@ -40,22 +31,22 @@ class Place {
         location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
         self.name = name;
         
-        self.category = initializeStringValue(category, defaultValue:defaultCategory)
-        self.subcategory = initializeStringValue(subcategory, defaultValue:defaultSubCategory)
-        self.address = initializeStringValue(address, defaultValue:defaultAddress)
-        self.phone = initializeStringValue(phone, defaultValue:defaultPhone)
+        self.category = initializeStringValue(category, defaultValue: Constants.defaultCategory)
+        self.subcategory = initializeStringValue(subcategory, defaultValue: Constants.defaultSubCategory)
+        self.address = initializeStringValue(address, defaultValue: Constants.defaultAddress)
+        self.phone = initializeStringValue(phone, defaultValue:Constants.defaultPhone)
         
-        self.tags = initializeStringArrayValue(tags,defaultValue:defaultTags);
+        self.tags = initializeStringArrayValue(tags,defaultValue:Constants.defaultTags);
         
-        let openingHourArray = initializeTimeValue(open_hour, defaultTimeValue:defaultOpenTime)
+        let openingHourArray = initializeTimeValue(open_hour, defaultTimeValue:Constants.defaultOpenTime)
         self.openingHour = (Int)(openingHourArray[0])!
         self.openingMinute = (Int)(openingHourArray[1])!
         
-        let closingHourArray = initializeTimeValue(close_hour, defaultTimeValue:defaultCloseTime)
+        let closingHourArray = initializeTimeValue(close_hour, defaultTimeValue:Constants.defaultCloseTime)
         self.closingHour = (Int)(closingHourArray[0])!
         self.closingMinute = (Int)(closingHourArray[1])!
         
-        self.image_url = initializeStringValue(image_url, defaultValue:defaultUrl)
+        self.image_url = initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
         
     }
     

@@ -18,6 +18,8 @@
 // Based off code/tutorial, extended for our own needs
 // https://www.raywenderlich.com/123579/sqlite-tutorial-swift
 
+
+
 import Foundation
 
 enum SQLiteError: ErrorType {
@@ -29,6 +31,14 @@ enum SQLiteError: ErrorType {
 
 /**
  Handles querying, maintaining, etc of the database
+ 
+ EX Usage:
+ guard let db = try? SQLiteDatabase.open() else { return } 
+ // This returns a SQLiteDatabase object wrapped in an optional, where the value is nil if it fails and errors out
+ 
+ let placesArr = db.getPlaces("13:00", longitude: 100, latitude: 900, radius: 100)
+ db.close() // close the connection when you're done getting stuff
+
 */
 class SQLiteDatabase {
     private let dbPointer: COpaquePointer
@@ -50,8 +60,8 @@ class SQLiteDatabase {
         let path = fileManager.currentDirectoryPath // Make db in project root
         var db: COpaquePointer = nil
         
-        let dbpath = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite")
-        if sqlite3_open(dbpath!, &db) == SQLITE_OK {
+        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
+        if sqlite3_open(dbpath, &db) == SQLITE_OK {
             return SQLiteDatabase(dbPointer: db)
         } else {
             defer { // Defer is a new control that happens always AFTER this block is done executing
@@ -80,6 +90,18 @@ class SQLiteDatabase {
     // Used to manage the database itself (e.g. dropping, recreating, connecting
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     
+    /**
+        Creates the database on the device only if it doesn't exist yet. If a DB exists already, it doesn't do anything
+    */
+    static func safeCreate() -> Void {
+        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
+        let fileManager = NSFileManager.defaultManager()
+        guard fileManager.fileExistsAtPath(dbpath) else {
+            create()
+            return
+        }
+    }
+    
     /** 
      Creates the database on the device. (If one exists already, drops it and recreates)
     */
@@ -90,7 +112,7 @@ class SQLiteDatabase {
     
     /**
      Creates the database on the desktop, which makes no sense since this is running on iOS.
-     Mostly for debugging purposes...
+     Mostly for debugging purposes
     */
     static func createOnDesktop() -> Void {
         let dbpath = "/Users/Angela/Desktop/db.sqlite"
@@ -144,10 +166,33 @@ class SQLiteDatabase {
         sqlite3_step(createPlaceStatement)
         sqlite3_finalize(createPlaceStatement)
         
+        let createGuide: String = "CREATE TABLE Guide(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "Title CHARACTER(255), Category CHARACTER(255), Subcategory CHARACTER(255)," +
+            "Hidden BOOLEAN, Image_url VARCHAR(255)" +
+        ");"
+        var createGuideStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createGuide, -1, &createGuideStatement, nil)
+        sqlite3_step(createGuideStatement)
+        sqlite3_finalize(createGuideStatement)
+        
+        let createPage: String = "CREATE TABLE Page(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "Title CHARACTER(255), Description TEXT, Image_url CHARACTER(255)," +
+            "Guide_id INTEGER NOT NULL REFERENCES Guides(id));"
+        var createPageStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createPage, -1, &createPageStatement, nil)
+        sqlite3_step(createPageStatement)
+        sqlite3_finalize(createPageStatement)
+        
+        let createPlaceGuide: String = "CREATE Table PlaceGuide(Place_id INTEGER NOT NULL REFERENCES Places(id)," +
+        "Guide_id INTEGER NOT NULL REFERENCES Guides(id), PRIMARY KEY (Place_id, Guide_id));"
+        var createPlaceGuideStatement: COpaquePointer = nil
+        sqlite3_prepare_v2(db, createPlaceGuide, -1, &createPlaceGuideStatement, nil)
+        sqlite3_step(createPlaceGuideStatement)
+        sqlite3_finalize(createPlaceGuideStatement)
     }
     
     /**
-     Reads from a JSON file to add in records
+     Reads from a JSON file to add in records (places, guides, pages)
     */
     static private func populate(db:COpaquePointer) {
         if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json") {
@@ -156,12 +201,18 @@ class SQLiteDatabase {
                 let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                 let placesArr = jsonDict.valueForKey("Places") as! NSArray
                 insertPlaces(db, placesArr: placesArr)
+                
+                let guidesArr = jsonDict.valueForKey("Guides") as! NSArray
+                insertGuidesAndPages(db, guidesArr: guidesArr)
+                
+                let placeGuidesArr = jsonDict.valueForKey("PlaceGuides") as! NSArray
+                insertPlaceGuides(db, placeGuidesArr: placeGuidesArr)
             } catch { }
         }
     }
     
     /**
-     Given content from the JSON, inserts a place
+     Given starter content from the JSON, populates the DB with the places
     */
     static private func insertPlaces(db:COpaquePointer, placesArr : NSArray) {
         let insertStatementString = "INSERT INTO Place (Longitude,Latitude,Category,Subcategory,Name,Address,Phone,Open_hour,Close_hour,Image_url,Tags)" +
@@ -186,7 +237,7 @@ class SQLiteDatabase {
                 sqlite3_bind_text(insertStatement, 11, (placeDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" "), -1 ,nil)
                 
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
-                    print("Successfully inserted row.")
+                    print("Successfully inserted place row.")
                 } else {
                     print("Could not insert row.")
                 }
@@ -195,7 +246,82 @@ class SQLiteDatabase {
             sqlite3_finalize(insertStatement)
         } else {
             print(sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil))
-            print("Could not prepare statement")
+            print("Could not prepare insert places statement")
+        }
+    }
+    
+    /**
+     Given starter content from the JSON, populates the DB with the guides and pages (parts of the guide)
+    */
+    static private func insertGuidesAndPages(db:COpaquePointer, guidesArr: NSArray) {
+        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url) VALUES (?, ?, ?, ?, ?);"
+        let insertPageStatementString = "INSERT INTO Page (Title,Description,Image_url,Guide_id) VALUES (?, ?, ?, ?);"
+        
+        var insertGuideStatement: COpaquePointer = nil
+        var insertPageStatement: COpaquePointer = nil
+        if sqlite3_prepare_v2(db, insertGuideStatementString, -1, &insertGuideStatement, nil) == SQLITE_OK {
+            
+            for (var i = 0; i < guidesArr.count; i++) {
+                let guideDict = guidesArr[i] as! NSDictionary
+                sqlite3_bind_text(insertGuideStatement, 1, (guideDict.valueForKey("Title")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 2, (guideDict.valueForKey("Category")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 3, (guideDict.valueForKey("Subcategory")?.UTF8String)!, -1, nil)
+                sqlite3_bind_int(insertGuideStatement, 4, guideDict.valueForKey("Hidden") as! Bool == true ? 1 : 0)
+                sqlite3_bind_text(insertGuideStatement, 5, (guideDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                if sqlite3_step(insertGuideStatement) == SQLITE_DONE {
+                    print("Successfully inserted guide row")
+                    
+                    // Checking if pages are connected to this guide and inserting them now
+                    if guideDict.valueForKey("Pages") != nil && sqlite3_prepare_v2(db, insertPageStatementString, -1, &insertPageStatement, nil) == SQLITE_OK {
+                        let pageArr = guideDict.valueForKey("Pages") as! NSArray
+                        for page in pageArr {
+                            let pageDict = page as! NSDictionary
+                            sqlite3_bind_text(insertPageStatement, 1, (pageDict.valueForKey("Title")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_text(insertPageStatement, 2, (pageDict.valueForKey("Description")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_text(insertPageStatement, 3, (pageDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                            sqlite3_bind_int(insertPageStatement, 4, i+1)
+                            if sqlite3_step(insertPageStatement) == SQLITE_DONE {
+                                print("Successfully inserted a page associated to guide")
+                            } else {
+                                print("Could not insert page row")
+                            }
+                            sqlite3_reset(insertPageStatement)
+                        }
+                    }
+                } else {
+                    print("Could not insert guide row")
+                }
+                sqlite3_reset(insertGuideStatement)
+            }
+            sqlite3_finalize(insertPageStatement)
+            sqlite3_finalize(insertGuideStatement)
+        } else {
+            print(sqlite3_prepare_v2(db, insertGuideStatementString, -1, &insertGuideStatement, nil))
+            print("Could not prepare insert guides statement")
+        }
+    }
+    
+    /**
+     Given starter content from the JSON, populates teh DB with placeGuides, which connect places and guides (many-to-many)
+    */
+    static private func insertPlaceGuides(db:COpaquePointer, placeGuidesArr: NSArray) {
+        let insertPlaceGuideStatementString = "INSERT INTO PlaceGuide(Place_id,Guide_id) VALUES (?,?);"
+        var insertPlaceGuideStatement: COpaquePointer = nil
+        if sqlite3_prepare_v2(db, insertPlaceGuideStatementString, -1, &insertPlaceGuideStatement, nil) == SQLITE_OK {
+            for placeGuide in placeGuidesArr {
+                let placeGuideDict = placeGuide as! NSDictionary
+                sqlite3_bind_double(insertPlaceGuideStatement, 1, placeGuideDict.valueForKey("Place") as! Double)
+                sqlite3_bind_double(insertPlaceGuideStatement, 2, placeGuideDict.valueForKey("Guide") as! Double)
+                if sqlite3_step(insertPlaceGuideStatement) == SQLITE_DONE {
+                    print("Successfully inserted placeGuide row.")
+                } else {
+                    print("Could not insert placeGuide row.")
+                }
+                sqlite3_reset(insertPlaceGuideStatement)
+            }
+            sqlite3_finalize(insertPlaceGuideStatement)
+        } else {
+            print("Could not prepare insert placeGuides statement")
         }
     }
     
@@ -226,8 +352,8 @@ class SQLiteDatabase {
     */
     func getPlaces(time:String, longitude:Float, latitude:Float, radius:Float) -> [Place] {
         var placesArr = [Place]()
-        let querySql = "SELECT * FROM Place WHERE Longitude BETWEEN ? AND ? AND Latitude BETWEEN ? AND ? AND ? BETWEEN Open_hour AND Close_hour;"
-
+        let querySql = "SELECT id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags FROM Place" +
+            " WHERE Longitude BETWEEN ? AND ? AND Latitude BETWEEN ? AND ? AND ? BETWEEN Open_hour AND Close_hour;"
         guard let queryStatement = try? prepareStatement(querySql) else { // If the statement after guard fails, we stop trying to get altogether
             return []
         }
@@ -249,25 +375,131 @@ class SQLiteDatabase {
             guard sqlite3_step(queryStatement) == SQLITE_ROW else { // Stop looping when we step and it's not another record
                 break
             }
-            // This looks terrible... 
-            let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
-            let row_longitude:Float = Float(sqlite3_column_double(queryStatement, 1))
-            let row_latitude:Float = Float(sqlite3_column_double(queryStatement, 2))
-            let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
-            let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
-            let row_name = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
-            let row_address = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
-            let row_phone = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 7)))
-            let row_open_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 8)))
-            let row_close_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 9)))
-            let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 10)))
-            let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 11)))
-            
-        
-            placesArr.append(Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name!, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags)!)
+            placesArr.append(SQLiteDatabase.placeFromQuery(queryStatement))
         }
         return placesArr
     }
+    
+    /**
+      Given a place, returns all associated guides (and pages attached to the guide) as an array
+    */
+    func getGuidesForPlace(place:Place) -> [Guide] {
+        var guidesArr = [Guide]()
+        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url FROM Guide as g" +
+            " INNER JOIN PlaceGuide AS pg ON pg.guide_id = g.id INNER JOIN Place AS p ON pg.place_id = p.id" +
+            " WHERE p.id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(place.id))
+        
+        var newGuide:Guide
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            newGuide = SQLiteDatabase.guideFromQuery(queryStatement)
+            newGuide.pages = self.getPagesForGuide(newGuide)
+            guidesArr.append(newGuide)
+        }
+        return guidesArr
+    }
+    
+    /**
+     Given a guide, returns all associated places as an array
+    */
+    func getPlacesForGuide(guide:Guide) -> [Place] {
+        var placesArr = [Place]()
+        let querySql = "SELECT p.id, p.longitude, p.latitude, p.category, p.subcategory, p.name, p.address, p.phone, p.open_hour, p.close_hour, p.image_url, p.tags" +
+            " FROM Place as p INNER JOIN PlaceGuide AS pg ON pg.place_id = p.id INNER JOIN Guide AS g ON pg.guide_id = g.id WHERE g.id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(guide.id))
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            placesArr.append(SQLiteDatabase.placeFromQuery(queryStatement))
+        }
+        return placesArr
+    }
+    
+    /**
+     Given a guide, returns all associated pages as an array
+    */
+    func getPagesForGuide(guide:Guide) -> [Page] {
+        var pagesArr = [Page]()
+        let querySql = "SELECT id, title, description, image_url FROM Page WHERE guide_id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(guide.id))
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            pagesArr.append(SQLiteDatabase.pageFromQuery(queryStatement))
+        }
+        return pagesArr
+    }
+    
+    /**
+     Given the pointer, returns a place. Assumes that the columns follow this order:
+     Id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags
+    */
+    static private func placeFromQuery(queryStatement: COpaquePointer) -> Place {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_longitude:Float = Float(sqlite3_column_double(queryStatement, 1))
+        let row_latitude:Float = Float(sqlite3_column_double(queryStatement, 2))
+        let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
+        let row_name = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        let row_address = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
+        let row_phone = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 7)))
+        let row_open_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 8)))
+        let row_close_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 9)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 10)))
+        let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 11)))
+
+        return Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name!, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags)!
+    }
+    
+    /**
+     Given the pointer, returns a guide. Assumes that the columns follow this order:
+     id, title, category, subcategory, hidden, image_url
+     */
+    static private func guideFromQuery(queryStatement: COpaquePointer) -> Guide {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_title = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 1)))
+        let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 2)))
+        let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        let row_hidden = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        
+        if row_hidden != nil && row_hidden! == "0" {
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
+        } else {
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
+        }
+    }
+    
+    /**
+     Given the pointer, returns a page. Assumes that the columns follow this order:
+     id, title, description, image_url
+     */
+    static private func pageFromQuery(queryStatement: COpaquePointer) -> Page {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_title = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 1)))
+        let row_description = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 2)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        
+        return Page(id: row_id, title: row_title!, description: row_description, image_url: row_image_url)
+    }
+    
     
     
 

@@ -28,5 +28,60 @@
         }
     ],
 
-    "How-tos" : []
+    "Guides" : [
+        {
+            "Title" : "Eating Sashimi",
+            "Category" : "Food",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "./img/pug.png",
+            "Pages" : [
+                {
+                    "Title" : "Pick up fish",
+                    "Description" : "Using chopsticks, pick up the fish from the top left corner",
+                    "Image_url" : "./img/pug.png"
+                },
+                {
+                    "Title" : "Put fish in mouth",
+                    "Description" : "Put that raw fish in the mouth by opening the mouth first",
+                    "Image_url" : "./img/pug.png"
+                },
+                {
+                    "Title" : "Chew it",
+                    "Description" : "Chew it with the force of one thousand gales",
+                    "Image_url" : "./img/pug.png"
+                }
+            ]
+        },
+        {
+            "Title" : "Buying train ticket",
+            "Category" : "Travel",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "./img/pug.png",
+            "Pages" : [
+                {
+                    "Title" : "Press button",
+                    "Description" : "Beep boop beep boop beep",
+                    "Image_url" : "./img/pug.png"
+                },
+                {
+                    "Title" : "Press button again",
+                    "Description" : "Beeeeeeeeeeep",
+                    "Image_url" : "./img/pug.png"
+                }
+            ]
+        }
+    ],
+
+    "PlaceGuides" : [
+        {
+            "Place" : 1,
+            "Guide" : 1
+        },
+        {
+            "Place" : 1,
+            "Guide" : 2
+        }
+    ]
 }
