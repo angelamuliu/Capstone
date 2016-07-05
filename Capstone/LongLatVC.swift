@@ -30,7 +30,7 @@ class LongLatVC: UIViewController, CLLocationManagerDelegate {
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        var latestLocation: AnyObject = locations[locations.count - 1]
+        let latestLocation: AnyObject = locations[locations.count - 1]
         
         print(String(format: "%.4f",
             latestLocation.coordinate.latitude))
@@ -48,8 +48,8 @@ class LongLatVC: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    func locationManager(manager: CLLocationManager!,
-                         didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager,
+                         didFailWithError error: NSError) {
         
     }
     
