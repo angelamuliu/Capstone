@@ -50,7 +50,8 @@ class Place {
         
     }
     
-    // Takes in the user's current location and returns distance from this place
+    /* Takes in the user's current location and returns distance from this place.
+     this is intentionally a method and not a boolean member to avoid stale data */
     func getDistanceFromUser(userLocation:CLLocation) -> CLLocationDistance {
         return self.location.distanceFromLocation(userLocation);
     }
@@ -70,7 +71,7 @@ class Place {
         }
     }
     
-    func initializeStringArrayValue(assignedValue:String?, defaultValue:[String]) -> [String]
+    private func initializeStringArrayValue(assignedValue:String?, defaultValue:[String]) -> [String]
     {
         if let val = assignedValue {
             return val.componentsSeparatedByString(",")
@@ -81,7 +82,7 @@ class Place {
     }
     
     // assumes that the timeString is already correctly formatted
-    func initializeTimeValue(timeString:String?, defaultTimeValue:String) -> [String]
+    private func initializeTimeValue(timeString:String?, defaultTimeValue:String) -> [String]
     {
         if timeString != nil {
             return timeString!.componentsSeparatedByString(":")
@@ -91,7 +92,7 @@ class Place {
         }
     }
     
-    
+    /* this is intentionally a method and not a boolean member to avoid stale data */
     func getIsPlaceOpen() -> Bool
     {
         let date = NSDate()
@@ -114,19 +115,48 @@ class Place {
         return true;
     }
     
+    /* takes in a lowercase search term. Currently checks whether this string is part of the following attributes: name, category, subcategory,tags */
+    func containsKeyword(searchTerm: String) -> Bool
+    {
+        var returnVal = false
+        
+        // optimization to prevent unneccessary search for 2 characters, example 'th'
+        if searchTerm.characters.count >= 3
+        {
+            if name.lowercaseString.containsString(searchTerm) || category!.lowercaseString.containsString(searchTerm) || subcategory!.lowercaseString.containsString(searchTerm)
+            {
+                returnVal = true
+            }
+            else
+            {
+                for tag in tags!
+                {
+                    if tag.lowercaseString.containsString(searchTerm)
+                    {
+                        returnVal = true
+                        break
+                    }
+                }
+            }
+        }
+        return returnVal
+    }
+    
+    /* A test method to print all the members, ensuring that Place is initialized properly */
     func testParams() {
         
-        print(String(id) + "\n")
-        print(name + "\n")
+        print("ID:" + String(id) + "\n")
+        print("Name:" + name + "\n")
         // print(getDistanceFromUser(self.location)) -> Need user's location for this
-        print(category! + "\n")
-        print(subcategory! + "\n")
-        print(address! + "\n")
-        print(phone! + "\n")
-        print(String(openingHour!) + "\n")
-        print(String(openingMinute!) + "\n")
-        print(String(closingHour!) + "\n")
-        print(String(closingMinute!) + "\n")
+        print("Category:" + category! + "\n")
+        print("Subcategory:" + subcategory! + "\n")
+        print("Address:" + address! + "\n")
+        print("Phone:" + phone! + "\n")
+        print("Opening Hour:" + String(openingHour!) + "\n")
+        print("Opening Minute:" + String(openingMinute!) + "\n")
+        print("Closing Hour:" + String(closingHour!) + "\n")
+        print("Closing Minute:" + String(closingMinute!) + "\n")
+        print("Open:" + String(getIsPlaceOpen()) + "\n")
         print(image_url! + "\n")
         print(tags!)
     }

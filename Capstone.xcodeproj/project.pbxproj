@@ -25,6 +25,7 @@
 		0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5D1D22D6A600C68B93 /* Place.swift */; };
 		0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */; };
 		0B7A3D631D22D6E600C68B93 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */; };
+		23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */; };
 		6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */; };
 		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		0B7A3D5D1D22D6A600C68B93 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
 		6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongLatVC.swift; sourceTree = "<group>"; };
 		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 				0B7A3D5C1D22D6A600C68B93 /* data.json */,
 				0B7A3D5D1D22D6A600C68B93 /* Place.swift */,
 				0B63F80E1D2C03D3003A4E11 /* Constants.swift */,
+				23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */,
 				0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */,
 				0B363FC11D2A093600CD8AF5 /* Guide.swift */,
 				0B363FC31D2A0A2B00CD8AF5 /* Page.swift */,
@@ -201,6 +204,7 @@
 				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
 				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
 				0B0F7F321D1C6D5100CFF61F /* ProfileVC.swift in Sources */,
+				23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */,
 				0B0F7F2C1D1C6C6A00CFF61F /* SearchResultsVC.swift in Sources */,
 				0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */,
 				0B0F7F281D1C630600CFF61F /* HowToModalVC.swift in Sources */,
