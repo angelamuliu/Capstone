@@ -15,9 +15,9 @@ class Page {
     var description: String
     var image_url: String
     
-    init(id: Int, title:String?, description:String?, image_url:String?) {
+    init(id: Int, title:String, description:String?, image_url:String?) {
         self.id = id
-        self.title = title != nil ? title! : Constants.defaultTitle
+        self.title = title
         self.description = description != nil ? description! : Constants.defaultDescription
         self.image_url = image_url != nil ? image_url! : Constants.defaultUrl
     }

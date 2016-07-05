@@ -18,10 +18,10 @@ class Guide {
     var image_url: String
     var pages: [Page]
     
-    init(id: Int, title:String?, category:String?, subcategory:String?, hidden: Bool?, image_url:String?) {
+    init(id: Int, title:String, category:String, subcategory:String?, hidden: Bool?, image_url:String?) {
         self.id = id
-        self.title = title != nil ? title! : Constants.defaultTitle
-        self.category = category != nil ? category! : Constants.defaultCategory
+        self.title = title
+        self.category = category
         self.subcategory = subcategory != nil ? subcategory! : Constants.defaultSubCategory
         self.hidden = hidden != nil ? hidden! : true
         self.image_url = image_url != nil ? image_url! : Constants.defaultUrl

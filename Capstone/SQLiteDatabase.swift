@@ -33,9 +33,11 @@ enum SQLiteError: ErrorType {
  Handles querying, maintaining, etc of the database
  
  EX Usage:
- guard let db = try? SQLiteDatabase.open() else { return }
+ guard let db = try? SQLiteDatabase.open() else { return } 
+ // This returns a SQLiteDatabase object wrapped in an optional, where the value is nil if it fails and errors out
+ 
  let placesArr = db.getPlaces("13:00", longitude: 100, latitude: 900, radius: 100)
- db.close()
+ db.close() // close the connection when you're done getting stuff
 
 */
 class SQLiteDatabase {
@@ -88,6 +90,18 @@ class SQLiteDatabase {
     // Used to manage the database itself (e.g. dropping, recreating, connecting
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     
+    /**
+        Creates the database on the device only if it doesn't exist yet. If a DB exists already, it doesn't do anything
+    */
+    static func safeCreate() -> Void {
+        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
+        let fileManager = NSFileManager.defaultManager()
+        guard fileManager.fileExistsAtPath(dbpath) else {
+            create()
+            return
+        }
+    }
+    
     /** 
      Creates the database on the device. (If one exists already, drops it and recreates)
     */
@@ -98,7 +112,7 @@ class SQLiteDatabase {
     
     /**
      Creates the database on the desktop, which makes no sense since this is running on iOS.
-     Mostly for debugging purposes...
+     Mostly for debugging purposes
     */
     static func createOnDesktop() -> Void {
         let dbpath = "/Users/Angela/Desktop/db.sqlite"
@@ -467,9 +481,9 @@ class SQLiteDatabase {
         let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
         
         if row_hidden != nil && row_hidden! == "0" {
-            return Guide(id: row_id, title: row_title, category: row_category, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
         } else {
-            return Guide(id: row_id, title: row_title, category: row_category, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
         }
     }
     
@@ -483,7 +497,7 @@ class SQLiteDatabase {
         let row_description = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 2)))
         let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
         
-        return Page(id: row_id, title: row_title, description: row_description, image_url: row_image_url)
+        return Page(id: row_id, title: row_title!, description: row_description, image_url: row_image_url)
     }
     
     
