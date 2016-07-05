@@ -18,6 +18,8 @@
 // Based off code/tutorial, extended for our own needs
 // https://www.raywenderlich.com/123579/sqlite-tutorial-swift
 
+
+
 import Foundation
 
 enum SQLiteError: ErrorType {
@@ -29,6 +31,12 @@ enum SQLiteError: ErrorType {
 
 /**
  Handles querying, maintaining, etc of the database
+ 
+ EX Usage:
+ guard let db = try? SQLiteDatabase.open() else { return }
+ let placesArr = db.getPlaces("13:00", longitude: 100, latitude: 900, radius: 100)
+ db.close()
+
 */
 class SQLiteDatabase {
     private let dbPointer: COpaquePointer
@@ -50,8 +58,8 @@ class SQLiteDatabase {
         let path = fileManager.currentDirectoryPath // Make db in project root
         var db: COpaquePointer = nil
         
-        let dbpath = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite")
-        if sqlite3_open(dbpath!, &db) == SQLITE_OK {
+        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
+        if sqlite3_open(dbpath, &db) == SQLITE_OK {
             return SQLiteDatabase(dbPointer: db)
         } else {
             defer { // Defer is a new control that happens always AFTER this block is done executing
@@ -330,8 +338,8 @@ class SQLiteDatabase {
     */
     func getPlaces(time:String, longitude:Float, latitude:Float, radius:Float) -> [Place] {
         var placesArr = [Place]()
-        let querySql = "SELECT * FROM Place WHERE Longitude BETWEEN ? AND ? AND Latitude BETWEEN ? AND ? AND ? BETWEEN Open_hour AND Close_hour;"
-
+        let querySql = "SELECT id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags FROM Place" +
+            " WHERE Longitude BETWEEN ? AND ? AND Latitude BETWEEN ? AND ? AND ? BETWEEN Open_hour AND Close_hour;"
         guard let queryStatement = try? prepareStatement(querySql) else { // If the statement after guard fails, we stop trying to get altogether
             return []
         }
@@ -353,22 +361,7 @@ class SQLiteDatabase {
             guard sqlite3_step(queryStatement) == SQLITE_ROW else { // Stop looping when we step and it's not another record
                 break
             }
-            // This looks terrible... 
-            let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
-            let row_longitude:Float = Float(sqlite3_column_double(queryStatement, 1))
-            let row_latitude:Float = Float(sqlite3_column_double(queryStatement, 2))
-            let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
-            let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
-            let row_name = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
-            let row_address = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
-            let row_phone = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 7)))
-            let row_open_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 8)))
-            let row_close_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 9)))
-            let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 10)))
-            let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 11)))
-            
-        
-            placesArr.append(Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name!, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags)!)
+            placesArr.append(SQLiteDatabase.placeFromQuery(queryStatement))
         }
         return placesArr
     }
@@ -377,15 +370,122 @@ class SQLiteDatabase {
       Given a place, returns all associated guides (and pages attached to the guide) as an array
     */
     func getGuidesForPlace(place:Place) -> [Guide] {
-        return []
+        var guidesArr = [Guide]()
+        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url FROM Guide as g" +
+            " INNER JOIN PlaceGuide AS pg ON pg.guide_id = g.id INNER JOIN Place AS p ON pg.place_id = p.id" +
+            " WHERE p.id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(place.id))
+        
+        var newGuide:Guide
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            newGuide = SQLiteDatabase.guideFromQuery(queryStatement)
+            newGuide.pages = self.getPagesForGuide(newGuide)
+            guidesArr.append(newGuide)
+        }
+        return guidesArr
     }
     
     /**
-     Given a guide, returns all associate places as an array
+     Given a guide, returns all associated places as an array
     */
     func getPlacesForGuide(guide:Guide) -> [Place] {
-        return []
+        var placesArr = [Place]()
+        let querySql = "SELECT p.id, p.longitude, p.latitude, p.category, p.subcategory, p.name, p.address, p.phone, p.open_hour, p.close_hour, p.image_url, p.tags" +
+            " FROM Place as p INNER JOIN PlaceGuide AS pg ON pg.place_id = p.id INNER JOIN Guide AS g ON pg.guide_id = g.id WHERE g.id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(guide.id))
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            placesArr.append(SQLiteDatabase.placeFromQuery(queryStatement))
+        }
+        return placesArr
     }
+    
+    /**
+     Given a guide, returns all associated pages as an array
+    */
+    func getPagesForGuide(guide:Guide) -> [Page] {
+        var pagesArr = [Page]()
+        let querySql = "SELECT id, title, description, image_url FROM Page WHERE guide_id = ?;"
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        sqlite3_bind_double(queryStatement, 1, Double(guide.id))
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            pagesArr.append(SQLiteDatabase.pageFromQuery(queryStatement))
+        }
+        return pagesArr
+    }
+    
+    /**
+     Given the pointer, returns a place. Assumes that the columns follow this order:
+     Id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags
+    */
+    static private func placeFromQuery(queryStatement: COpaquePointer) -> Place {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_longitude:Float = Float(sqlite3_column_double(queryStatement, 1))
+        let row_latitude:Float = Float(sqlite3_column_double(queryStatement, 2))
+        let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
+        let row_name = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        let row_address = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
+        let row_phone = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 7)))
+        let row_open_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 8)))
+        let row_close_hour = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 9)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 10)))
+        let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 11)))
+
+        return Place(id: row_id, longitude: row_longitude, latitude: row_latitude, category: row_category, subcategory: row_subcategory, name: row_name!, address: row_address, phone: row_phone, open_hour: row_open_hour, close_hour: row_close_hour, image_url: row_image_url, tags: row_tags)!
+    }
+    
+    /**
+     Given the pointer, returns a guide. Assumes that the columns follow this order:
+     id, title, category, subcategory, hidden, image_url
+     */
+    static private func guideFromQuery(queryStatement: COpaquePointer) -> Guide {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_title = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 1)))
+        let row_category = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 2)))
+        let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        let row_hidden = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        
+        if row_hidden != nil && row_hidden! == "0" {
+            return Guide(id: row_id, title: row_title, category: row_category, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
+        } else {
+            return Guide(id: row_id, title: row_title, category: row_category, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
+        }
+    }
+    
+    /**
+     Given the pointer, returns a page. Assumes that the columns follow this order:
+     id, title, description, image_url
+     */
+    static private func pageFromQuery(queryStatement: COpaquePointer) -> Page {
+        let row_id:Int = Int(sqlite3_column_int(queryStatement, 0))
+        let row_title = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 1)))
+        let row_description = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 2)))
+        let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
+        
+        return Page(id: row_id, title: row_title, description: row_description, image_url: row_image_url)
+    }
+    
     
     
 

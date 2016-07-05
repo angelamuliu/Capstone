@@ -21,7 +21,7 @@ let defaultUrl:String = "http://odigo.travel"
 // Encapsulates information about spots, and converts data into a form presentable in the UIViews
 class Place {
     
-    private var id:Int // unique identifier for a place
+    var id:Int // unique identifier for a place
     var name: String
     var location: CLLocation // latitude and longitude wrapped in a CLLocation type
     var category: String?
