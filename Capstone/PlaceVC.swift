@@ -13,6 +13,7 @@ class PlaceVC: UIViewController {
     var place:Place?
     
     // UI Elements
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -29,6 +30,10 @@ class PlaceVC: UIViewController {
         modalTransitionStyle = .FlipHorizontal
         
         if let loadedPlace = place {
+            imageView.image = UIImage(named: loadedPlace.image_url!)
+            imageView.clipsToBounds = true
+            imageView.contentMode = .ScaleAspectFill
+            
             nameLabel.text = loadedPlace.name
             statusLabel.text = loadedPlace.getIsPlaceOpen() ? "Open" : "Closed"
             categoryLabel.text = loadedPlace.category

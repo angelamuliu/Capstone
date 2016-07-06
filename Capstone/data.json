@@ -10,7 +10,7 @@
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {

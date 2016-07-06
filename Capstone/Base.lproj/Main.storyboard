@@ -216,8 +216,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0xc-sm-QUF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0xc-sm-QUF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="214" id="bDV-6b-SgP"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyp-6i-LbN">
                                 <rect key="frame" x="20" y="232" width="204" height="21"/>
@@ -265,6 +268,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0xc-sm-QUF" secondAttribute="trailing" constant="-20" id="MWl-xr-cmx"/>
+                            <constraint firstItem="0xc-sm-QUF" firstAttribute="leading" secondItem="K2t-HQ-0vH" secondAttribute="leadingMargin" constant="-20" id="TG6-lm-V0S"/>
                             <constraint firstItem="fh3-oW-lAg" firstAttribute="trailing" secondItem="K2t-HQ-0vH" secondAttribute="trailingMargin" id="cQf-hw-o4L"/>
                         </constraints>
                     </view>
@@ -272,6 +277,7 @@
                         <outlet property="addressLabel" destination="J9g-PJ-4Yc" id="7rN-Wk-bQY"/>
                         <outlet property="categoryLabel" destination="I8M-o5-NaR" id="dig-qC-5jv"/>
                         <outlet property="hourLabel" destination="4Z6-aF-BXc" id="PCi-Cp-QvC"/>
+                        <outlet property="imageView" destination="0xc-sm-QUF" id="vZe-p7-yaZ"/>
                         <outlet property="nameLabel" destination="Oyp-6i-LbN" id="Pya-dF-y45"/>
                         <outlet property="phoneLabel" destination="3IR-Ab-3rk" id="9el-UL-kUk"/>
                         <outlet property="statusLabel" destination="fh3-oW-lAg" id="4lB-cT-vxK"/>
