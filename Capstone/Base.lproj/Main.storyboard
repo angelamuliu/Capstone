@@ -17,16 +17,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main home - listing (homeVC)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9f-N2-ZWK">
-                                <rect key="frame" x="47" y="218" width="227" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting for location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9f-N2-ZWK">
+                                <rect key="frame" x="86" y="251" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qh8-5s-CxM">
+                                <rect key="frame" x="10" y="78" width="203" height="29"/>
+                                <segments>
+                                    <segment title="Guides"/>
+                                    <segment title="Nearby Places"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleMode" destination="BYZ-38-t0r" eventType="valueChanged" id="IYx-MM-7wy"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yC9-qE-0AH"/>
+                    <connections>
+                        <outlet property="loadingLabel" destination="u9f-N2-ZWK" id="qC8-fr-AP7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -226,6 +239,7 @@
         <!--Navigation Controller-->
         <scene sceneID="tqI-mT-2CB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfw-Wc-Tg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="FgI-vs-eH1" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jf7-o1-sy9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -235,7 +249,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JWR-0R-RQR"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kfw-Wc-Tg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114" y="-12"/>
         </scene>

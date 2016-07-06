@@ -22,7 +22,6 @@ class CardView : UIView {
     static let imageHeight:CGFloat = 100
     static let textMargin: CGFloat = 10
     static let textHeight: CGFloat = 50
-    static let buttonWidth: CGFloat = 50
     
     var image: UIImage?
     var imageView:UIImageView
@@ -49,13 +48,16 @@ class CardView : UIView {
         
         // Button setup
         self.button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 10))
-//        self.button.backgroundColor = UIColor.clearColor()
-        self.button.backgroundColor = UIColor.purpleColor()
+        self.button.backgroundColor = UIColor.clearColor()
         
         super.init(frame: CGRect(x: 0, y: 0, width: 100, height: CardView.height))
         
         // Styling the card backdrop
-        self.backgroundColor = UIColor.blueColor()
+        self.backgroundColor = UIColor.whiteColor()
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        self.layer.shadowOpacity = 0.25
+        self.layer.shadowRadius = 1.2
         
         // Connecting the button to an action in the CardView class
         self.button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
@@ -76,9 +78,8 @@ class CardView : UIView {
             
             self.nameLabel.frame = CGRect(x: CardView.textMargin, y: CardView.imageHeight + CardView.textMargin, width: parentview.bounds.width - (2 * CardView.textMargin), height: CardView.textHeight)
             self.nameLabel.sizeToFit() // Now fit the frame to only what's needed. Also top aligns text to frame
-            
-            self.button.frame = CGRect(x: parentview.bounds.width - CardView.buttonWidth, y: CardView.imageHeight, width: CardView.buttonWidth, height: CardView.height - CardView.imageHeight)
-            
+            // Clear button over all elements that brings you to necessary page
+            self.button.frame = CGRect(x: 0, y: 0, width: parentview.bounds.width, height: self.bounds.height)
         }
     }
     

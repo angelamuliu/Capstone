@@ -19,6 +19,13 @@ class CardViewList : UIView {
     
     var cards: [CardView]
     
+    init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager) {
+        self.cards = [CardView]()
+        super.init(frame: CGRect(origin: topleftPoint, size: CGSize(width: parentview.bounds.width - (2 * topleftPoint.x), height: 0)))
+        self.loadPlaces(placesManager)
+        parentview.addSubview(self)
+    }
+    
     /**
      Given a top left point to start "drawing" on, a parent UIView (superview), and the cards to present,
      creates the card list that fits inside of the parent UIView
@@ -30,9 +37,6 @@ class CardViewList : UIView {
         // Add in cards into view
         self.cards.forEach { (card) -> () in self.addSubview(card) }
         parentview.addSubview(self)
-        
-        // For debugging...
-//        self.backgroundColor = UIColor.redColor()
     }
     
     /**
@@ -49,6 +53,18 @@ class CardViewList : UIView {
             
             self.addSubview(card)
             card.redraw()
+        }
+    }
+    
+    /**
+     Loads in places in a PlacesManager and adds them as cards to display
+    */
+    func loadPlaces(placesManager: PlacesManager) {
+        var cardView:PlaceCardView?
+        for place in placesManager.places {
+            cardView = PlaceCardView(place: place)
+            self.cards.append(cardView!)
+            self.addSubview(cardView!)
         }
     }
     
