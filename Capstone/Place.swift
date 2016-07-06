@@ -49,13 +49,19 @@ class Place {
         self.closingMinute = (Int)(closingHourArray[1])!
         
         self.image_url = initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
-        
     }
     
     /* Takes in the user's current location and returns distance from this place.
      this is intentionally a method and not a boolean member to avoid stale data */
     func getDistanceFromUser(userLocation:CLLocation) -> CLLocationDistance {
         return self.location.distanceFromLocation(userLocation);
+    }
+    
+    // TODO: Not make it milatary time haha
+    var hours : String {  //computed property, relies on other stuff to get set
+        get {
+            return "\(openingHour!):\(openingMinute!) - \(closingHour!):\(closingMinute!)"
+        }
     }
     
     // TODO: Add a check to test that particular type of attribute - varchar vs char for example

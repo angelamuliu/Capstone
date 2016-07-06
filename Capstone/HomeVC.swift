@@ -34,7 +34,7 @@ class HomeVC: UIViewController {
         if let userLocation = appDelegate.lastLocation {
             
             guard let db = try? SQLiteDatabase.open() else { return }
-            placesManager.places = db.getPlaces("24:00", longitude: Float(userLocation.coordinate.longitude), latitude: Float(userLocation.coordinate.latitude), radius: 2000)
+            placesManager.places = db.getPlaces("13:00", longitude: Float(userLocation.coordinate.longitude), latitude: Float(userLocation.coordinate.latitude), radius: 2000)
             let guides = db.getGuidesForPlace(placesManager.places.first!)
             db.close()
             
