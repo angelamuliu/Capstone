@@ -18,16 +18,24 @@ class HomeVC: UIViewController {
         let guides = db.getGuidesForPlace(places.first!)
         db.close()
         
-        var cards = [CardView]()
+//        let placeManager = PlacesManager.init(places: places)
+//        placeManager.sortPlaces(<#T##userLocation: CLLocation##CLLocation#>)
+        
+        var placeCards = [CardView]()
         for place in places {
-            cards.append(PlaceCardView(place: place))
+            placeCards.append(PlaceCardView(place: place))
         }
+        var guideCards = Set<CardView>()
         for guide in guides {
             guide.places = places
-            cards.append(GuideCardView(guide: guide))
+            guideCards.insert(GuideCardView(guide: guide))
         }
-        let cardList = CardViewList(topleftPoint: CGPoint(x:10,y: 80), parentview: super.view, cards: cards)
-        cardList.redraw()
+        
+        let placeCardList = CardViewList(topleftPoint: CGPoint(x:10,y: 80), parentview: super.view, cards: placeCards)
+        placeCardList.redraw()
+        
+        let guideCardList = CardViewList(topleftPoint: CGPoint(x:10,y: 80), parentview: super.view, cards: Array(guideCards))
+        guideCardList.redraw()
     }
     
 }

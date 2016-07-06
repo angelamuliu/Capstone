@@ -14,6 +14,45 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
+            "Longitude" : 100.23298049382,
+            "Latitude" : 928.9893908902,
+            "Category" : "Coffee",
+            "Subcategory" : "Coffee & Tea",
+            "Name" : "Katherine Tea",
+            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "12:00",
+            "Close_hour" : "19:00",
+            "Image_url" : "./img/pug.png",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : 100.23298049382,
+            "Latitude" : 928.9893908902,
+            "Category" : "Coffee",
+            "Subcategory" : "Coffee & Tea",
+            "Name" : "Katie's Cafe",
+            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "12:00",
+            "Close_hour" : "19:00",
+            "Image_url" : "./img/pug.png",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : 100.23298049382,
+            "Latitude" : 928.9893908902,
+            "Category" : "Coffee",
+            "Subcategory" : "Coffee & Tea",
+            "Name" : "Angela's Bagel Shop",
+            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "12:00",
+            "Close_hour" : "19:00",
+            "Image_url" : "./img/pug.png",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
             "Longitude" : 399.02930293,
             "Latitude" : 10.02938712313,
             "Category" : "Food",
@@ -54,6 +93,25 @@
             ]
         },
         {
+            "Title" : "Drinking Tea",
+            "Category" : "Food",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "./img/pug.png",
+            "Pages" : [
+                {
+                    "Title" : "Add condiments while hot",
+                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+                    "Image_url" : "./img/pug.png"
+                },
+                {
+                    "Title" : "Wait until cool",
+                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+                    "Image_url" : "./img/pug.png"
+                }
+            ]
+        },
+        {
             "Title" : "Buying train ticket",
             "Category" : "Travel",
             "Subcategory" : "Traditional",
@@ -81,6 +139,14 @@
         },
         {
             "Place" : 1,
+            "Guide" : 2
+        },
+        {
+            "Place" : 1,
+            "Guide" : 3
+        },
+        {
+            "Place" : 2,
             "Guide" : 2
         }
     ]
