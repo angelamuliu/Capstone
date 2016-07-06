@@ -28,13 +28,13 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
     }
 
-    // TODO: Customize "radius"
+    // TODO: Customize "radius" for searching for locations lmao
     func loadCardList() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if let userLocation = appDelegate.lastLocation {
             
             guard let db = try? SQLiteDatabase.open() else { return }
-            placesManager.places = db.getPlaces("13:00", longitude: Float(userLocation.coordinate.longitude), latitude: Float(userLocation.coordinate.latitude), radius: 1000)
+            placesManager.places = db.getPlaces("24:00", longitude: Float(userLocation.coordinate.longitude), latitude: Float(userLocation.coordinate.latitude), radius: 2000)
             let guides = db.getGuidesForPlace(placesManager.places.first!)
             db.close()
             
