@@ -18,11 +18,6 @@ import UIKit
 */
 class CardView : UIView {
     
-    static let height:CGFloat = 200
-    static let imageHeight:CGFloat = 100
-    static let textMargin: CGFloat = 10
-    static let textHeight: CGFloat = 50
-    
     var image: UIImage?
     var imageView:UIImageView
     
@@ -36,28 +31,28 @@ class CardView : UIView {
     */
     init() {
         // ImageView Setup - Uses a placeholder for now
-        self.imageView = UIImageView.init(frame: CGRect(x: 0, y:0, width: 100, height: CardView.imageHeight))
+        self.imageView = UIImageView.init(frame: CGRect(x: 0, y:0, width: 100, height: Constants.card_imageHeight))
         self.imageView.contentMode = .ScaleAspectFill
         self.imageView.clipsToBounds = true;
         
         // Static text loading
-        self.nameLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: CardView.textHeight))
+        self.nameLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: Constants.card_textHeight))
         self.nameLabel.text = ""
         self.nameLabel.backgroundColor = UIColor.greenColor()
         self.nameLabel.numberOfLines = 0 // unlimited # of lines, "bleed" over to next
         
-        // Button setup
+        // Button setup - invisible that overlays the entire card
         self.button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 10))
         self.button.backgroundColor = UIColor.clearColor()
         
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: CardView.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: Constants.card_height))
         
         // Styling the card backdrop
         self.backgroundColor = UIColor.whiteColor()
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        self.layer.shadowOpacity = 0.25
-        self.layer.shadowRadius = 1.2
+        self.layer.shadowColor = Constants.shadowColor
+        self.layer.shadowOffset = Constants.shadowOffset
+        self.layer.shadowOpacity = Constants.shadowOpacity
+        self.layer.shadowRadius = Constants.shadowRadius
         
         // Connecting the button to an action in the CardView class
         self.button.addTarget(self, action: "buttonPressed:", forControlEvents: .TouchUpInside)
@@ -74,9 +69,9 @@ class CardView : UIView {
     */
     func redraw() {
         if let parentview = self.superview {
-            self.imageView.frame = CGRect(x: 0, y: 0, width: parentview.bounds.width, height: CardView.imageHeight)
+            self.imageView.frame = CGRect(x: 0, y: 0, width: parentview.bounds.width, height: Constants.card_imageHeight)
             
-            self.nameLabel.frame = CGRect(x: CardView.textMargin, y: CardView.imageHeight + CardView.textMargin, width: parentview.bounds.width - (2 * CardView.textMargin), height: CardView.textHeight)
+            self.nameLabel.frame = CGRect(x: Constants.card_textMargin, y: Constants.card_imageHeight + Constants.card_textMargin, width: parentview.bounds.width - (2 * Constants.card_textMargin), height: Constants.card_textHeight)
             self.nameLabel.sizeToFit() // Now fit the frame to only what's needed. Also top aligns text to frame
             // Clear button over all elements that brings you to necessary page
             self.button.frame = CGRect(x: 0, y: 0, width: parentview.bounds.width, height: self.bounds.height)

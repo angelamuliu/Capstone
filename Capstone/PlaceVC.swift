@@ -27,7 +27,6 @@ class PlaceVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        modalTransitionStyle = .FlipHorizontal
         
         if let loadedPlace = place {
             imageView.image = UIImage(named: loadedPlace.image_url!)

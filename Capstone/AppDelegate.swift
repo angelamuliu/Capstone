@@ -21,12 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Override point for customization after application launch.
         
         SQLiteDatabase.safeCreate()
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization() // This one runs forever, even when app in bg
-//        locationManager.requestWhenInUseAuthorization() // This one is only when app is "active"
-        locationManager.startUpdatingLocation()
+        setupLocationManager()
 
         return true
     }
@@ -53,9 +48,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func setupLocationManager() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization() // This one runs forever, even when app in bg
+//      locationManager.requestWhenInUseAuthorization() // This one is only when app is "active"
+        locationManager.startUpdatingLocation()
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.lastLocation = locations[locations.count - 1]
+    }
+    
+    func locationManager(manager: CLLocationManager,
+        didFailWithError error: NSError) {
     }
 
     

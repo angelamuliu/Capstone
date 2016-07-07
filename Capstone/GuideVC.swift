@@ -12,9 +12,6 @@ class GuideVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        modalTransitionStyle = .PartialCurl
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
     

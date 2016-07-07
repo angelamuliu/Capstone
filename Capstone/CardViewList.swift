@@ -15,8 +15,6 @@ import UIKit
 */
 class CardViewList : UIView {
     
-    static let cardMargin:CGFloat = 10 // Space between cards in the list
-    
     var cards: [CardView]
     
     init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager) {
@@ -43,13 +41,13 @@ class CardViewList : UIView {
      Redos all the calculations and stuff to replace content, size of frame
     */
     func redraw() {
-        self.frame.size = CGSize(width: self.frame.width, height: CGFloat(self.cards.count) * (CardView.height + CardViewList.cardMargin))
+        self.frame.size = CGSize(width: self.frame.width, height: CGFloat(self.cards.count) * (Constants.card_height + Constants.cardlist_margin))
 
         self.subviews.forEach { (subview) -> () in subview.removeFromSuperview() }
         var card:CardView
         for (var i = 0; i < self.cards.count; i++) {
             card = self.cards[i]
-            card.frame = CGRect(x: 0, y: CGFloat(i) * (CardView.height + CardViewList.cardMargin), width: self.bounds.width, height: CardView.height)
+            card.frame = CGRect(x: 0, y: CGFloat(i) * (Constants.card_height + Constants.cardlist_margin), width: self.bounds.width, height: Constants.card_height)
             
             self.addSubview(card)
             card.redraw()

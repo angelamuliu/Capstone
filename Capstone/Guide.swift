@@ -18,7 +18,7 @@ class Guide {
     var image_url: String
     var pages: [Page]
     
-    var places: [Place]? // Connected places, ordered by relevance (location, time, etc)
+    var placesManager = PlacesManager.init(places: []) // Connected places, ordered by relevance (location, time, etc)
     
     init(id: Int, title:String, category:String, subcategory:String?, hidden: Bool?, image_url:String?) {
         self.id = id
@@ -28,6 +28,12 @@ class Guide {
         self.hidden = hidden != nil ? hidden! : true
         self.image_url = image_url != nil ? image_url! : Constants.defaultUrl
         self.pages = []
+    }
+    
+    var places : [Place] {
+        get {
+            return placesManager.places
+        }
     }
     
 }

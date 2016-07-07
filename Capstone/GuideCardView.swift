@@ -19,13 +19,18 @@ class GuideCardView : CardView {
         
         // TODO: Replace with image_url of guide
         self.image = UIImage.init(named:"ramen")
-//        self.image = UIImage.init(contentsOfFile: NSBundle.mainBundle().pathForResource("ramen", ofType: "jpg")!)!
         self.imageView.image = self.image
-        if let closestPlace = guide.places?.first {
-            self.nameLabel.text = guide.title + " at " + closestPlace.name
-        } else {
-            self.nameLabel.text = guide.title
-        }
+        
+        // Sort locations first, then find the closest
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if let lastLocation = appDelegate.lastLocation {
+            guide.placesManager.sortPlaces(lastLocation)
+            if let closestPlace = guide.places.first {
+                self.nameLabel.text = guide.title + " at " + closestPlace.name
+            } else {
+                self.nameLabel.text = guide.title
+            }
+        } else { self.nameLabel.text = guide.title }
     }
     
     func buttonPressed(sender: UIButton!) {

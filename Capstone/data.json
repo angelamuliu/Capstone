@@ -23,7 +23,7 @@
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
@@ -36,7 +36,7 @@
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
@@ -49,7 +49,7 @@
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
@@ -62,7 +62,7 @@
             "Phone" : "309-309-1020",
             "Open_hour" : "10:00",
             "Close_hour" : "16:00",
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Tags" : ["tag1", "tag2", "tag3"]
         }
     ],
@@ -73,22 +73,22 @@
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Pages" : [
                 {
                     "Title" : "Pick up fish",
                     "Description" : "Using chopsticks, pick up the fish from the top left corner",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 },
                 {
                     "Title" : "Put fish in mouth",
                     "Description" : "Put that raw fish in the mouth by opening the mouth first",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 },
                 {
                     "Title" : "Chew it",
                     "Description" : "Chew it with the force of one thousand gales",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 }
             ]
         },
@@ -97,17 +97,17 @@
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Pages" : [
                 {
                     "Title" : "Add condiments while hot",
                     "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 },
                 {
                     "Title" : "Wait until cool",
                     "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 }
             ]
         },
@@ -116,17 +116,17 @@
             "Category" : "Travel",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "./img/pug.png",
+            "Image_url" : "ramen",
             "Pages" : [
                 {
                     "Title" : "Press button",
                     "Description" : "Beep boop beep boop beep",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 },
                 {
                     "Title" : "Press button again",
                     "Description" : "Beeeeeeeeeeep",
-                    "Image_url" : "./img/pug.png"
+                    "Image_url" : "ramen"
                 }
             ]
         }
