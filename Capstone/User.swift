@@ -25,8 +25,8 @@ struct User {
      Called in AppDelegate on boot, allows User to be accessible anywhere
     */
     static func loadUser() {
-        self.name = savedSettings.stringForKey("name")
-        self.knowsJapanese = savedSettings.boolForKey("knowsJapanese")
+        self.name = savedSettings.stringForKey(Constants.user_name)
+        self.knowsJapanese = savedSettings.boolForKey(Constants.user_japanese)
     }
     
     // GETTERS: Just do like User.name, User.knowsJapanese
@@ -34,12 +34,12 @@ struct User {
     // SETTERS
     static func setName(name:String) {
         self.name = name
-        User.savedSettings.setValue(name, forKey: "name")
+        User.savedSettings.setValue(name, forKey: Constants.user_name)
     }
     
     static func setKnowsJapanese(knowsJapanese:Bool) {
         self.knowsJapanese = knowsJapanese
-        User.savedSettings.setValue(knowsJapanese, forKey: "knowsJapanese")
+        User.savedSettings.setValue(knowsJapanese, forKey: Constants.user_japanese)
     }
     
 }

@@ -1,11 +1,13 @@
 
 import UIKit
 
-class HowToModalVC: UIViewController {
+class GuideVC: UIViewController {
+    
+    var guide:Guide?
     
     
     @IBAction func dismiss() {
-        self.navigationController?.popViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {

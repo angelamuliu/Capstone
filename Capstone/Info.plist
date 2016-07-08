@@ -7,12 +7,12 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>yo, we need your location</string>
+	<string>Location is needed to update the home page automatically</string>
 	<key>NSLocationAlwaysUsageDescription
 NSLocationAlwaysUsageDescription
 NSLocationAlwaysUsageDescription
 </key>
-	<string></string>
+	<string>Location is used to ensure notifications can be sent as you travel</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

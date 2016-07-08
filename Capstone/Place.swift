@@ -8,19 +8,10 @@
 import Foundation
 import CoreLocation
 
-let defaultCategory:String = "none";
-let defaultSubCategory:String = "none";
-let defaultAddress:String = "300 South Craig Street, Pittsburgh, PA 15213";
-let defaultPhone:String = "000-000-0000"
-let defaultTags:[String] = ["none"]
-let defaultOpenTime:String = "09:00"
-let defaultCloseTime:String = "18:00"
-let defaultUrl:String = "http://odigo.travel"
-
 // Encapsulates information about spots, and converts data into a form presentable in the UIViews
 class Place {
     
-    private var id:Int // unique identifier for a place
+    var id:Int // unique identifier for a place
     var name: String
     var location: CLLocation // latitude and longitude wrapped in a CLLocation type
     var category: String?
@@ -33,6 +24,8 @@ class Place {
     var closingMinute:Int?
     var image_url: String?
     var tags: [String]?
+    
+    var guides: [Guide]? // Connected guides
 
     init?(id: Int, longitude: Float, latitude: Float, category: String?, subcategory: String?, name: String, address: String?, phone: String?, open_hour: String?, close_hour: String?, image_url: String?, tags: String?) {
         
@@ -40,28 +33,35 @@ class Place {
         location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
         self.name = name;
         
-        self.category = initializeStringValue(category, defaultValue:defaultCategory)
-        self.subcategory = initializeStringValue(subcategory, defaultValue:defaultSubCategory)
-        self.address = initializeStringValue(address, defaultValue:defaultAddress)
-        self.phone = initializeStringValue(phone, defaultValue:defaultPhone)
+        self.category = initializeStringValue(category, defaultValue: Constants.defaultCategory)
+        self.subcategory = initializeStringValue(subcategory, defaultValue: Constants.defaultSubCategory)
+        self.address = initializeStringValue(address, defaultValue: Constants.defaultAddress)
+        self.phone = initializeStringValue(phone, defaultValue:Constants.defaultPhone)
         
-        self.tags = initializeStringArrayValue(tags,defaultValue:defaultTags);
+        self.tags = initializeStringArrayValue(tags,defaultValue:Constants.defaultTags);
         
-        let openingHourArray = initializeTimeValue(open_hour, defaultTimeValue:defaultOpenTime)
+        let openingHourArray = initializeTimeValue(open_hour, defaultTimeValue:Constants.defaultOpenTime)
         self.openingHour = (Int)(openingHourArray[0])!
         self.openingMinute = (Int)(openingHourArray[1])!
         
-        let closingHourArray = initializeTimeValue(close_hour, defaultTimeValue:defaultCloseTime)
+        let closingHourArray = initializeTimeValue(close_hour, defaultTimeValue:Constants.defaultCloseTime)
         self.closingHour = (Int)(closingHourArray[0])!
         self.closingMinute = (Int)(closingHourArray[1])!
         
-        self.image_url = initializeStringValue(image_url, defaultValue:defaultUrl)
-        
+        self.image_url = initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
     }
     
-    // Takes in the user's current location and returns distance from this place
+    /* Takes in the user's current location and returns distance from this place.
+     this is intentionally a method and not a boolean member to avoid stale data */
     func getDistanceFromUser(userLocation:CLLocation) -> CLLocationDistance {
         return self.location.distanceFromLocation(userLocation);
+    }
+    
+    // TODO: Not make it milatary time haha
+    var hours : String {  //computed property, relies on other stuff to get set
+        get {
+            return "\(openingHour!):\(openingMinute!) - \(closingHour!):\(closingMinute!)"
+        }
     }
     
     // TODO: Add a check to test that particular type of attribute - varchar vs char for example
@@ -79,7 +79,7 @@ class Place {
         }
     }
     
-    func initializeStringArrayValue(assignedValue:String?, defaultValue:[String]) -> [String]
+    private func initializeStringArrayValue(assignedValue:String?, defaultValue:[String]) -> [String]
     {
         if let val = assignedValue {
             return val.componentsSeparatedByString(",")
@@ -90,7 +90,7 @@ class Place {
     }
     
     // assumes that the timeString is already correctly formatted
-    func initializeTimeValue(timeString:String?, defaultTimeValue:String) -> [String]
+    private func initializeTimeValue(timeString:String?, defaultTimeValue:String) -> [String]
     {
         if timeString != nil {
             return timeString!.componentsSeparatedByString(":")
@@ -100,7 +100,7 @@ class Place {
         }
     }
     
-    
+    /* this is intentionally a method and not a boolean member to avoid stale data */
     func getIsPlaceOpen() -> Bool
     {
         let date = NSDate()
@@ -123,19 +123,48 @@ class Place {
         return true;
     }
     
+    /* takes in a lowercase search term. Currently checks whether this string is part of the following attributes: name, category, subcategory,tags */
+    func containsKeyword(searchTerm: String) -> Bool
+    {
+        var returnVal = false
+        
+        // optimization to prevent unneccessary search for 2 characters, example 'th'
+        if searchTerm.characters.count >= 3
+        {
+            if name.lowercaseString.containsString(searchTerm) || category!.lowercaseString.containsString(searchTerm) || subcategory!.lowercaseString.containsString(searchTerm)
+            {
+                returnVal = true
+            }
+            else
+            {
+                for tag in tags!
+                {
+                    if tag.lowercaseString.containsString(searchTerm)
+                    {
+                        returnVal = true
+                        break
+                    }
+                }
+            }
+        }
+        return returnVal
+    }
+    
+    /* A test method to print all the members, ensuring that Place is initialized properly */
     func testParams() {
         
-        print(String(id) + "\n")
-        print(name + "\n")
+        print("ID:" + String(id) + "\n")
+        print("Name:" + name + "\n")
         // print(getDistanceFromUser(self.location)) -> Need user's location for this
-        print(category! + "\n")
-        print(subcategory! + "\n")
-        print(address! + "\n")
-        print(phone! + "\n")
-        print(String(openingHour!) + "\n")
-        print(String(openingMinute!) + "\n")
-        print(String(closingHour!) + "\n")
-        print(String(closingMinute!) + "\n")
+        print("Category:" + category! + "\n")
+        print("Subcategory:" + subcategory! + "\n")
+        print("Address:" + address! + "\n")
+        print("Phone:" + phone! + "\n")
+        print("Opening Hour:" + String(openingHour!) + "\n")
+        print("Opening Minute:" + String(openingMinute!) + "\n")
+        print("Closing Hour:" + String(closingHour!) + "\n")
+        print("Closing Minute:" + String(closingMinute!) + "\n")
+        print("Open:" + String(getIsPlaceOpen()) + "\n")
         print(image_url! + "\n")
         print(tags!)
     }
