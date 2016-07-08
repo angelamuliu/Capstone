@@ -18,12 +18,12 @@ import UIKit
 */
 class CardView : UIView {
     
-    var image: UIImage?
+    var image:UIImage?
     var imageView:UIImageView
     
-    var nameLabel: UILabel
+    var nameLabel:UILabel
     
-    var button: UIButton
+    var button:UIButton
     
     /**
      Simply creates a card. Note that it initializes with a placeholder content, width and position, since that is handled

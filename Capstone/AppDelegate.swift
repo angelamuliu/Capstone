@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.lastLocation = locations[locations.count - 1]
+        self.lastLocation = locations.last
     }
     
     func locationManager(manager: CLLocationManager,

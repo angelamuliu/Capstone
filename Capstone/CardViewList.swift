@@ -15,7 +15,7 @@ import UIKit
 */
 class CardViewList : UIView {
     
-    var cards: [CardView]
+    var cards:[CardView]
     
     init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager) {
         self.cards = [CardView]()
