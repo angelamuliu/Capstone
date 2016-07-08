@@ -19,10 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+
+        User.loadUser()
         SQLiteDatabase.safeCreate()
         setupLocationManager()
-
+        
         return true
     }
     

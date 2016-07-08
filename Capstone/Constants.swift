@@ -14,6 +14,12 @@ import Foundation
 struct Constants {
     
     // -----------------------------------
+    // User keywords (for getting)
+    static let user_name:String = "name"
+    static let user_japanese:String = "knowsJapanese"
+    
+    
+    // -----------------------------------
     // Defaults for places, guides, pages
     static let defaultCategory:String = "none";
     static let defaultSubCategory:String = "none";
