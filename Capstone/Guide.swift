@@ -18,6 +18,8 @@ class Guide {
     var image_url: String
     var pages: [Page]
     
+    var placesManager = PlacesManager.init(places: []) // Connected places, ordered by relevance (location, time, etc)
+    
     init(id: Int, title:String, category:String, subcategory:String?, hidden: Bool?, image_url:String?) {
         self.id = id
         self.title = title
@@ -28,6 +30,10 @@ class Guide {
         self.pages = []
     }
     
-    
+    var places : [Place] {
+        get {
+            return placesManager.places
+        }
+    }
     
 }

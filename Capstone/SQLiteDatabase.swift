@@ -97,6 +97,7 @@ class SQLiteDatabase {
         let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
         let fileManager = NSFileManager.defaultManager()
         guard fileManager.fileExistsAtPath(dbpath) else {
+            print("Existing database does not exist. Creating a new one")
             create()
             return
         }
@@ -369,7 +370,8 @@ class SQLiteDatabase {
         sqlite3_bind_double(queryStatement, 2, Double(longitude_end))
         sqlite3_bind_double(queryStatement, 3, Double(latitude_start))
         sqlite3_bind_double(queryStatement, 4, Double(latitude_end))
-        sqlite3_bind_text(queryStatement, 5, time.cStringUsingEncoding(NSUTF8StringEncoding)!, -1, nil)
+        let nsTime: NSString = time
+        sqlite3_bind_text(queryStatement, 5, nsTime.UTF8String, -1, nil)
         
         while(true) {
             guard sqlite3_step(queryStatement) == SQLITE_ROW else { // Stop looping when we step and it's not another record
