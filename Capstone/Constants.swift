@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreLocation
 
 // These are constants used throughout the app
 
@@ -27,10 +28,14 @@ struct Constants {
     static let defaultPhone:String = "000-000-0000"
     static let defaultTags:[String] = ["none"]
     static let defaultOpenTime:String = "09:00"
+    static let defaultCurrentTime:String = "13:00"
     static let defaultCloseTime:String = "18:00"
     static let defaultUrl:String = "http://odigo.travel"
     static let defaultTitle = "none"
     static let defaultDescription = "none"
+    static let defaultUserLocation = CLLocation(latitude:40.4495946, longitude: -79.9509742)
+    static let radiusForPlacesToDisplay: Float = 2000 // in meters
+    static let notificationDelimiterRadius : CLLocationDistance = 5 // in meters
     
     // -----------------------------------
     // Global / Reused styling
@@ -53,6 +58,10 @@ struct Constants {
     // Card list styling
     static let cardlist_margin:CGFloat = 10 // Space between cards in a list
     
-    
+    // -----------------------------------
+    // Some useful regions to test notifications
+    static let wesBancoRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 40.4541175,longitude: -79.9462548), radius: notificationDelimiterRadius, identifier: "WesBanco")
+    static let ajayansHomeRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 40.4535864,longitude: -79.9461685), radius: notificationDelimiterRadius, identifier: "Home")
+    static let mhciLabRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 40.4495946,longitude: -79.9509742), radius: notificationDelimiterRadius, identifier: "MHCILab")
     
 }

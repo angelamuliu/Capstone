@@ -103,11 +103,8 @@ class Place {
     /* this is intentionally a method and not a boolean member to avoid stale data */
     func getIsPlaceOpen() -> Bool
     {
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Hour, .Minute], fromDate: date)
-        let currentHour = components.hour
-        let currentMinute = components.minute
+        let currentHour = Utilities.getCurrentHoursAndMin()[0]
+        let currentMinute = Utilities.getCurrentHoursAndMin()[1]
         
         if currentHour < openingHour || currentHour > closingHour {
             return false;

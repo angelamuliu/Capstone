@@ -30,8 +30,8 @@
 		0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41761D2C451E006B6F8B /* GuideCardView.swift */; };
 		0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */; };
 		0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */; };
+		2303EA501D32FEB200E3447E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303EA4F1D32FEB200E3447E /* Utilities.swift */; };
 		23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */; };
-		6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */; };
 		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +62,8 @@
 		0BAA41761D2C451E006B6F8B /* GuideCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCardView.swift; sourceTree = "<group>"; };
 		0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewList.swift; sourceTree = "<group>"; };
+		2303EA4F1D32FEB200E3447E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
-		6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongLatVC.swift; sourceTree = "<group>"; };
 		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -111,6 +111,7 @@
 				0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */,
 				0B363FC11D2A093600CD8AF5 /* Guide.swift */,
 				0B363FC31D2A0A2B00CD8AF5 /* Page.swift */,
+				2303EA4F1D32FEB200E3447E /* Utilities.swift */,
 				0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */,
 				0B0F7F351D1C6D8400CFF61F /* ViewControllers */,
 				0B0F7F151D1C5B0300CFF61F /* Main.storyboard */,
@@ -131,7 +132,6 @@
 				0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */,
 				0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */,
 				0B0F7F291D1C6C4800CFF61F /* HomeVC.swift */,
-				6FC9BC7D1D2199C10099C8D4 /* LongLatVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 				TargetAttributes = {
 					0B0F7F0D1D1C5B0300CFF61F = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 3CSJZ99L4T;
+						DevelopmentTeam = 4H36NATJ5H;
 					};
 				};
 			};
@@ -224,7 +224,6 @@
 				0B363FC41D2A0A2B00CD8AF5 /* Page.swift in Sources */,
 				0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */,
 				0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */,
-				6FC9BC7E1D2199C10099C8D4 /* LongLatVC.swift in Sources */,
 				0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */,
 				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
 				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
@@ -239,6 +238,7 @@
 				0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */,
 				0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */,
 				0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */,
+				2303EA501D32FEB200E3447E /* Utilities.swift in Sources */,
 				0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,10 +350,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -363,10 +366,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
