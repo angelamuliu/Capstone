@@ -262,7 +262,7 @@ class SQLiteDatabase {
         var insertPageStatement: COpaquePointer = nil
         if sqlite3_prepare_v2(db, insertGuideStatementString, -1, &insertGuideStatement, nil) == SQLITE_OK {
             
-            for (var i = 0; i < guidesArr.count; i++) {
+            for (var i = 0; i < guidesArr.count; i += 1) {
                 let guideDict = guidesArr[i] as! NSDictionary
                 sqlite3_bind_text(insertGuideStatement, 1, (guideDict.valueForKey("Title")?.UTF8String)!, -1, nil)
                 sqlite3_bind_text(insertGuideStatement, 2, (guideDict.valueForKey("Category")?.UTF8String)!, -1, nil)

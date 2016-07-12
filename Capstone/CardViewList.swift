@@ -45,7 +45,7 @@ class CardViewList : UIView {
 
         self.subviews.forEach { (subview) -> () in subview.removeFromSuperview() }
         var card:CardView
-        for (var i = 0; i < self.cards.count; i++) {
+        for (var i = 0; i < self.cards.count; i += 1) {
             card = self.cards[i]
             card.frame = CGRect(x: 0, y: CGFloat(i) * (Constants.card_height + Constants.cardlist_margin), width: self.bounds.width, height: Constants.card_height)
             
