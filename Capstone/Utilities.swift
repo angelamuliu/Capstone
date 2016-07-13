@@ -34,7 +34,7 @@ class Utilities
     }
     
     // temp places created for in case database fails
-    static func GetTempPlaces() -> [Place]
+    static func getTempPlaces() -> [Place]
     {
         var places : [Place]
         places = []

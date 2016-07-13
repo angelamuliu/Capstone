@@ -67,8 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         guard let db = try? SQLiteDatabase.open() else
         {
+            print("Database did not load. Using failsafe hardcoded values for now.")
             /* if the database fails to populate (this is a random occurence, so it is good to have a failsafe hardcoded set of values for the demo*/
-            placesManager.places = Utilities.GetTempPlaces()
+            placesManager.places = Utilities.getTempPlaces()
             placesManager.sortPlaces(self.lastLocation!)
             return
         }
