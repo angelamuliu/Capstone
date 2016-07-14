@@ -60,22 +60,25 @@ class SQLiteDatabase {
         let path = fileManager.currentDirectoryPath // Make db in project root
         var db: COpaquePointer = nil
         
-        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
-        if sqlite3_open(dbpath, &db) == SQLITE_OK {
-            return SQLiteDatabase(dbPointer: db)
-        } else {
-            defer { // Defer is a new control that happens always AFTER this block is done executing
-                // About defer, see: http://nshipster.com/guard-and-defer/
-                if db != nil {
-                    sqlite3_close(db)
+        if Constants.dbpath != nil { // On devices you cannot write in the bundle so it must already exist
+            if sqlite3_open(Constants.dbpath!, &db) == SQLITE_OK {
+                return SQLiteDatabase(dbPointer: db)
+            } else {
+                defer { // Defer is a new control that happens always AFTER this block is done executing
+                    // About defer, see: http://nshipster.com/guard-and-defer/
+                    if db != nil {
+                        sqlite3_close(db)
+                    }
+                }
+                // So this error handling below will happen first, before the defer block
+                if let message = String.fromCString(sqlite3_errmsg(db)) {
+                    throw SQLiteError.OpenDatabase(message: message)
+                } else {
+                    throw SQLiteError.OpenDatabase(message: "No error message provided from sqlite.")
                 }
             }
-            // So this error handling below will happen first, before the defer block
-            if let message = String.fromCString(sqlite3_errmsg(db)) {
-                throw SQLiteError.OpenDatabase(message: message)
-            } else {
-                throw SQLiteError.OpenDatabase(message: "No error message provided from sqlite.")
-            }
+        } else {
+            throw SQLiteError.OpenDatabase(message: "Could not find the db.sqlite file, stopping load attempt")
         }
     }
     
@@ -94,12 +97,15 @@ class SQLiteDatabase {
         Creates the database on the device only if it doesn't exist yet. If a DB exists already, it doesn't do anything
     */
     static func safeCreate() -> Void {
-        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
-        let fileManager = NSFileManager.defaultManager()
-        guard fileManager.fileExistsAtPath(dbpath) else {
-            print("Existing database does not exist. Creating a new one")
-            create()
-            return
+        if Constants.dbpath != nil {
+            let fileManager = NSFileManager.defaultManager()
+            guard fileManager.fileExistsAtPath(Constants.dbpath!) else {
+                print("Existing database does not exist. Creating a new one")
+                create()
+                return
+            }
+        } else {
+            print("Could not create database - path error. Could not find db.sqlite")
         }
     }
     
@@ -107,8 +113,11 @@ class SQLiteDatabase {
      Creates the database on the device. (If one exists already, drops it and recreates)
     */
     static func create() -> Void {
-        let dbpath = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("db.sqlite").absoluteString
-        createFromPath(dbpath)
+        if Constants.dbpath != nil {
+            createFromPath(Constants.dbpath!)
+        } else {
+            print("Could not create database - path error. Could not find db.sqlite")
+        }
     }
     
     /**
@@ -124,11 +133,11 @@ class SQLiteDatabase {
      Given a path, creates the database at that location
     */
     private static func createFromPath(dbpath: String) -> Void {
-        drop(dbpath)
         print("Creating database at " + dbpath)
         var db: COpaquePointer = nil
         if sqlite3_open(dbpath, &db) == SQLITE_OK {
             print("Successfully opened connection to database")
+            drop(db)
             migrateTables(db)
             populate(db)
         }
@@ -136,20 +145,31 @@ class SQLiteDatabase {
     }
 
     /**
-     Destroys the database
-     */
-    static private func drop(db_path:String?) {
-        if let unwrapped_path = db_path {
-            do {
-                print("Attempting dropping existing database...")
-                if NSFileManager.defaultManager().fileExistsAtPath(unwrapped_path) {
-                    print("Found db file, attempting drop...")
-                    try NSFileManager.defaultManager().removeItemAtPath(unwrapped_path)
-                }
-            } catch {
-                print("Failed. Could not destroy database file")
-            }
+     Prepares a statement, runs it, and finalizes it. Assumes you don't need to reuse/reset the statement
+    */
+    static private func quickRunStatement(db: COpaquePointer, stringStatement:String) {
+        var statement: COpaquePointer = nil
+        if sqlite3_prepare_v2(db, stringStatement, -1, &statement, nil) == SQLITE_OK {
+            sqlite3_step(statement)
+            sqlite3_finalize(statement)
+        } else {
+            print("Could not prepare insert places statement")
         }
+    }
+    
+    /**
+     Destroys the tables in the database
+     */
+    static private func drop(db: COpaquePointer) {
+        let dropPlace: String = "DROP TABLE Place;"
+        let dropGuide: String = "DROP TABLE Guide;"
+        let dropPage: String = "DROP TABLE Page;"
+        let dropPlaceGuide: String = "DROP TABLE PlaceGuide;"
+
+        quickRunStatement(db, stringStatement: dropPlace)
+        quickRunStatement(db, stringStatement: dropGuide)
+        quickRunStatement(db, stringStatement: dropPage)
+        quickRunStatement(db, stringStatement: dropPlaceGuide)
     }
     
     /**
@@ -162,34 +182,22 @@ class SQLiteDatabase {
             "Address VARCHAR(255), Phone CHARACTER(255), Open_hour TIME," +
             "Close_hour TIME, Image_url VARCHAR(255), Tags VARCHAR(255)" +
         ");"
-        var createPlaceStatement: COpaquePointer = nil
-        sqlite3_prepare_v2(db, createPlace, -1, &createPlaceStatement, nil)
-        sqlite3_step(createPlaceStatement)
-        sqlite3_finalize(createPlaceStatement)
+        quickRunStatement(db, stringStatement: createPlace)
         
         let createGuide: String = "CREATE TABLE Guide(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "Title CHARACTER(255), Category CHARACTER(255), Subcategory CHARACTER(255)," +
             "Hidden BOOLEAN, Image_url VARCHAR(255)" +
         ");"
-        var createGuideStatement: COpaquePointer = nil
-        sqlite3_prepare_v2(db, createGuide, -1, &createGuideStatement, nil)
-        sqlite3_step(createGuideStatement)
-        sqlite3_finalize(createGuideStatement)
+        quickRunStatement(db, stringStatement: createGuide)
         
         let createPage: String = "CREATE TABLE Page(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "Title CHARACTER(255), Description TEXT, Image_url CHARACTER(255)," +
             "Guide_id INTEGER NOT NULL REFERENCES Guides(id));"
-        var createPageStatement: COpaquePointer = nil
-        sqlite3_prepare_v2(db, createPage, -1, &createPageStatement, nil)
-        sqlite3_step(createPageStatement)
-        sqlite3_finalize(createPageStatement)
+        quickRunStatement(db, stringStatement: createPage)
         
         let createPlaceGuide: String = "CREATE Table PlaceGuide(Place_id INTEGER NOT NULL REFERENCES Places(id)," +
         "Guide_id INTEGER NOT NULL REFERENCES Guides(id), PRIMARY KEY (Place_id, Guide_id));"
-        var createPlaceGuideStatement: COpaquePointer = nil
-        sqlite3_prepare_v2(db, createPlaceGuide, -1, &createPlaceGuideStatement, nil)
-        sqlite3_step(createPlaceGuideStatement)
-        sqlite3_finalize(createPlaceGuideStatement)
+        quickRunStatement(db, stringStatement: createPlaceGuide)
     }
     
     /**

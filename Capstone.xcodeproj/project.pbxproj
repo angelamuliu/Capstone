@@ -28,6 +28,7 @@
 		0B7A3D631D22D6E600C68B93 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */; };
 		0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */; };
 		0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41761D2C451E006B6F8B /* GuideCardView.swift */; };
+		0BBE84731D35722F007EEB1B /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0BBE84721D356DF1007EEB1B /* db.sqlite */; };
 		0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */; };
 		0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */; };
 		2303EA501D32FEB200E3447E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303EA4F1D32FEB200E3447E /* Utilities.swift */; };
@@ -60,6 +61,7 @@
 		0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 		0BAA41761D2C451E006B6F8B /* GuideCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCardView.swift; sourceTree = "<group>"; };
+		0BBE84721D356DF1007EEB1B /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewList.swift; sourceTree = "<group>"; };
 		2303EA4F1D32FEB200E3447E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				0BAA41781D2C471F006B6F8B /* CardView */,
 				0B7A3D5B1D22D6A600C68B93 /* BridgingHeader.h */,
 				0B09B12F1D26F9400096A8F8 /* User.swift */,
+				0BBE84721D356DF1007EEB1B /* db.sqlite */,
 				0B7A3D5C1D22D6A600C68B93 /* data.json */,
 				0B7A3D5D1D22D6A600C68B93 /* Place.swift */,
 				0B63F80E1D2C03D3003A4E11 /* Constants.swift */,
@@ -179,7 +182,7 @@
 				TargetAttributes = {
 					0B0F7F0D1D1C5B0300CFF61F = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 4H36NATJ5H;
+						DevelopmentTeam = 3CSJZ99L4T;
 					};
 				};
 			};
@@ -206,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BBE84731D35722F007EEB1B /* db.sqlite in Resources */,
 				0B0F7F1C1D1C5B0300CFF61F /* LaunchScreen.storyboard in Resources */,
 				0B0F7F191D1C5B0300CFF61F /* Assets.xcassets in Resources */,
 				0B0F7F171D1C5B0300CFF61F /* Main.storyboard in Resources */,
@@ -354,7 +358,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
+				PRODUCT_BUNDLE_IDENTIFIER = Capstone.cmu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;
@@ -370,7 +374,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cmu.Capstone;
+				PRODUCT_BUNDLE_IDENTIFIER = Capstone.cmu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;

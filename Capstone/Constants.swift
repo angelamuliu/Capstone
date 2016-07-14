@@ -14,6 +14,8 @@ import CoreLocation
 
 struct Constants {
     
+    static let dbpath = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite")
+    
     // -----------------------------------
     // User keywords (for getting)
     static let user_name:String = "name"
