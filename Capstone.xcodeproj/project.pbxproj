@@ -26,6 +26,7 @@
 		0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5D1D22D6A600C68B93 /* Place.swift */; };
 		0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */; };
 		0B7A3D631D22D6E600C68B93 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */; };
+		0BA91CC51D3AB4A2003D9924 /* Clarifai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA91CC41D3AB4A2003D9924 /* Clarifai.swift */; };
 		0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */; };
 		0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA41761D2C451E006B6F8B /* GuideCardView.swift */; };
 		0BBE84731D35722F007EEB1B /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0BBE84721D356DF1007EEB1B /* db.sqlite */; };
@@ -59,6 +60,7 @@
 		0B7A3D5D1D22D6A600C68B93 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		0B7A3D621D22D6E600C68B93 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		0BA91CC41D3AB4A2003D9924 /* Clarifai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Clarifai.swift; path = ../Clarifai.swift; sourceTree = "<group>"; };
 		0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 		0BAA41761D2C451E006B6F8B /* GuideCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCardView.swift; sourceTree = "<group>"; };
 		0BBE84721D356DF1007EEB1B /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				0B363FC11D2A093600CD8AF5 /* Guide.swift */,
 				0B363FC31D2A0A2B00CD8AF5 /* Page.swift */,
 				2303EA4F1D32FEB200E3447E /* Utilities.swift */,
+				0BA91CC41D3AB4A2003D9924 /* Clarifai.swift */,
 				0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */,
 				0B0F7F351D1C6D8400CFF61F /* ViewControllers */,
 				0B0F7F151D1C5B0300CFF61F /* Main.storyboard */,
@@ -239,6 +242,7 @@
 				0B0F7F281D1C630600CFF61F /* GuideVC.swift in Sources */,
 				0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */,
 				0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */,
+				0BA91CC51D3AB4A2003D9924 /* Clarifai.swift in Sources */,
 				0BAA41751D2C44FD006B6F8B /* PlaceCardView.swift in Sources */,
 				0B0F7F121D1C5B0300CFF61F /* AppDelegate.swift in Sources */,
 				0BE8E5CC1D2C340200FCC2D2 /* CardView.swift in Sources */,
