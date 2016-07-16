@@ -23,12 +23,12 @@ class HomeVC: UIViewController {
     var guides = [Int: Guide]() // Hash that we use with guideCardIds to get guides
     var guideCards = [GuideCardView]()
     
-    override func viewWillAppear(animated: Bool) {
-        loadCardList()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        loadCardList() // Needs to be called here otherwise the width of some uiviews are not set yet
     }
     
     // TODO: Customize "radius" for searching for locations lmao, remove placeholder time
@@ -50,19 +50,19 @@ class HomeVC: UIViewController {
             }
         }
         
-        placeCardList = CardViewList(topleftPoint: CGPoint(x:10,y: 120), parentview: super.view, placesManager: appDelegate.placesManager)
+        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
         
+        placeCardList = CardViewList(topleftPoint: CGPoint(x:12,y: 120), parentview: scrollView, placesManager: appDelegate.placesManager)
         placeCardList?.redraw()
         placeCardList?.hidden = true
         
-        guideCardList = CardViewList(topleftPoint: CGPoint(x:10,y: 120), parentview: super.view, cards: guideCards)
+        guideCardList = CardViewList(topleftPoint: CGPoint(x:12,y: 120), parentview: scrollView, cards: guideCards)
         guideCardList?.redraw()
         
-        /*
-         } else { // Check if location has loaded a little later...
-         NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "loadCardList", userInfo: nil, repeats: false)
-         }
-         */
+        // Let the scrollview know which its presenting and set its scroll height to it
+        scrollView.contentSize = CGSize(width: super.view.bounds.width, height: (guideCardList?.contentHeight)!)
+        
+        hideLoading()
     }
     
     

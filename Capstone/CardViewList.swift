@@ -17,6 +17,13 @@ class CardViewList : UIView {
     
     var cards:[CardView]
     
+    // Returns the total height of all the card elements, used in its parent scroll view to calculate scroll
+    var contentHeight : CGFloat {
+        get {
+            return CGFloat(self.cards.count) * (Constants.card_height + Constants.cardlist_margin)
+        }
+    }
+    
     init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager) {
         self.cards = [CardView]()
         super.init(frame: CGRect(origin: topleftPoint, size: CGSize(width: parentview.bounds.width - (2 * topleftPoint.x), height: 0)))
