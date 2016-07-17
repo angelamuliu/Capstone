@@ -13,6 +13,8 @@ class HomeVC: UIViewController {
     
     // UI Elements
     @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var spotToggle: UIButton!
+    @IBOutlet weak var guideToggle: UIButton!
     
     // Other variables/states, places and guides, etc
     var showingGuides = true
@@ -23,18 +25,27 @@ class HomeVC: UIViewController {
     var guides = [Int: Guide]() // Hash that we use with guideCardIds to get guides
     var guideCards = [GuideCardView]()
     
+    var cardScrollContainer:UIScrollView? // Scroll view that holds the card lists
+    
+    // Since CardViewLists are dependant on bounds, which are determined in viewDidLayoutSubview, initialization of it is placed there. But to prevent random visual shit or unnecessary loading, we check if they've already been added first
+    var cardsLoaded:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
-        loadCardList() // Needs to be called here otherwise the width of some uiviews are not set yet
+        super.viewDidLayoutSubviews()
+        if !cardsLoaded {
+            loadCardList()
+            cardsLoaded = true
+        }
+
     }
     
     // TODO: Customize "radius" for searching for locations lmao, remove placeholder time
     func loadCardList() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        print(appDelegate.lastLocation)
         
         // Could use some refactoring
         for place in appDelegate.placesManager.places {
@@ -50,17 +61,17 @@ class HomeVC: UIViewController {
             }
         }
         
-        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
+        cardScrollContainer = super.view.subviews.filter({$0 is UIScrollView})[0] as? UIScrollView
         
-        placeCardList = CardViewList(topleftPoint: CGPoint(x:12,y: 120), parentview: scrollView, placesManager: appDelegate.placesManager)
+        placeCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, placesManager: appDelegate.placesManager)
         placeCardList?.redraw()
         placeCardList?.hidden = true
         
-        guideCardList = CardViewList(topleftPoint: CGPoint(x:12,y: 120), parentview: scrollView, cards: guideCards)
+        guideCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, cards: guideCards)
         guideCardList?.redraw()
         
         // Let the scrollview know which its presenting and set its scroll height to it
-        scrollView.contentSize = CGSize(width: super.view.bounds.width, height: (guideCardList?.contentHeight)!)
+        cardScrollContainer!.contentSize = CGSize(width: super.view.bounds.width, height: (guideCardList?.contentHeight)!)
         
         hideLoading()
     }
@@ -71,14 +82,40 @@ class HomeVC: UIViewController {
         loadingLabel.hidden = true
     }
     
-    @IBAction func toggleMode() {
-        showingGuides = !showingGuides
-        if showingGuides {
-            guideCardList?.hidden = false
-            placeCardList?.hidden = true
-        } else {
-            guideCardList?.hidden = true
-            placeCardList?.hidden = false
-        }
+    @IBAction func toggleSpots() {
+        showingGuides = false
+        
+        guideCardList!.hidden = true
+        guideToggle.setTitleColor(Constants.grey, forState: UIControlState.Normal)
+        guideToggle.titleLabel?.font = UIFont(name: "Lato-Regular", size: 14)
+        
+        placeCardList!.hidden = false
+        spotToggle.setTitleColor(Constants.blue, forState: UIControlState.Normal)
+        spotToggle.titleLabel?.font = UIFont(name: "Lato-Bold", size: 14)
+//
+//        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
+        cardScrollContainer!.contentSize = CGSize(width: super.view.bounds.width, height: (placeCardList?.contentHeight)!)
+//        scrollView.setNeedsDisplay()
     }
+    
+    @IBAction func toggleGuides() {
+        showingGuides = true
+
+        guideCardList!.hidden = false
+        guideToggle.setTitleColor(Constants.blue, forState: UIControlState.Normal)
+        guideToggle.titleLabel?.font = UIFont(name: "Lato-Bold", size: 14)
+        
+        placeCardList!.hidden = true
+        spotToggle.setTitleColor(Constants.grey, forState: UIControlState.Normal)
+        spotToggle.titleLabel?.font = UIFont(name: "Lato-Regular", size: 14)
+        
+//        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
+        cardScrollContainer!.contentSize = CGSize(width: super.view.bounds.width, height: (guideCardList?.contentHeight)!)
+//        scrollView.setNeedsDisplay()
+    }
+    
+    
+    
+    
+    
 }

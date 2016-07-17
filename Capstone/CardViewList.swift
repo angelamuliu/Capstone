@@ -17,10 +17,10 @@ class CardViewList : UIView {
     
     var cards:[CardView]
     
-    // Returns the total height of all the card elements, used in its parent scroll view to calculate scroll
+    // Returns the total height of all the card elements plus padding, used in its parent scroll view to calculate scroll
     var contentHeight : CGFloat {
         get {
-            return CGFloat(self.cards.count) * (Constants.card_height + Constants.cardlist_margin)
+            return (Constants.cardlist_padding * 2) + CGFloat(self.cards.count) * (Constants.card_height + Constants.cardlist_margin)
         }
     }
     

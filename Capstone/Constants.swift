@@ -42,6 +42,17 @@ struct Constants {
     // -----------------------------------
     // Global / Reused styling
     
+    // Colors
+    static let gold = UIColor(red: 245.0/255, green:166.0/255, blue:35.0/255, alpha: 1) // #F5A623
+    static let navy = UIColor(red:24.0/255, green:123.0/255, blue:191.0/255, alpha: 1) // #237BBF
+    static let grey = UIColor(red: 155.0/255, green: 155.0/255, blue: 155.0/255, alpha: 1) //#9b9b9b
+    static let snow = UIColor(red: 235.0/255, green: 235.0/255, blue: 235.0/255, alpha: 1) // #EBEBEB
+    static let brightBlue = UIColor(red: 0, green: 118.0/255, blue: 255.0/255, alpha: 1) // #0076FF
+    static let tawn = UIColor(red: 233.0/255, green: 182.0/255, blue: 45.0/255, alpha: 1) //#E9b62d
+    static let lightGrey = UIColor(red: 168.0/255, green: 168.0/255, blue: 168.0/255, alpha: 1) // #A8a8a8
+    static let charcoal = UIColor(red: 96.0/255, green: 96.0/255, blue: 96.0/255, alpha: 1) // #606060
+    static let blue = UIColor(red: 63.0/255, green: 146.0/255, blue: 243.0/255, alpha: 1) // #3f92f3
+    
     // Drop shadow
     static let shadowColor = UIColor.blackColor().CGColor
     static let shadowOpacity:Float = 0.25
@@ -58,7 +69,8 @@ struct Constants {
     
     // -----------------------------------
     // Card list styling
-    static let cardlist_margin:CGFloat = 10 // Space between cards in a list
+    static let cardlist_margin:CGFloat = 12 // Space between cards in a list
+    static let cardlist_padding:CGFloat = 12 // Padding between the cards and its parent uiview container
     
     // -----------------------------------
     // Some useful regions to test notifications
