@@ -17,9 +17,21 @@ class GuideCardView : CardView {
         self.guide = guide
         super.init()
         
+        // Setting text in the top gold part
+        self.topLabel.text = "Because you... <wip>"
+        
         // TODO: Replace with image_url of guide
         self.image = UIImage.init(named:"ramen")
         self.imageView.image = self.image
+        
+        // TODO: Replace with something that chooses image based on category
+        self.categoryIcon = UIImage.init(named:"category-present-icon")
+        self.categoryIconView.image = self.categoryIcon
+        self.categoryLabel.text = "Category"
+        
+        // TODO: Replace with actual values
+        self.numLocationsLabel.text = "000"
+        self.locationLabel.text = "Related spots"
         
         // Sort locations first, then find the closest
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

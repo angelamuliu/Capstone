@@ -17,11 +17,24 @@ class PlaceCardView : CardView {
         self.place = place
         super.init()
         
+        // Setting text in the top gold part
+        self.topLabel.text = "??? meters away <wip>"
+        
         // TODO - replace with image_url of place
         self.image = UIImage(named: "ramen")
         self.imageView.image = self.image
         
-        self.nameLabel.text = place.name
+        // TODO: Replace with something that chooses image based on category
+        self.categoryIcon = UIImage.init(named:"category-present-icon")
+        self.categoryIconView.image = self.categoryIcon
+        self.categoryLabel.text = "Category"
+        
+        // TODO: Replace with actual values
+        self.numLocationsLabel.text = "000"
+        self.locationLabel.text = "Guides"
+        
+        self.nameLabel.text = "Really really really really really really really really really really long"
+//        self.nameLabel.text = place.name
     }
     
     func buttonPressed(sender: UIButton!) {

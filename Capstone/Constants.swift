@@ -62,10 +62,13 @@ struct Constants {
     
     // -----------------------------------
     // Card view styling
-    static let card_height:CGFloat = 200 // Height of each card
-    static let card_imageHeight:CGFloat = 100 // Height of image in a card
-    static let card_textMargin: CGFloat = 10 // Space between text, image, and card edges within card
+    static let card_height:CGFloat = 204 // Height of each card
+    static let card_imageHeight:CGFloat = 132 // Height of image in a card
+    static let card_textMargin: CGFloat = 12 // Space between text, image, and card edges within card
     static let card_textHeight: CGFloat = 50 // Height of text
+    static let card_topBackdropHeight: CGFloat = 36 // Height of that semitransparent gold part at the top
+    static let card_topBackdropAlpha: CGFloat = 0.85 // Transparency of the semitransparent gold part at the top
+    static let card_rightSectionWidth: CGFloat = 90 // Width of the small text section on the right
     
     // -----------------------------------
     // Card list styling

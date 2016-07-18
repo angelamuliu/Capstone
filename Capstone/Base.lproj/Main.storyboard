@@ -126,14 +126,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNq-GF-giG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNq-GF-giG">
                                 <rect key="frame" x="0.0" y="104" width="320" height="401"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="DNq-GF-giG" secondAttribute="bottom" constant="-1" id="A9f-kA-KaY"/>
                             <constraint firstItem="RfX-Qq-3Op" firstAttribute="top" secondItem="Mlh-iq-jc2" secondAttribute="bottom" id="DnK-jr-gwW"/>
                             <constraint firstItem="DNq-GF-giG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KbO-ze-7Nu"/>
+                            <constraint firstItem="DNq-GF-giG" firstAttribute="top" secondItem="RfX-Qq-3Op" secondAttribute="bottom" id="NCE-7K-g8f"/>
                             <constraint firstItem="fhO-UM-eHe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NuM-Hw-2VB"/>
                             <constraint firstItem="Mlh-iq-jc2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ckH-i1-bxy"/>
                             <constraint firstItem="fhO-UM-eHe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hnP-pc-dBI"/>
