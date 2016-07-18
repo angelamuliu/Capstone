@@ -15,6 +15,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var spotToggle: UIButton!
     @IBOutlet weak var guideToggle: UIButton!
+    @IBOutlet weak var subnav_selectDongle: UIView! // Little line under selected toggle
+        var cardScrollContainer:UIScrollView? // Scroll view that holds the card lists
     
     // Other variables/states, places and guides, etc
     var showingGuides = true
@@ -25,8 +27,6 @@ class HomeVC: UIViewController {
     var guides = [Int: Guide]() // Hash that we use with guideCardIds to get guides
     var guideCards = [GuideCardView]()
     
-    var cardScrollContainer:UIScrollView? // Scroll view that holds the card lists
-    
     // Since CardViewLists are dependant on bounds, which are determined in viewDidLayoutSubview, initialization of it is placed there. But to prevent random visual shit or unnecessary loading, we check if they've already been added first
     var cardsLoaded:Bool = false
     
@@ -34,6 +34,8 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
     }
     
+    // See this to understand how to properly deal with viewDidLayoutSubviews and when it's called
+    // http://www.iosinsight.com/override-viewdidlayoutsubviews/
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !cardsLoaded {
@@ -92,10 +94,9 @@ class HomeVC: UIViewController {
         placeCardList!.hidden = false
         spotToggle.setTitleColor(Constants.blue, forState: UIControlState.Normal)
         spotToggle.titleLabel?.font = UIFont(name: "Lato-Bold", size: 14)
-//
-//        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
+
         cardScrollContainer!.contentSize = CGSize(width: super.view.bounds.width, height: (placeCardList?.contentHeight)!)
-//        scrollView.setNeedsDisplay()
+        slideDongle()
     }
     
     @IBAction func toggleGuides() {
@@ -108,10 +109,22 @@ class HomeVC: UIViewController {
         placeCardList!.hidden = true
         spotToggle.setTitleColor(Constants.grey, forState: UIControlState.Normal)
         spotToggle.titleLabel?.font = UIFont(name: "Lato-Regular", size: 14)
-        
-//        let scrollView = super.view.subviews.filter({$0 is UIScrollView})[0] as! UIScrollView
+    
         cardScrollContainer!.contentSize = CGSize(width: super.view.bounds.width, height: (guideCardList?.contentHeight)!)
-//        scrollView.setNeedsDisplay()
+        slideDongle()
+    }
+    
+    
+    private func slideDongle() {
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut , animations: {
+            var dongleFrame = self.subnav_selectDongle.frame
+            if self.showingGuides {
+                dongleFrame.origin.x = 0.0
+            } else {
+                dongleFrame.origin.x = self.view.bounds.width / 2.0
+            }
+            self.subnav_selectDongle.frame = dongleFrame
+            }, completion: { finished in })
     }
     
     

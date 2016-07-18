@@ -126,17 +126,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNq-GF-giG">
-                                <rect key="frame" x="0.0" y="104" width="320" height="400"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNq-GF-giG">
+                                <rect key="frame" x="0.0" y="104" width="320" height="401"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DNq-GF-giG" secondAttribute="bottom" id="7Rx-Lr-deX"/>
                             <constraint firstItem="RfX-Qq-3Op" firstAttribute="top" secondItem="Mlh-iq-jc2" secondAttribute="bottom" id="DnK-jr-gwW"/>
                             <constraint firstItem="DNq-GF-giG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KbO-ze-7Nu"/>
                             <constraint firstItem="fhO-UM-eHe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NuM-Hw-2VB"/>
-                            <constraint firstItem="DNq-GF-giG" firstAttribute="top" secondItem="RfX-Qq-3Op" secondAttribute="bottom" id="b90-lu-qqV"/>
                             <constraint firstItem="Mlh-iq-jc2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ckH-i1-bxy"/>
                             <constraint firstItem="fhO-UM-eHe" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hnP-pc-dBI"/>
                             <constraint firstItem="RfX-Qq-3Op" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lz6-IU-KQl"/>
@@ -153,6 +151,7 @@
                         <outlet property="guideToggle" destination="Rut-Mw-aaz" id="0hK-uy-V3B"/>
                         <outlet property="loadingLabel" destination="u9f-N2-ZWK" id="qC8-fr-AP7"/>
                         <outlet property="spotToggle" destination="fID-Wa-IRS" id="XUu-fs-hB3"/>
+                        <outlet property="subnav_selectDongle" destination="5sy-us-f7M" id="TkR-sh-9TS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
