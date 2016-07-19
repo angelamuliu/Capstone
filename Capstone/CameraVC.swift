@@ -30,11 +30,10 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     var newMedia: Bool?
     
     override func viewDidLoad() {
-        bringUpCamera()
+        bringUpCamera() // Comment this line out when testing with the simulator since it doesn't have a camera
         super.viewDidLoad()
     }
 
-    
     func bringUpCamera() {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerControllerSourceType.Camera) {
@@ -58,6 +57,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         bringUpCamera()
     }
 
+    // Brings up the camera roll to select an existing image to run recognition on
+    // Currently not hooked up due to how we designed the UI
     @IBAction func useCameraRoll(sender: AnyObject) {
         
         if UIImagePickerController.isSourceTypeAvailable(
@@ -73,6 +74,10 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                        completion: nil)
             newMedia = false
         }
+    }
+    
+    @IBAction func backToHome(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     
