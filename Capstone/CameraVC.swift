@@ -22,15 +22,17 @@ import MobileCoreServices
 
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // UI Elements
     @IBOutlet weak var tagContainer: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    // Variables
+    var newMedia: Bool?
     
     override func viewDidLoad() {
         bringUpCamera()
         super.viewDidLoad()
     }
-    
-    @IBOutlet weak var imageView: UIImageView!
-    var newMedia: Bool?
 
     
     func bringUpCamera() {
@@ -80,7 +82,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             imageView.image = pickedImage
             
             // Convert image into PNG and resize to prep it for Clarifai POST request
-            var imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
+            let imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
             
             // Send off our Clarifai API call
             Clarifai.getTagsForPhoto(imageToSend!, completionHandler:
