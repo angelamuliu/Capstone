@@ -22,12 +22,18 @@ import MobileCoreServices
 
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var tagContainer: UILabel!
+    
+    override func viewDidLoad() {
+        bringUpCamera()
+        super.viewDidLoad()
+    }
+    
     @IBOutlet weak var imageView: UIImageView!
     var newMedia: Bool?
+
     
-    
-    @IBAction func useCamera(sender: AnyObject) {
-        
+    func bringUpCamera() {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerControllerSourceType.Camera) {
             
@@ -45,6 +51,11 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
+    // Connect to button to allow user to go back to camera
+    @IBAction func retakePhoto(sender: AnyObject) {
+        bringUpCamera()
+    }
+
     @IBAction func useCameraRoll(sender: AnyObject) {
         
         if UIImagePickerController.isSourceTypeAvailable(
@@ -67,8 +78,35 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
-        }
-        
+            
+            // Convert image into PNG and resize to prep it for Clarifai POST request
+            var imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
+            
+            // Send off our Clarifai API call
+            Clarifai.getTagsForPhoto(imageToSend!, completionHandler:
+                {response, data, error -> Void in
+                    do { // Convert the JSON response into a dictionary
+                        let convertedResponse = try NSJSONSerialization.JSONObjectWithData(response!, options: []) as! NSDictionary
+                        do { // Unwrapping JSON in Swift is really tedious because it only ever converts the "outer most" stuff into a swift dictionary, and the data inside is still unprocessed
+                            let results = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(convertedResponse["results"]!, options: []), options: []) as! NSArray
+                            let wrapped_result = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(results[0], options: []), options: []) as! NSDictionary
+                            let result = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(wrapped_result["result"]!, options: []), options: [])
+                            
+                            let tag = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(result["tag"]!!, options: []), options: []) as! NSDictionary
+                            
+                            let classes = tag["classes"] as! NSArray
+                            // let probs = tag["probs"] as! NSArray
+                            print(classes)
+                            
+                            // To update the UI we need to get the main thread
+                            dispatch_async(dispatch_get_main_queue()) {
+                                 self.tagContainer.text = classes.componentsJoinedByString(" ")
+                            }
+                        } catch {print(error)}
+                    } catch {print(error)}
+                })
+            } // Close Clarifai completion handler
+
         dismissViewControllerAnimated(true, completion: nil)
     }
     
