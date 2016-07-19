@@ -23,8 +23,9 @@ import MobileCoreServices
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // UI Elements
-    @IBOutlet weak var tagContainer: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tagContainer: UILabel! // Where the tag result feedback is shoved
+    @IBOutlet weak var imageView: UIImageView! // Photo taken container
+    @IBOutlet weak var contentStackView: UIStackView! // Main content stack view - append stuff to this
     
     // Variables
     var newMedia: Bool?
@@ -102,12 +103,23 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             let tag = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(result["tag"]!!, options: []), options: []) as! NSDictionary
                             
                             let classes = tag["classes"] as! NSArray
-                            // let probs = tag["probs"] as! NSArray
+                            let probs = tag["probs"] as! NSArray
                             print(classes)
+                            print(probs)
                             
                             // To update the UI we need to get the main thread
                             dispatch_async(dispatch_get_main_queue()) {
                                  self.tagContainer.text = classes.componentsJoinedByString(" ")
+                                
+                                // TODO: Once tag search feature is implemented, replace this with the actual results
+                                let tempPlaces = Utilities.getTempPlaces()
+                                for place in (tempPlaces) {
+                                    if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
+                                        searchCard.useData(place)
+                                        self.contentStackView.addArrangedSubview(searchCard)
+                                    }
+                                }
+                                
                             }
                         } catch {print(error)}
                     } catch {print(error)}

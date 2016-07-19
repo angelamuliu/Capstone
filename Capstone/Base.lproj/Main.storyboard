@@ -296,8 +296,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nu-za-xpK">
                                 <rect key="frame" x="0.0" y="90" width="320" height="414"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-GM-Rdb" userLabel="Content view">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="948"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-GM-Rdb" userLabel="Content view">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uid-IJ-gHf" userLabel="Photo result">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
@@ -315,16 +315,6 @@
                                                     <constraint firstItem="hit-NB-PPt" firstAttribute="centerX" secondItem="uid-IJ-gHf" secondAttribute="centerX" id="pnG-Ln-aeF"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EJ-bb-ygf">
-                                                <rect key="frame" x="0.0" y="228" width="320" height="720"/>
-                                                <color key="backgroundColor" red="1" green="0.35783305920000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="720" id="WSv-K3-hOa"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="hit-NB-PPt" firstAttribute="width" secondItem="ucJ-GM-Rdb" secondAttribute="width" id="L4d-Pz-lyh"/>
@@ -356,8 +346,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="dlv-5e-4ec"/>
                     <connections>
+                        <outlet property="contentStackView" destination="ucJ-GM-Rdb" id="PvN-Kd-fWW"/>
                         <outlet property="imageView" destination="hit-NB-PPt" id="dxq-XE-TfA"/>
-                        <outlet property="tagContainer" destination="0EJ-bb-ygf" id="zjJ-qq-JeD"/>
+                        <outlet property="tagContainer" destination="goG-H3-ljh" id="PEU-AX-xL1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4C-ka-826" userLabel="First Responder" sceneMemberID="firstResponder"/>

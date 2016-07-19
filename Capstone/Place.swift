@@ -7,14 +7,15 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 // Encapsulates information about spots, and converts data into a form presentable in the UIViews
-class Place {
+class Place : MiniCardable {
     
     var id:Int // unique identifier for a place
     var name: String
     var location: CLLocation // latitude and longitude wrapped in a CLLocation type
-    var category: String?
+    var category: String
     var subcategory: String?
     var address: String?
     var phone: String?
@@ -31,12 +32,12 @@ class Place {
         
         self.id = id
         location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
-        self.name = name;
+        self.name = name
         
-        self.category = initializeStringValue(category, defaultValue: Constants.defaultCategory)
-        self.subcategory = initializeStringValue(subcategory, defaultValue: Constants.defaultSubCategory)
-        self.address = initializeStringValue(address, defaultValue: Constants.defaultAddress)
-        self.phone = initializeStringValue(phone, defaultValue:Constants.defaultPhone)
+        self.category = Place.initializeStringValue(category, defaultValue: Constants.defaultCategory)
+        self.subcategory = Place.initializeStringValue(subcategory, defaultValue: Constants.defaultSubCategory)
+        self.address = Place.initializeStringValue(address, defaultValue: Constants.defaultAddress)
+        self.phone = Place.initializeStringValue(phone, defaultValue:Constants.defaultPhone)
         
         self.tags = initializeStringArrayValue(tags,defaultValue:Constants.defaultTags);
         
@@ -48,7 +49,7 @@ class Place {
         self.closingHour = (Int)(closingHourArray[0])!
         self.closingMinute = (Int)(closingHourArray[1])!
         
-        self.image_url = initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
+        self.image_url = Place.initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
     }
     
     /* Takes in the user's current location and returns distance from this place.
@@ -68,7 +69,7 @@ class Place {
     /**
         Takes in a value intended to be assigned and force unwraps it. If nil assigns a default value
      */
-    private func initializeStringValue(assignedValue:String?, defaultValue:String) -> String
+    private static func initializeStringValue(assignedValue:String?, defaultValue:String) -> String
     {
         if let val = assignedValue {
             return val
@@ -128,7 +129,7 @@ class Place {
         // optimization to prevent unneccessary search for 2 characters, example 'th'
         if searchTerm.characters.count >= 3
         {
-            if name.lowercaseString.containsString(searchTerm) || category!.lowercaseString.containsString(searchTerm) || subcategory!.lowercaseString.containsString(searchTerm)
+            if name.lowercaseString.containsString(searchTerm) || category.lowercaseString.containsString(searchTerm) || subcategory!.lowercaseString.containsString(searchTerm)
             {
                 returnVal = true
             }
@@ -149,11 +150,10 @@ class Place {
     
     /* A test method to print all the members, ensuring that Place is initialized properly */
     func testParams() {
-        
         print("ID:" + String(id) + "\n")
         print("Name:" + name + "\n")
         // print(getDistanceFromUser(self.location)) -> Need user's location for this
-        print("Category:" + category! + "\n")
+        print("Category:" + category + "\n")
         print("Subcategory:" + subcategory! + "\n")
         print("Address:" + address! + "\n")
         print("Phone:" + phone! + "\n")
@@ -165,4 +165,22 @@ class Place {
         print(image_url! + "\n")
         print(tags!)
     }
+    
+    
+    
+    // Implementing minicardable
+    var minicardTitle: String {
+        get { return name }
+    }
+    var cardImage: UIImage? {
+        get { return (UIImage(named: self.image_url!)) }
+    }
+    var categoryImage: UIImage? { // TODO: Make this not default to a present icon
+        get { return UIImage(named: "category-present-icon")! }
+    }
+    var additionalText: String? { // TODO: Make this actually calculate distance from the user
+        get { return "000 m" }
+    }
+    
+
 }
