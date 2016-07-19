@@ -12,8 +12,9 @@ import UIKit
 class PlaceCardView : CardView {
     
     var place:Place
+    var navigationController:UINavigationController?
     
-    init(place:Place) {
+    init(place:Place, navigationController: UINavigationController?) {
         self.place = place
         super.init()
         
@@ -35,13 +36,27 @@ class PlaceCardView : CardView {
         
         self.nameLabel.text = "Really really really really really really really really really really long"
 //        self.nameLabel.text = place.name
+        
+        // We need the navigation controller in order to do push
+        self.navigationController = navigationController
     }
     
     func buttonPressed(sender: UIButton!) {
         let placeVC = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("PlaceVC") as! PlaceVC
         placeVC.place = self.place
         
-        self.window?.rootViewController?.presentViewController(placeVC, animated: true, completion: nil) // NOTE: This is modal. Would need to find a way to push onto stack for places
+        if navigationController != nil { // Use push
+            print("Push")
+//            navigationController?.navigationItem.setLeftBarButtonItem(UIBarButtonItem.init(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: nil), animated: true)
+            
+            
+//            navigationController?.showViewController(placeVC, sender: self)
+//            navigationController?.navigationBar.backItem
+            
+            navigationController?.pushViewController(placeVC, animated: true)
+        } else { // No navigation controller set for some reason. Use modal
+            self.window?.rootViewController?.presentViewController(placeVC, animated: true, completion: nil)
+        }
         
     }
     

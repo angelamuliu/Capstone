@@ -24,14 +24,19 @@ class CardViewList : UIView {
         }
     }
     
-    init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager) {
+    /**
+     Used for places
+     Initializes with a placesmanager and loads the places inside as cards
+    */
+    init(topleftPoint: CGPoint, parentview: UIView, placesManager: PlacesManager, navigationController:UINavigationController?) {
         self.cards = [CardView]()
         super.init(frame: CGRect(origin: topleftPoint, size: CGSize(width: parentview.bounds.width - (2 * topleftPoint.x), height: 0)))
-        self.loadPlaces(placesManager)
+        self.loadPlaces(placesManager, navigationController: navigationController)
         parentview.addSubview(self)
     }
     
     /**
+     Used for guides
      Given a top left point to start "drawing" on, a parent UIView (superview), and the cards to present,
      creates the card list that fits inside of the parent UIView
      */
@@ -64,10 +69,10 @@ class CardViewList : UIView {
     /**
      Loads in places in a PlacesManager and adds them as cards to display
     */
-    func loadPlaces(placesManager: PlacesManager) {
+    func loadPlaces(placesManager: PlacesManager, navigationController:UINavigationController?) {
         var cardView:PlaceCardView?
         for place in placesManager.places {
-            cardView = PlaceCardView(place: place)
+            cardView = PlaceCardView(place: place, navigationController: navigationController)
             self.cards.append(cardView!)
             self.addSubview(cardView!)
         }

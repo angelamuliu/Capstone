@@ -32,6 +32,7 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
     }
     
     // See this to understand how to properly deal with viewDidLayoutSubviews and when it's called
@@ -65,7 +66,7 @@ class HomeVC: UIViewController {
         
         cardScrollContainer = super.view.subviews.filter({$0 is UIScrollView})[0] as? UIScrollView
         
-        placeCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, placesManager: appDelegate.placesManager)
+        placeCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, placesManager: appDelegate.placesManager, navigationController: self.navigationController)
         placeCardList?.redraw()
         placeCardList?.hidden = true
         
