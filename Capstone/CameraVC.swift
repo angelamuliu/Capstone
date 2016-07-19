@@ -80,12 +80,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             imageView.image = pickedImage
             
             // Convert image into PNG and resize to prep it for Clarifai POST request
-            var imageToSend:NSData?
-            if pickedImage.size.width > 2000 { // Too big for my blood
-                imageToSend = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 800))
-            } else { // Just use the original
-                imageToSend = UIImagePNGRepresentation(pickedImage)
-            }
+            var imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
             
             // Send off our Clarifai API call
             Clarifai.getTagsForPhoto(imageToSend!, completionHandler:

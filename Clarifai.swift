@@ -35,7 +35,7 @@ struct Clarifai {
      Access tokens expire in 48 hours so we can grab a new one if ours is too old
      */
     static func refreshAccessToken() {
-        let url = NSURL(string: "\(Clarifai.tokenEndpoint)/?client_id=\(Clarifai.clientId)&client_secret=\(Clarifai.clientSecret)&grant_type=client_credentials")
+        let url = accessTokenStringURL()
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         
@@ -47,6 +47,10 @@ struct Clarifai {
             } catch { print(error) }
         })
         task.resume()
+    }
+    
+    private static func accessTokenStringURL() -> NSURL? {
+        return NSURL(string: "\(Clarifai.tokenEndpoint)/?client_id=\(Clarifai.clientId)&client_secret=\(Clarifai.clientSecret)&grant_type=client_credentials")
     }
     
     /**
@@ -67,7 +71,7 @@ struct Clarifai {
                 let result = try NSJSONSerialization.JSONObjectWithData(response!, options: []) as! NSDictionary
                 print(result)
             } catch {
-                
+                print(error)
             }
             return
         })
@@ -105,10 +109,10 @@ struct Clarifai {
         
         request.HTTPBody = body
         
-        // Sending off our request
+        // Sending off our request - First we make a task object
         let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
         let task = session.dataTaskWithRequest(request, completionHandler: completionHandler)
-        task.resume() // All tasks start suspended - calling resume will actually fire it off asynchonously
+        task.resume() // All tasks start suspended - calling resume will actually fire the task off asynchonously
     }
     
     
@@ -127,5 +131,3 @@ struct Clarifai {
     }
     
 }
-
-        
