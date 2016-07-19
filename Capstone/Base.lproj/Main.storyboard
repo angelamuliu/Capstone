@@ -34,6 +34,13 @@
                                     <action selector="toggleMode" destination="BYZ-38-t0r" eventType="valueChanged" id="IYx-MM-7wy"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-ou-7Cd">
+                                <rect key="frame" x="246" y="78" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <segue destination="NZm-uV-KO4" kind="push" id="ez3-CL-DBj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -71,7 +78,7 @@
                                 <rect key="frame" x="47" y="406" width="85" height="30"/>
                                 <state key="normal" title="Use Camera"/>
                                 <connections>
-                                    <action selector="useCamera:" destination="NZm-uV-KO4" eventType="touchUpInside" id="5Vj-iv-ES3"/>
+                                    <action selector="useCamera:" destination="NZm-uV-KO4" eventType="touchUpInside" id="vg5-Hy-oIT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ol8-wt-Pnu">
@@ -81,11 +88,19 @@
                                     <action selector="useCameraRoll:" destination="NZm-uV-KO4" eventType="touchUpInside" id="F2z-8p-3j1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Placeholder for tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-Aq-7NC">
+                                <rect key="frame" x="74" y="453" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uL4-nx-JUo"/>
                     <connections>
                         <outlet property="imageView" destination="hit-NB-PPt" id="dxq-XE-TfA"/>
+                        <outlet property="tagContainer" destination="vcz-Aq-7NC" id="inm-su-Ki5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4C-ka-826" userLabel="First Responder" sceneMemberID="firstResponder"/>
