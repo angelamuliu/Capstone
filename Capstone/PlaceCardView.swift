@@ -46,13 +46,6 @@ class PlaceCardView : CardView {
         placeVC.place = self.place
         
         if navigationController != nil { // Use push
-            print("Push")
-//            navigationController?.navigationItem.setLeftBarButtonItem(UIBarButtonItem.init(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: nil), animated: true)
-            
-            
-//            navigationController?.showViewController(placeVC, sender: self)
-//            navigationController?.navigationBar.backItem
-            
             navigationController?.pushViewController(placeVC, animated: true)
         } else { // No navigation controller set for some reason. Use modal
             self.window?.rootViewController?.presentViewController(placeVC, animated: true, completion: nil)

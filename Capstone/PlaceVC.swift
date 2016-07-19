@@ -12,7 +12,7 @@ class PlaceVC: UIViewController {
     
     var place:Place?
     
-//    // UI Elements
+    // UI Elements
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -22,6 +22,8 @@ class PlaceVC: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var contentStackView: UIStackView! // Stack that has a card as the 1st element, and the minicards are shoved on
+    
     @IBAction func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -29,6 +31,7 @@ class PlaceVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Present the place's information
         if let loadedPlace = place {
             imageView.image = UIImage(named: loadedPlace.image_url!)
             
@@ -41,6 +44,29 @@ class PlaceVC: UIViewController {
             addressLabel.text = loadedPlace.address
             hourLabel.text = loadedPlace.hours
         }
+        
+        // Present its guides if it has any
+//        if let miniCardXib = NSBundle.mainBundle().loadNibNamed("MiniCardView", owner: self, options: nil) {
+//            self.registernib
+//        }
+        for guide in (place?.guides)! {
+            if let miniCard = NSBundle.mainBundle().loadNibNamed("MiniCardView", owner: self, options: nil).first as? MiniCardView {
+                miniCard.useData(guide)
+                contentStackView.addArrangedSubview(miniCard)
+            }
+        }
+        
+        
+//        if let customView = NSBundle.mainBundle().loadNibNamed("MiniCardView", owner: self, options: nil).first as? MiniCardView {
+//            contentStackView.addSubview(customView)
+//            
+////            
+////            customView.setTranslatesAutoresizingMaskIntoConstraints(false)
+////            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[view]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: ["view":customView]))
+////            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[view]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: ["view":customView]))
+//        }
+        
+        
     }
     
 }

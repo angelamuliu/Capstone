@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-class Guide {
+class Guide : MiniCardable {
     
     var id : Int // SQL ID, unique
     var title: String
@@ -35,5 +36,20 @@ class Guide {
             return placesManager.places
         }
     }
+    
+    // Mini card protocol methods
+    var minicardTitle : String {
+        get { return title }
+    }
+    var cardImage : UIImage? {
+        get { return (UIImage(named: self.image_url))! }
+    }
+    var categoryImage : UIImage? { // TODO: Make this not default to a present icon
+        get { return UIImage(named: "category-present-icon")! }
+    }
+    var additionalText : String? {
+        get { return nil }
+    }
+    
     
 }

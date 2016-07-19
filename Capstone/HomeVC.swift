@@ -16,7 +16,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var spotToggle: UIButton!
     @IBOutlet weak var guideToggle: UIButton!
     @IBOutlet weak var subnav_selectDongle: UIView! // Little line under selected toggle
-        var cardScrollContainer:UIScrollView? // Scroll view that holds the card lists
+    var cardScrollContainer:UIScrollView? // Scroll view that holds the card lists
     
     // Other variables/states, places and guides, etc
     var showingGuides = true

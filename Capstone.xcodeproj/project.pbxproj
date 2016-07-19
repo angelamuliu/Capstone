@@ -22,6 +22,9 @@
 		0B363FC21D2A093600CD8AF5 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B363FC11D2A093600CD8AF5 /* Guide.swift */; };
 		0B363FC41D2A0A2B00CD8AF5 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B363FC31D2A0A2B00CD8AF5 /* Page.swift */; };
 		0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B63F80E1D2C03D3003A4E11 /* Constants.swift */; };
+		0B73DD4F1D3DC6B200FD570F /* MiniCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DD4E1D3DC6B200FD570F /* MiniCardView.swift */; };
+		0B73DD511D3DC6F400FD570F /* MiniCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B73DD501D3DC6F400FD570F /* MiniCardView.xib */; };
+		0B73DD531D3DCAF400FD570F /* MiniCardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DD521D3DCAF400FD570F /* MiniCardable.swift */; };
 		0B7A3D5F1D22D6A600C68B93 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5C1D22D6A600C68B93 /* data.json */; };
 		0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5D1D22D6A600C68B93 /* Place.swift */; };
 		0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */; };
@@ -77,6 +80,9 @@
 		0B363FC11D2A093600CD8AF5 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		0B363FC31D2A0A2B00CD8AF5 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		0B63F80E1D2C03D3003A4E11 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0B73DD4E1D3DC6B200FD570F /* MiniCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCardView.swift; sourceTree = "<group>"; };
+		0B73DD501D3DC6F400FD570F /* MiniCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniCardView.xib; sourceTree = "<group>"; };
+		0B73DD521D3DCAF400FD570F /* MiniCardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCardable.swift; sourceTree = "<group>"; };
 		0B7A3D5B1D22D6A600C68B93 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		0B7A3D5C1D22D6A600C68B93 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		0B7A3D5D1D22D6A600C68B93 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 				0BBE84721D356DF1007EEB1B /* db.sqlite */,
 				0B7A3D5C1D22D6A600C68B93 /* data.json */,
 				0B7A3D5D1D22D6A600C68B93 /* Place.swift */,
+				0B73DD521D3DCAF400FD570F /* MiniCardable.swift */,
 				0B63F80E1D2C03D3003A4E11 /* Constants.swift */,
 				23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */,
 				0B7A3D5E1D22D6A600C68B93 /* SQLiteDatabase.swift */,
@@ -220,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				0BE8E5CA1D2C340200FCC2D2 /* CardView.swift */,
+				0B73DD4E1D3DC6B200FD570F /* MiniCardView.swift */,
+				0B73DD501D3DC6F400FD570F /* MiniCardView.xib */,
 				0BAA41761D2C451E006B6F8B /* GuideCardView.swift */,
 				0BAA41741D2C44FD006B6F8B /* PlaceCardView.swift */,
 				0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */,
@@ -297,6 +306,7 @@
 				0BA91CE71D3AC95B003D9924 /* Lato-Thin.ttf in Resources */,
 				0BA91CE81D3AC95B003D9924 /* Lato-ThinItalic.ttf in Resources */,
 				0BA91CE91D3AC95B003D9924 /* Lato-Hairline.ttf in Resources */,
+				0B73DD511D3DC6F400FD570F /* MiniCardView.xib in Resources */,
 				0BA91CEA1D3AC95B003D9924 /* Lato-HairlineItalic.ttf in Resources */,
 				0BA91CEB1D3AC95B003D9924 /* Lato-Italic.ttf in Resources */,
 				0BA91CEC1D3AC95B003D9924 /* Lato-Light.ttf in Resources */,
@@ -326,7 +336,9 @@
 				0B363FC21D2A093600CD8AF5 /* Guide.swift in Sources */,
 				0B363FC41D2A0A2B00CD8AF5 /* Page.swift in Sources */,
 				0BAA41771D2C451E006B6F8B /* GuideCardView.swift in Sources */,
+				0B73DD4F1D3DC6B200FD570F /* MiniCardView.swift in Sources */,
 				0B0F7F341D1C6D6A00CFF61F /* NotificationSettingsVC.swift in Sources */,
+				0B73DD531D3DCAF400FD570F /* MiniCardable.swift in Sources */,
 				0BE8E5CD1D2C340200FCC2D2 /* CardViewList.swift in Sources */,
 				0B0F7F301D1C6C8000CFF61F /* PlaceVC.swift in Sources */,
 				0B0F7F2A1D1C6C4800CFF61F /* HomeVC.swift in Sources */,
