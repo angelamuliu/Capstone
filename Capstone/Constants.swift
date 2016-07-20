@@ -42,6 +42,17 @@ struct Constants {
     // -----------------------------------
     // Global / Reused styling
     
+    // Colors
+    static let gold = UIColor(red: 245.0/255, green:166.0/255, blue:35.0/255, alpha: 1) // #F5A623
+    static let navy = UIColor(red:24.0/255, green:123.0/255, blue:191.0/255, alpha: 1) // #237BBF
+    static let grey = UIColor(red: 155.0/255, green: 155.0/255, blue: 155.0/255, alpha: 1) //#9b9b9b
+    static let snow = UIColor(red: 235.0/255, green: 235.0/255, blue: 235.0/255, alpha: 1) // #EBEBEB
+    static let brightBlue = UIColor(red: 0, green: 118.0/255, blue: 255.0/255, alpha: 1) // #0076FF
+    static let tawn = UIColor(red: 233.0/255, green: 182.0/255, blue: 45.0/255, alpha: 1) //#E9b62d
+    static let lightGrey = UIColor(red: 168.0/255, green: 168.0/255, blue: 168.0/255, alpha: 1) // #A8a8a8
+    static let charcoal = UIColor(red: 96.0/255, green: 96.0/255, blue: 96.0/255, alpha: 1) // #606060
+    static let blue = UIColor(red: 63.0/255, green: 146.0/255, blue: 243.0/255, alpha: 1) // #3f92f3
+    
     // Drop shadow
     static let shadowColor = UIColor.blackColor().CGColor
     static let shadowOpacity:Float = 0.25
@@ -50,15 +61,25 @@ struct Constants {
     
     
     // -----------------------------------
-    // Card view styling
-    static let card_height:CGFloat = 200 // Height of each card
-    static let card_imageHeight:CGFloat = 100 // Height of image in a card
-    static let card_textMargin: CGFloat = 10 // Space between text, image, and card edges within card
+    // Main Card view styling
+    static let card_height:CGFloat = 204 // Height of each card
+    static let card_imageHeight:CGFloat = 132 // Height of image in a card
+    static let card_textMargin: CGFloat = 12 // Space between text, image, and card edges within card
     static let card_textHeight: CGFloat = 50 // Height of text
+    static let card_topBackdropHeight: CGFloat = 36 // Height of that semitransparent gold part at the top
+    static let card_topBackdropAlpha: CGFloat = 0.85 // Transparency of the semitransparent gold part at the top
+    static let card_rightSectionWidth: CGFloat = 90 // Width of the small text section on the right
     
     // -----------------------------------
     // Card list styling
-    static let cardlist_margin:CGFloat = 10 // Space between cards in a list
+    static let cardlist_margin:CGFloat = 12 // Space between cards in a list
+    static let cardlist_padding:CGFloat = 12 // Padding between the cards and its parent uiview container
+    
+    // -----------------------------------
+    // Step Card styling
+    static let stepCard_topLeftMargin:CGFloat = 25 // Distance of top of step card to top of screen, and the left margins when centered
+    static let stepCard_bottomMargin:CGFloat = 14 // Distance of bottom of step card to bottom of screen
+    static let stepCard_peekWidth:CGFloat = 15 // The amount the card is "teased" when it hangs off to the side of the screen
     
     // -----------------------------------
     // Some useful regions to test notifications

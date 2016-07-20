@@ -22,17 +22,19 @@ import MobileCoreServices
 
 class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var tagContainer: UILabel!
+    // UI Elements
+    @IBOutlet weak var tagContainer: UILabel! // Where the tag result feedback is shoved
+    @IBOutlet weak var imageView: UIImageView! // Photo taken container
+    @IBOutlet weak var contentStackView: UIStackView! // Main content stack view - append stuff to this
+    
+    // Variables
+    var newMedia: Bool?
     
     override func viewDidLoad() {
-        bringUpCamera()
+        bringUpCamera() // Comment this line out when testing with the simulator since it doesn't have a camera
         super.viewDidLoad()
     }
-    
-    @IBOutlet weak var imageView: UIImageView!
-    var newMedia: Bool?
 
-    
     func bringUpCamera() {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerControllerSourceType.Camera) {
@@ -56,6 +58,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         bringUpCamera()
     }
 
+    // Brings up the camera roll to select an existing image to run recognition on
+    // Currently not hooked up due to how we designed the UI
     @IBAction func useCameraRoll(sender: AnyObject) {
         
         if UIImagePickerController.isSourceTypeAvailable(
@@ -73,6 +77,10 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
+    @IBAction func backToHome(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -80,7 +88,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             imageView.image = pickedImage
             
             // Convert image into PNG and resize to prep it for Clarifai POST request
-            var imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
+            let imageToSend:NSData? = UIImagePNGRepresentation(Clarifai.resizeImage(pickedImage, newWidth: 640))
             
             // Send off our Clarifai API call
             Clarifai.getTagsForPhoto(imageToSend!, completionHandler:
@@ -95,12 +103,23 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             let tag = try NSJSONSerialization.JSONObjectWithData(NSJSONSerialization.dataWithJSONObject(result["tag"]!!, options: []), options: []) as! NSDictionary
                             
                             let classes = tag["classes"] as! NSArray
-                            // let probs = tag["probs"] as! NSArray
+                            let probs = tag["probs"] as! NSArray
                             print(classes)
+                            print(probs)
                             
                             // To update the UI we need to get the main thread
                             dispatch_async(dispatch_get_main_queue()) {
                                  self.tagContainer.text = classes.componentsJoinedByString(" ")
+                                
+                                // TODO: Once tag search feature is implemented, replace this with the actual results
+                                let tempPlaces = Utilities.getTempPlaces()
+                                for place in (tempPlaces) {
+                                    if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
+                                        searchCard.useData(place)
+                                        self.contentStackView.addArrangedSubview(searchCard)
+                                    }
+                                }
+                                
                             }
                         } catch {print(error)}
                     } catch {print(error)}
