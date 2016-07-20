@@ -14,7 +14,7 @@ class GuideVC: UIViewController {
 
     
     var guide:Guide?
-    
+    var currentPage:Int = -1 // -1 is the intro card, 0 is the first step/page
     
     @IBAction func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
@@ -40,7 +40,14 @@ class GuideVC: UIViewController {
                     contentStackView.addArrangedSubview(miniCard)
                 }
             }
-
+            
+            for page in (guide?.pages)! {
+                if let stepCard = NSBundle.mainBundle().loadNibNamed("StepCardView", owner: self, options: nil).first as? StepCardView {
+                    page.guide = guide // To ensure that the page's title is hooked up properly to card
+                    stepCard.useData(page)
+//                    contentStackView.addArrangedSubview(miniCard)
+                }
+            }
         }
     }
     
@@ -49,6 +56,19 @@ class GuideVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func handleSwipe(sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.Right:
+            currentPage -= 1
+            print("Swiped left to right")
+        case UISwipeGestureRecognizerDirection.Left:
+            currentPage += 1
+            print("Swiped right to left")
+        default:
+            break
+        }
+    }
     
 }
 

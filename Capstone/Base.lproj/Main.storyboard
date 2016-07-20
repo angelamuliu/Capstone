@@ -576,6 +576,26 @@
                                     <constraint firstAttribute="bottom" secondItem="Hzx-YP-jHk" secondAttribute="bottom" id="wzV-kf-3yk"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaQ-SE-LMD" userLabel="Right Swiper">
+                                <rect key="frame" x="240" y="0.0" width="80" height="568"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="1qo-UD-joW"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yUP-kn-z4e" appends="YES" id="Ts4-Ea-efD"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yaZ-kp-jYj" userLabel="Left Swiper">
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="568"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3rc-6k-rSv"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="5AY-Yd-lfs" appends="YES" id="ZUl-WX-8r0"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQ1-5T-cpX" userLabel="dismiss button">
                                 <rect key="frame" x="-25" y="40" width="88" height="36"/>
                                 <subviews>
@@ -619,15 +639,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yha-oW-e24" firstAttribute="top" secondItem="Y5q-Jv-fYt" secondAttribute="topMargin" id="6jG-BH-J6h"/>
+                            <constraint firstItem="BaQ-SE-LMD" firstAttribute="top" secondItem="Y5q-Jv-fYt" secondAttribute="topMargin" id="9Yl-fq-SV0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BaQ-SE-LMD" secondAttribute="trailing" constant="-20" id="BYh-Ld-6gX"/>
                             <constraint firstItem="yha-oW-e24" firstAttribute="leading" secondItem="Y5q-Jv-fYt" secondAttribute="leadingMargin" constant="-4" id="CXv-Ic-8wg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yha-oW-e24" secondAttribute="trailing" constant="20" id="I11-9H-j2k"/>
                             <constraint firstItem="FQ1-5T-cpX" firstAttribute="leading" secondItem="Y5q-Jv-fYt" secondAttribute="leadingMargin" constant="-41" id="Khm-cO-IPc"/>
-                            <constraint firstItem="TIx-cf-ygZ" firstAttribute="top" secondItem="yha-oW-e24" secondAttribute="bottom" id="cuP-Rm-OEp"/>
+                            <constraint firstItem="yaZ-kp-jYj" firstAttribute="leading" secondItem="Y5q-Jv-fYt" secondAttribute="leadingMargin" constant="-20" id="OZr-1Y-jph"/>
+                            <constraint firstItem="yaZ-kp-jYj" firstAttribute="top" secondItem="Y5q-Jv-fYt" secondAttribute="topMargin" id="Sta-K2-NOz"/>
                             <constraint firstItem="06d-tZ-GFK" firstAttribute="width" secondItem="Y5q-Jv-fYt" secondAttribute="width" id="kHJ-aO-i7b"/>
+                            <constraint firstItem="yaZ-kp-jYj" firstAttribute="height" secondItem="Y5q-Jv-fYt" secondAttribute="height" id="lrM-UJ-BZ5"/>
                             <constraint firstItem="06d-tZ-GFK" firstAttribute="height" secondItem="Y5q-Jv-fYt" secondAttribute="height" id="n3H-S8-q9f"/>
                             <constraint firstItem="06d-tZ-GFK" firstAttribute="centerX" secondItem="Y5q-Jv-fYt" secondAttribute="centerX" id="oeq-vZ-RjM"/>
                             <constraint firstItem="06d-tZ-GFK" firstAttribute="top" secondItem="Y5q-Jv-fYt" secondAttribute="topMargin" id="txy-sE-vti"/>
                             <constraint firstItem="FQ1-5T-cpX" firstAttribute="top" secondItem="Xta-rY-Psn" secondAttribute="bottom" constant="20" id="vec-QR-Em9"/>
+                            <constraint firstItem="BaQ-SE-LMD" firstAttribute="height" secondItem="Y5q-Jv-fYt" secondAttribute="height" id="wFa-eK-bMJ"/>
                             <constraint firstItem="yha-oW-e24" firstAttribute="height" secondItem="Y5q-Jv-fYt" secondAttribute="height" id="yai-Oa-5V1"/>
                         </constraints>
                     </view>
@@ -643,6 +668,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFj-qm-616" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="5AY-Yd-lfs">
+                    <connections>
+                        <action selector="handleSwipe:" destination="5Lo-aA-dYN" id="fz5-e8-Hvf"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="yUP-kn-z4e">
+                    <connections>
+                        <action selector="handleSwipe:" destination="5Lo-aA-dYN" id="bX8-X0-9xg"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1249" y="236"/>
         </scene>

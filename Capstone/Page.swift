@@ -15,6 +15,8 @@ class Page {
     var description: String
     var image_url: String
     
+    var guide: Guide?
+    
     init(id: Int, title:String, description:String?, image_url:String?) {
         self.id = id
         self.title = title

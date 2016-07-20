@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </mutableArray>
+        <mutableArray key="Lato-Medium.ttf">
+            <string>Lato-Medium</string>
+        </mutableArray>
+        <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </mutableArray>
+        <mutableArray key="Lora-Regular.ttf">
+            <string>Lora-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StepCardView" customModule="Capstone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="630"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDT-aP-Rnc">
+                    <rect key="frame" x="0.0" y="0.0" width="324" height="630"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8s-lW-YEG" userLabel="Cardview">
+                            <rect key="frame" x="0.0" y="0.0" width="324" height="616"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-WI-Ge1">
+                                    <rect key="frame" x="0.0" y="0.0" width="324" height="360"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="360" id="7PJ-Uq-kDm"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name of step" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-zu-Y7C">
+                                    <rect key="frame" x="18" y="374" width="290" height="24"/>
+                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description or instructions" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gli-Sb-o5U">
+                                    <rect key="frame" x="18" y="411" width="290" height="21"/>
+                                    <fontDescription key="fontDescription" name="Lora-Regular" family="Lora" pointSize="14"/>
+                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Step 000 of 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6z-Gv-ICZ">
+                                    <rect key="frame" x="110" y="587" width="106" height="21"/>
+                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Guide title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI7-Kl-1Gy">
+                                    <rect key="frame" x="109" y="575" width="106" height="12"/>
+                                    <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="12"/>
+                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="YEG-WI-Ge1" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" id="9uY-dq-E0L"/>
+                                <constraint firstAttribute="trailing" secondItem="YEG-WI-Ge1" secondAttribute="trailing" id="EIR-Ht-S1I"/>
+                                <constraint firstItem="gli-Sb-o5U" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" constant="18" id="JOP-GU-MCE"/>
+                                <constraint firstItem="YEG-WI-Ge1" firstAttribute="centerX" secondItem="I8s-lW-YEG" secondAttribute="centerX" id="Nu7-Lg-w2T"/>
+                                <constraint firstItem="f6z-Gv-ICZ" firstAttribute="top" secondItem="JI7-Kl-1Gy" secondAttribute="bottom" id="Vq2-yo-vIT"/>
+                                <constraint firstItem="KG6-zu-Y7C" firstAttribute="top" secondItem="YEG-WI-Ge1" secondAttribute="bottom" constant="14" id="YKw-sL-6gg"/>
+                                <constraint firstItem="gli-Sb-o5U" firstAttribute="top" secondItem="KG6-zu-Y7C" secondAttribute="bottom" constant="13" id="d9r-Iw-w9u"/>
+                                <constraint firstItem="YEG-WI-Ge1" firstAttribute="top" secondItem="I8s-lW-YEG" secondAttribute="top" id="kCM-Xg-7Ca"/>
+                                <constraint firstAttribute="bottom" secondItem="f6z-Gv-ICZ" secondAttribute="bottom" constant="8" id="ocq-o1-VGK"/>
+                                <constraint firstItem="f6z-Gv-ICZ" firstAttribute="centerX" secondItem="I8s-lW-YEG" secondAttribute="centerX" id="tJI-uV-U5G"/>
+                                <constraint firstItem="JI7-Kl-1Gy" firstAttribute="centerX" secondItem="I8s-lW-YEG" secondAttribute="centerX" id="tLb-4C-drH"/>
+                                <constraint firstItem="KG6-zu-Y7C" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" constant="18" id="yjf-Ry-Sui"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="NO"/>
+                                <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                    <size key="value" width="0.0" height="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                    <real key="value" value="0.40000000000000002"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="I8s-lW-YEG" firstAttribute="leading" secondItem="gDT-aP-Rnc" secondAttribute="leading" id="Mu5-wA-qf5"/>
+                        <constraint firstAttribute="trailing" secondItem="I8s-lW-YEG" secondAttribute="trailing" id="apP-cU-wnd"/>
+                        <constraint firstAttribute="bottom" secondItem="I8s-lW-YEG" secondAttribute="bottom" constant="14" id="cLR-ON-wnd"/>
+                        <constraint firstItem="I8s-lW-YEG" firstAttribute="top" secondItem="gDT-aP-Rnc" secondAttribute="top" id="xiu-eA-rEg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gDT-aP-Rnc" secondAttribute="bottom" id="BNP-FB-8Ke"/>
+                <constraint firstItem="gDT-aP-Rnc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ICA-xE-hF1"/>
+                <constraint firstAttribute="trailing" secondItem="gDT-aP-Rnc" secondAttribute="trailing" id="aAU-mM-rtA"/>
+                <constraint firstItem="gDT-aP-Rnc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="y0y-VL-El1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="descLabel" destination="gli-Sb-o5U" id="2M1-dj-hWt"/>
+                <outlet property="guideLabel" destination="JI7-Kl-1Gy" id="Lnw-bM-puw"/>
+                <outlet property="imageView" destination="YEG-WI-Ge1" id="8nu-BQ-bv1"/>
+                <outlet property="nameLabel" destination="KG6-zu-Y7C" id="Wbs-WU-FNz"/>
+                <outlet property="stepLabel" destination="f6z-Gv-ICZ" id="5VG-id-pTQ"/>
+            </connections>
+        </view>
+    </objects>
+</document>
