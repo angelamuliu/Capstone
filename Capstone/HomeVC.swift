@@ -32,7 +32,12 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        
+        // Here we can listen in on location change events which are emitted by AppDelegate, and act accordingly
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserverForName(Constants.locationChange_EventName, object: nil, queue: nil) { notification in
+            self.placeCardList?.redraw()
+        }
     }
     
     // See this to understand how to properly deal with viewDidLayoutSubviews and when it's called
@@ -43,7 +48,6 @@ class HomeVC: UIViewController {
             loadCardList()
             cardsLoaded = true
         }
-
     }
     
     // TODO: Customize "radius" for searching for locations lmao, remove placeholder time

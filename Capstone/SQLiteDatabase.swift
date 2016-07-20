@@ -510,6 +510,14 @@ class SQLiteDatabase {
         return Page(id: row_id, title: row_title!, description: row_description, image_url: row_image_url)
     }
     
+    /**
+     Does exactly as title says it'll do.
+    */
+    func dropMigratePopulate() {
+        SQLiteDatabase.drop(dbPointer)
+        SQLiteDatabase.migrateTables(dbPointer)
+        SQLiteDatabase.populate(dbPointer)
+    }
     
     
 

@@ -1,8 +1,8 @@
 {
     "Places" : [
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
+            "Longitude" : 40.4541175,
+            "Latitude" : -79.9462548,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "DeGöre Haus",
@@ -14,8 +14,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
+            "Longitude" : 40.4541175,
+            "Latitude" : -79.9462548,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Katherine Tea",
@@ -27,8 +27,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
+            "Longitude" : 40.4541175,
+            "Latitude" : -79.9462548,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Katie's Cafe",
@@ -40,8 +40,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
+            "Longitude" : 40.4541175,
+            "Latitude" : -79.9462548,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Angela's Bagel Shop",
@@ -53,8 +53,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 399.02930293,
-            "Latitude" : 10.02938712313,
+            "Longitude" : 40.4541175,
+            "Latitude" : -79.9462548,
             "Category" : "Food",
             "Subcategory" : "Fusion",
             "Name" : "Ajayan's Indian Cuisine",

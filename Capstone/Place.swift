@@ -31,7 +31,7 @@ class Place : MiniCardable {
     init?(id: Int, longitude: Float, latitude: Float, category: String?, subcategory: String?, name: String, address: String?, phone: String?, open_hour: String?, close_hour: String?, image_url: String?, tags: String?) {
         
         self.id = id
-        location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
+        self.location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
         self.name = name
         
         self.category = Place.initializeStringValue(category, defaultValue: Constants.defaultCategory)
@@ -52,16 +52,27 @@ class Place : MiniCardable {
         self.image_url = Place.initializeStringValue(image_url, defaultValue:Constants.defaultUrl)
     }
     
-    /* Takes in the user's current location and returns distance from this place.
+    /* Takes in the user's current location and returns distance from this place in meters
      this is intentionally a method and not a boolean member to avoid stale data */
     func getDistanceFromUser(userLocation:CLLocation) -> CLLocationDistance {
-        return self.location.distanceFromLocation(userLocation);
+        return self.location.distanceFromLocation(userLocation)
     }
     
     // TODO: Not make it milatary time haha
     var hours : String {  //computed property, relies on other stuff to get set
         get {
             return "\(openingHour!):\(openingMinute!) - \(closingHour!):\(closingMinute!)"
+        }
+    }
+    
+    // Goes straight to getting location from app Delegate so we don't have to somehow pass it in
+    var distance : CLLocationDistance? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let userPosition = appDelegate.lastLocation
+        if userPosition != nil {
+            return getDistanceFromUser(userPosition!)
+        } else {
+            return nil
         }
     }
     
@@ -179,7 +190,13 @@ class Place : MiniCardable {
         get { return UIImage(named: "category-present-icon")! }
     }
     var additionalText: String? { // TODO: Make this actually calculate distance from the user
-        get { return "000 m" }
+        get {
+            if distance != nil {
+                return  "\(Int(distance!)) m"
+            } else {
+                return ""
+            }
+        }
     }
     
 

@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var placesManager:PlacesManager = PlacesManager.init(places: [])
     var triggeredLocalNotifications: [NotificationStack]?
     
+    let center = NSNotificationCenter.defaultCenter() // Handles broadcasting custom notifications to other views
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -75,6 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             return
         }
         
+        // If you make a change in the data.json, uncomment below to reload the data
+//        db.dropMigratePopulate()
+        
         // if database sucessfully opens
         // Replace Constants.defaultCurrentTime with Utilities.getCurrentTime()
         placesManager.places = db.getPlaces(Constants.defaultCurrentTime, longitude: Float(self.lastLocation!.coordinate.longitude), latitude: Float(self.lastLocation!.coordinate.latitude), radius: Constants.radiusForPlacesToDisplay)
@@ -91,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // This one runs forever, even when app in bg
+        locationManager.distanceFilter = CLLocationDistance(5) // Only send location event when distance has changed by 5m
         //locationManager.requestWhenInUseAuthorization()
         // this needs to be called after the authorization call
         locationManager.startUpdatingLocation()
@@ -118,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        center.postNotification(NSNotification(name: Constants.locationChange_EventName, object: nil))
         self.lastLocation = locations.last
         self.placesManager.sortPlaces(self.lastLocation!)
     }

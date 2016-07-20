@@ -61,6 +61,10 @@ class CardViewList : UIView {
             card = self.cards[i]
             card.frame = CGRect(x: 0, y: CGFloat(i) * (Constants.card_height + Constants.cardlist_margin), width: self.bounds.width, height: Constants.card_height)
             
+            if let placeCard = card as? PlaceCardView { // Often location changes, so redraw and text elements should draw on the changed location
+                placeCard.refreshLocation()
+            }
+            
             self.addSubview(card)
             card.redraw()
         }
