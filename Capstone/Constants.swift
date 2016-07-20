@@ -61,7 +61,7 @@ struct Constants {
     
     
     // -----------------------------------
-    // Card view styling
+    // Main Card view styling
     static let card_height:CGFloat = 204 // Height of each card
     static let card_imageHeight:CGFloat = 132 // Height of image in a card
     static let card_textMargin: CGFloat = 12 // Space between text, image, and card edges within card
@@ -74,6 +74,12 @@ struct Constants {
     // Card list styling
     static let cardlist_margin:CGFloat = 12 // Space between cards in a list
     static let cardlist_padding:CGFloat = 12 // Padding between the cards and its parent uiview container
+    
+    // -----------------------------------
+    // Step Card styling
+    static let stepCard_topLeftMargin:CGFloat = 25 // Distance of top of step card to top of screen, and the left margins when centered
+    static let stepCard_bottomMargin:CGFloat = 14 // Distance of bottom of step card to bottom of screen
+    static let stepCard_peekWidth:CGFloat = 15 // The amount the card is "teased" when it hangs off to the side of the screen
     
     // -----------------------------------
     // Some useful regions to test notifications

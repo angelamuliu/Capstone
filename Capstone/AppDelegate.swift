@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         setupLocationManager()
         setupDatabase()
         setupNotifications(application)
-        Clarifai.refreshAccessToken()
+//        Clarifai.refreshAccessToken()
         return true
     }
     

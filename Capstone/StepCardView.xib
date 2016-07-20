@@ -28,10 +28,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDT-aP-Rnc">
                     <rect key="frame" x="0.0" y="0.0" width="324" height="630"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8s-lW-YEG" userLabel="Cardview">
-                            <rect key="frame" x="0.0" y="0.0" width="324" height="616"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8s-lW-YEG" userLabel="Cardview">
+                            <rect key="frame" x="0.0" y="0.0" width="324" height="630"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-WI-Ge1">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-WI-Ge1">
                                     <rect key="frame" x="0.0" y="0.0" width="324" height="360"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="360" id="7PJ-Uq-kDm"/>
@@ -62,7 +62,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="YEG-WI-Ge1" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" id="9uY-dq-E0L"/>
                                 <constraint firstAttribute="trailing" secondItem="YEG-WI-Ge1" secondAttribute="trailing" id="EIR-Ht-S1I"/>
@@ -70,6 +70,7 @@
                                 <constraint firstItem="YEG-WI-Ge1" firstAttribute="centerX" secondItem="I8s-lW-YEG" secondAttribute="centerX" id="Nu7-Lg-w2T"/>
                                 <constraint firstItem="f6z-Gv-ICZ" firstAttribute="top" secondItem="JI7-Kl-1Gy" secondAttribute="bottom" id="Vq2-yo-vIT"/>
                                 <constraint firstItem="KG6-zu-Y7C" firstAttribute="top" secondItem="YEG-WI-Ge1" secondAttribute="bottom" constant="14" id="YKw-sL-6gg"/>
+                                <constraint firstAttribute="trailing" secondItem="gli-Sb-o5U" secondAttribute="trailing" constant="16" id="brZ-eE-zhz"/>
                                 <constraint firstItem="gli-Sb-o5U" firstAttribute="top" secondItem="KG6-zu-Y7C" secondAttribute="bottom" constant="13" id="d9r-Iw-w9u"/>
                                 <constraint firstItem="YEG-WI-Ge1" firstAttribute="top" secondItem="I8s-lW-YEG" secondAttribute="top" id="kCM-Xg-7Ca"/>
                                 <constraint firstAttribute="bottom" secondItem="f6z-Gv-ICZ" secondAttribute="bottom" constant="8" id="ocq-o1-VGK"/>
@@ -78,10 +79,7 @@
                                 <constraint firstItem="KG6-zu-Y7C" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" constant="18" id="yjf-Ry-Sui"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
-                                    <integer key="value" value="6"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
                                 <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
                                     <size key="value" width="0.0" height="1"/>
                                 </userDefinedRuntimeAttribute>
@@ -97,7 +95,7 @@
                     <constraints>
                         <constraint firstItem="I8s-lW-YEG" firstAttribute="leading" secondItem="gDT-aP-Rnc" secondAttribute="leading" id="Mu5-wA-qf5"/>
                         <constraint firstAttribute="trailing" secondItem="I8s-lW-YEG" secondAttribute="trailing" id="apP-cU-wnd"/>
-                        <constraint firstAttribute="bottom" secondItem="I8s-lW-YEG" secondAttribute="bottom" constant="14" id="cLR-ON-wnd"/>
+                        <constraint firstAttribute="bottom" secondItem="I8s-lW-YEG" secondAttribute="bottom" id="cLR-ON-wnd"/>
                         <constraint firstItem="I8s-lW-YEG" firstAttribute="top" secondItem="gDT-aP-Rnc" secondAttribute="top" id="xiu-eA-rEg"/>
                     </constraints>
                 </view>
