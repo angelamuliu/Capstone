@@ -32,10 +32,6 @@ class HomeVC: UIViewController {
         // Here we can listen in on location change events which are emitted by AppDelegate, and act accordingly
         let center = NSNotificationCenter.defaultCenter()
         center.addObserverForName(Constants.locationChange_EventName, object: nil, queue: nil) { notification in
-//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//            print(appDelegate.lastLocation)
-//            self.placeCardList?.sortCards(appDelegate.lastLocation!, navigationController: self.navigationController)
-//            self.placeCardList?.redraw()
             self.reorderCards()
         }
     }

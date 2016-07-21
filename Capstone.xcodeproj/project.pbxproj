@@ -62,6 +62,7 @@
 		0BF446281D3F3E7D00E43028 /* StepCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF446271D3F3E7D00E43028 /* StepCardView.xib */; };
 		0BF4462A1D3F41AE00E43028 /* StepCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF446291D3F41AE00E43028 /* StepCardView.swift */; };
 		0BF4462B1D40114600E43028 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0BBE84721D356DF1007EEB1B /* db.sqlite */; };
+		0BF4462D1D414A3200E43028 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4462C1D414A3200E43028 /* MapVC.swift */; };
 		2303EA501D32FEB200E3447E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303EA4F1D32FEB200E3447E /* Utilities.swift */; };
 		23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */; };
 		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
@@ -126,6 +127,7 @@
 		0BE8E5CB1D2C340200FCC2D2 /* CardViewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewList.swift; sourceTree = "<group>"; };
 		0BF446271D3F3E7D00E43028 /* StepCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepCardView.xib; sourceTree = "<group>"; };
 		0BF446291D3F41AE00E43028 /* StepCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCardView.swift; sourceTree = "<group>"; };
+		0BF4462C1D414A3200E43028 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		2303EA4F1D32FEB200E3447E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
 		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -190,6 +192,7 @@
 				0B0F7F271D1C630600CFF61F /* GuideVC.swift */,
 				0B0F7F331D1C6D6A00CFF61F /* NotificationSettingsVC.swift */,
 				0B0F7F311D1C6D5100CFF61F /* ProfileVC.swift */,
+				0BF4462C1D414A3200E43028 /* MapVC.swift */,
 				0B0F7F2F1D1C6C8000CFF61F /* PlaceVC.swift */,
 				0B0F7F2D1D1C6C7600CFF61F /* CameraVC.swift */,
 				0B0F7F2B1D1C6C6A00CFF61F /* SearchResultsVC.swift */,
@@ -374,6 +377,7 @@
 				0B0F7F2E1D1C6C7600CFF61F /* CameraVC.swift in Sources */,
 				0B09B1301D26F9400096A8F8 /* User.swift in Sources */,
 				0B0F7F281D1C630600CFF61F /* GuideVC.swift in Sources */,
+				0BF4462D1D414A3200E43028 /* MapVC.swift in Sources */,
 				0B7A3D611D22D6A600C68B93 /* SQLiteDatabase.swift in Sources */,
 				0B63F80F1D2C03D3003A4E11 /* Constants.swift in Sources */,
 				0BA91CC51D3AB4A2003D9924 /* Clarifai.swift in Sources */,

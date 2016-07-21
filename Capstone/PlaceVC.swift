@@ -54,4 +54,11 @@ class PlaceVC: UIViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "spotToMap" {
+            let mapVC = segue.destinationViewController as! MapVC
+            mapVC.place = self.place
+        }
+    }
+
 }
