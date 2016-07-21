@@ -27,14 +27,13 @@ class GuideVC: UIViewController {
         super.viewDidLoad()
         
         // TODO: Make category icon load from place
-        // TODO: Add in description to guide DB SCHEMA
         
         if guide != nil {
             imageView.image = guide?.cardImage
             nameLabel.text = guide?.title
             categoryLabel.text = guide?.category
             stepLabel.text = guide?.pages != nil ? "\(guide!.pages.count) steps" : "0 steps"
-            descriptionLabel.text = "Lorem Ipsum"
+            descriptionLabel.text = guide?.description
             
             // Present its places if it has any
             for place in (guide?.places)! {

@@ -186,7 +186,7 @@ class SQLiteDatabase {
         
         let createGuide: String = "CREATE TABLE Guide(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "Title CHARACTER(255), Category CHARACTER(255), Subcategory CHARACTER(255)," +
-            "Hidden BOOLEAN, Image_url VARCHAR(255)" +
+            "Hidden BOOLEAN, Image_url VARCHAR(255), Description TEXT" +
         ");"
         quickRunStatement(db, stringStatement: createGuide)
         
@@ -263,7 +263,7 @@ class SQLiteDatabase {
      Given starter content from the JSON, populates the DB with the guides and pages (parts of the guide)
     */
     static private func insertGuidesAndPages(db:COpaquePointer, guidesArr: NSArray) {
-        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url) VALUES (?, ?, ?, ?, ?);"
+        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url,Description) VALUES (?, ?, ?, ?, ?,?);"
         let insertPageStatementString = "INSERT INTO Page (Title,Description,Image_url,Guide_id) VALUES (?, ?, ?, ?);"
         
         var insertGuideStatement: COpaquePointer = nil
@@ -277,6 +277,7 @@ class SQLiteDatabase {
                 sqlite3_bind_text(insertGuideStatement, 3, (guideDict.valueForKey("Subcategory")?.UTF8String)!, -1, nil)
                 sqlite3_bind_int(insertGuideStatement, 4, guideDict.valueForKey("Hidden") as! Bool == true ? 1 : 0)
                 sqlite3_bind_text(insertGuideStatement, 5, (guideDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 6, (guideDict.valueForKey("Description")?.UTF8String)!, -1, nil)
                 if sqlite3_step(insertGuideStatement) == SQLITE_DONE {
                     print("Successfully inserted guide row")
                     
@@ -395,7 +396,7 @@ class SQLiteDatabase {
     */
     func getGuidesForPlace(place:Place) -> [Guide] {
         var guidesArr = [Guide]()
-        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url FROM Guide as g" +
+        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url, g.description FROM Guide as g" +
             " INNER JOIN PlaceGuide AS pg ON pg.guide_id = g.id INNER JOIN Place AS p ON pg.place_id = p.id" +
             " WHERE p.id = ?;"
         guard let queryStatement = try? prepareStatement(querySql) else {
@@ -489,11 +490,12 @@ class SQLiteDatabase {
         let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
         let row_hidden = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
         let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        let row_description = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
         
         if row_hidden != nil && row_hidden! == "0" {
-            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url, description: row_description)
         } else {
-            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url, description: row_description)
         }
     }
     

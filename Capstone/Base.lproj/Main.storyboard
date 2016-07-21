@@ -461,7 +461,7 @@
                                         <rect key="frame" x="12" y="0.0" width="272" height="568"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Hzx-YP-jHk" userLabel="Content view">
-                                                <rect key="frame" x="0.0" y="0.0" width="272" height="465"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="272" height="469"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Juc-20-SCs" userLabel="Photo">
                                                         <rect key="frame" x="0.0" y="0.0" width="272" height="288"/>
@@ -486,7 +486,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSi-Fz-keD" userLabel="Info">
-                                                        <rect key="frame" x="0.0" y="294" width="272" height="115"/>
+                                                        <rect key="frame" x="0.0" y="294" width="272" height="119"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guide title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buh-6u-Klc">
                                                                 <rect key="frame" x="0.0" y="8" width="93" height="24"/>
@@ -504,20 +504,20 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="## steps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vD-yD-jSC">
-                                                                <rect key="frame" x="0.0" y="88" width="53" height="17"/>
+                                                                <rect key="frame" x="0.0" y="92" width="53" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swipe-icon" translatesAutoresizingMaskIntoConstraints="NO" id="KAt-qj-cfT">
-                                                                <rect key="frame" x="226" y="75" width="34" height="34"/>
+                                                                <rect key="frame" x="226" y="79" width="34" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="34" id="gKb-wu-CD9"/>
                                                                     <constraint firstAttribute="width" constant="34" id="y3l-e9-cX4"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-gX-chz">
-                                                                <rect key="frame" x="204" y="91" width="22" height="12"/>
+                                                                <rect key="frame" x="204" y="95" width="22" height="12"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="10"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -536,7 +536,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="XmV-4x-OxT" secondAttribute="trailing" constant="12" id="5b6-Nv-jFb"/>
                                                             <constraint firstItem="BeC-zH-bMr" firstAttribute="leading" secondItem="zSi-Fz-keD" secondAttribute="leading" id="62L-FM-cUq"/>
                                                             <constraint firstItem="XmV-4x-OxT" firstAttribute="top" secondItem="Kdy-eS-TQh" secondAttribute="bottom" constant="8" id="9DP-Sh-26C"/>
-                                                            <constraint firstItem="4vD-yD-jSC" firstAttribute="top" secondItem="XmV-4x-OxT" secondAttribute="bottom" constant="8" id="9ZB-Dz-ZWl"/>
+                                                            <constraint firstItem="4vD-yD-jSC" firstAttribute="top" secondItem="XmV-4x-OxT" secondAttribute="bottom" constant="12" id="9ZB-Dz-ZWl"/>
                                                             <constraint firstItem="KAt-qj-cfT" firstAttribute="leading" secondItem="uRN-gX-chz" secondAttribute="trailing" id="9w4-FA-o9l"/>
                                                             <constraint firstItem="Buh-6u-Klc" firstAttribute="top" secondItem="zSi-Fz-keD" secondAttribute="top" constant="8" id="Duu-sb-6YL"/>
                                                             <constraint firstItem="XmV-4x-OxT" firstAttribute="leading" secondItem="zSi-Fz-keD" secondAttribute="leading" id="MHl-dn-2eM"/>
@@ -549,7 +549,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDC-nY-cN6">
-                                                        <rect key="frame" x="0.0" y="415" width="272" height="50"/>
+                                                        <rect key="frame" x="0.0" y="419" width="272" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Related Spots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFS-JF-8Pk">
                                                                 <rect key="frame" x="0.0" y="9" width="86" height="17"/>
