@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         setupDatabase()
         setupNotifications(application)
         Clarifai.refreshAccessToken()
+        
+//        SQLiteDatabase.createOnDesktop()
         return true
     }
     
@@ -63,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     /* creates/opens the database and caches the places into self.placesManager, so that subsequent requests do not require db calls. */
     func setupDatabase()
     {
+//        SQLiteDatabase.createOnDesktop()
+        
         SQLiteDatabase.safeCreate()
         // setting MHCI Lab location as default, to allow further steps to continue
         if self.lastLocation == nil{
@@ -76,9 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             placesManager.sortPlaces(self.lastLocation!)
             return
         }
-        
-        // If you make a change in the data.json, uncomment below to reload the data
-//        db.dropMigratePopulate()
         
         // if database sucessfully opens
         // Replace Constants.defaultCurrentTime with Utilities.getCurrentTime()

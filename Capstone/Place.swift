@@ -29,7 +29,6 @@ class Place : MiniCardable {
     var guides: [Guide]? // Connected guides
 
     init?(id: Int, longitude: Float, latitude: Float, category: String?, subcategory: String?, name: String, address: String?, phone: String?, open_hour: String?, close_hour: String?, image_url: String?, tags: String?) {
-        
         self.id = id
         self.location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
         self.name = name

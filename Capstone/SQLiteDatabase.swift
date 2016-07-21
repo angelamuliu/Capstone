@@ -19,6 +19,9 @@
 // https://www.raywenderlich.com/123579/sqlite-tutorial-swift
 
 
+// FYI: Inserts, drops, and destructive DB actions will not work on the device
+// For now, simply create, then update the DB found in the assets
+
 
 import Foundation
 
@@ -56,10 +59,7 @@ class SQLiteDatabase {
      object to use to mess with the database
      */
     static func open() throws -> SQLiteDatabase {
-        let fileManager = NSFileManager.defaultManager()
-        let path = fileManager.currentDirectoryPath // Make db in project root
         var db: COpaquePointer = nil
-        
         if Constants.dbpath != nil { // On devices you cannot write in the bundle so it must already exist
             if sqlite3_open(Constants.dbpath!, &db) == SQLITE_OK {
                 return SQLiteDatabase(dbPointer: db)
@@ -90,7 +90,7 @@ class SQLiteDatabase {
     
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     // STATIC FUNCTIONS - DB MAINTENANCE
-    // Used to manage the database itself (e.g. dropping, recreating, connecting
+    // Used to manage the database itself (e.g. dropping, recreating, connecting)
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     
     /**

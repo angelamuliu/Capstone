@@ -21,10 +21,12 @@ class PlacesManager
         self.places = places
     }
     
-    /* Sorts places by location relative to user. Closer location moves to the top */
+    /**
+     Sorts places by location relative to user. Closer location moves to the top
+     */
     func sortPlaces(userLocation:CLLocation)
     {
-        self.places.sortInPlace({ $0.getDistanceFromUser(userLocation) < $1.getDistanceFromUser(userLocation) })
+        self.places.sortInPlace({$0.getDistanceFromUser(userLocation) < $1.getDistanceFromUser(userLocation)})
     }
     
     func filterByKeyword(keyword:String) -> [Place]

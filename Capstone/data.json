@@ -1,8 +1,8 @@
 {
     "Places" : [
         {
-            "Longitude" : 40.4541175,
-            "Latitude" : -79.9462548,
+            "Longitude" : -26.20410280,
+            "Latitude" : 28.04730510,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "DeGöre Haus",
@@ -27,8 +27,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 40.4541175,
-            "Latitude" : -79.9462548,
+            "Longitude" : 51.50998000,
+            "Latitude" : -0.13370000,
             "Category" : "Coffee",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Katie's Cafe",
@@ -129,7 +129,31 @@
                     "Image_url" : "ramen"
                 }
             ]
-        }
+        },
+        {
+            "Title" : "Katie's how to",
+            "Category" : "Food",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "ramen",
+            "Pages" : [
+                {
+                    "Title" : "Pick up fish",
+                    "Description" : "Using chopsticks, pick up the fish from the top left corner",
+                    "Image_url" : "ramen"
+                },
+                {
+                    "Title" : "Put fish in mouth",
+                    "Description" : "Put that raw fish in the mouth by opening the mouth first",
+                    "Image_url" : "ramen"
+                },
+                {
+                    "Title" : "Chew it",
+                    "Description" : "Chew it with the force of one thousand gales",
+                    "Image_url" : "ramen"
+                }
+            ]
+        },
     ],
 
     "PlaceGuides" : [
@@ -148,6 +172,10 @@
         {
             "Place" : 2,
             "Guide" : 2
+        },
+        {
+            "Place" : 3,
+            "Guide" : 4
         }
     ]
 }
