@@ -41,7 +41,7 @@ class Utilities
         for index in 1...10 {
             let place = Place(id: index, longitude: (Float(Constants.defaultUserLocation.coordinate.longitude) + Float(index)), latitude: (Float(Constants.defaultUserLocation.coordinate.latitude) + Float(index)), category: Constants.defaultCategory, subcategory:Constants.defaultSubCategory, name: ("Place" + String(index)), address: Constants.defaultAddress, phone: Constants.defaultPhone, open_hour: Constants.defaultOpenTime, close_hour: Constants.defaultCloseTime, image_url: Constants.defaultUrl, tags: "tag")
             
-            let guide = Guide(id: index, title: "howto", category: "asd", subcategory: "asd", hidden: false, image_url: "asd", description: "ASDF")
+            let guide = Guide(id: index, title: "howto", category: "asd", subcategory: "asd", hidden: false, image_url: "asd", description: "ASDF", tags: "")
             place!.guides = []
             place!.guides!.append(guide)
             places.append(place!)
