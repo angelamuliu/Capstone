@@ -97,17 +97,19 @@ class CardViewList : UIView {
         
         // Could use some refactoring
         for place in placesManager.places {
-            for guide in place.guides! { // Already inserted, but update the guide to have the place
-                if guideCardIds.contains(guide.id) {
+            for guide in place.guides! {
+                if guideCardIds.contains(guide.id) { // Already inserted, but update the guide to have the place
                     guides[guide.id]?.placesManager.places.append(place)
                 } else { // New guide
                     guideCardIds.append(guide.id)
                     guide.placesManager.places.append(place)
                     guides[guide.id] = guide
-                    guideCards.append(GuideCardView.init(guide: guide))
                 }
             }
         }
+        guides.keys.forEach({ key in // Now iterate over the unique guides and hook up to UI
+            guideCards.append(GuideCardView.init(guide: guides[key]!))
+        })
         self.cards = guideCards
         // Add in cards into view
         self.cards.forEach { (card) -> () in self.addSubview(card) }

@@ -21,8 +21,7 @@ class PlaceCardView : CardView {
         // Setting text in the top gold part
         self.topLabel.text = place.distance != nil ? "\(Int(place.distance!)) meters away" : "Location disabled"
         
-        // TODO - replace with image_url of place
-        self.image = UIImage(named: "ramen")
+        self.image = UIImage(named: place.image_url!)
         self.imageView.image = self.image
         
         // TODO: Replace with something that chooses image based on category
@@ -30,8 +29,7 @@ class PlaceCardView : CardView {
         self.categoryIconView.image = self.categoryIcon
         self.categoryLabel.text = "Category"
         
-        // TODO: Replace with actual values
-        self.numLocationsLabel.text = "000"
+        self.numLocationsLabel.text = "\(place.guides!.count)"
         self.locationLabel.text = "Guides"
         
         self.nameLabel.text = place.name
