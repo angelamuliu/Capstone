@@ -121,6 +121,7 @@
                 <outlet property="imageView" destination="YEG-WI-Ge1" id="8nu-BQ-bv1"/>
                 <outlet property="nameLabel" destination="KG6-zu-Y7C" id="Wbs-WU-FNz"/>
                 <outlet property="stepLabel" destination="f6z-Gv-ICZ" id="5VG-id-pTQ"/>
+                <outlet property="stepNumLabel" destination="f6z-Gv-ICZ" id="TcF-Se-Wmb"/>
             </connections>
         </view>
     </objects>

@@ -32,7 +32,8 @@ class GuideVC: UIViewController {
             imageView.image = guide?.cardImage
             nameLabel.text = guide?.title
             categoryLabel.text = guide?.category
-            stepLabel.text = guide?.pages != nil ? "\(guide!.pages.count) steps" : "0 steps"
+            // Right now the last "page" is the credits, so subtract 1
+            stepLabel.text = guide?.pages != nil ? "\(guide!.pages.count - 1) steps" : "0 steps"
             descriptionLabel.text = guide?.description
             
             // Present its places if it has any
@@ -73,7 +74,10 @@ class GuideVC: UIViewController {
                 if i != guide!.pages.count - 1 { // Page
                     if let stepCard = NSBundle.mainBundle().loadNibNamed("StepCardView", owner: self, options: nil).first as? StepCardView {
                         stepCard.useData(page)
+                        // Right now the last "page" is the credits, so subtract 1
+                        stepCard.setBottomLabel(i+1, totalSteps: guide!.pages.count - 1)
                         setupPagePositioning(i, card: stepCard)
+                        
                         pagesView.addSubview(stepCard)
                         stepViews.append(stepCard)
                     }
