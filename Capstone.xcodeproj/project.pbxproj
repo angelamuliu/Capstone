@@ -63,6 +63,8 @@
 		0BF4462A1D3F41AE00E43028 /* StepCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF446291D3F41AE00E43028 /* StepCardView.swift */; };
 		0BF4462B1D40114600E43028 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0BBE84721D356DF1007EEB1B /* db.sqlite */; };
 		0BF4462D1D414A3200E43028 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4462C1D414A3200E43028 /* MapVC.swift */; };
+		0BF4462F1D42985500E43028 /* StepCardAuthorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF4462E1D42985500E43028 /* StepCardAuthorView.xib */; };
+		0BF446311D42986E00E43028 /* StepCardAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF446301D42986E00E43028 /* StepCardAuthorView.swift */; };
 		2303EA501D32FEB200E3447E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303EA4F1D32FEB200E3447E /* Utilities.swift */; };
 		23291E0E1D2B2F2C00FFF43E /* PlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */; };
 		6FC9BC801D2199F70099C8D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */; };
@@ -128,6 +130,8 @@
 		0BF446271D3F3E7D00E43028 /* StepCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepCardView.xib; sourceTree = "<group>"; };
 		0BF446291D3F41AE00E43028 /* StepCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCardView.swift; sourceTree = "<group>"; };
 		0BF4462C1D414A3200E43028 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		0BF4462E1D42985500E43028 /* StepCardAuthorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepCardAuthorView.xib; sourceTree = "<group>"; };
+		0BF446301D42986E00E43028 /* StepCardAuthorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCardAuthorView.swift; sourceTree = "<group>"; };
 		2303EA4F1D32FEB200E3447E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		23291E0D1D2B2F2C00FFF43E /* PlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesManager.swift; sourceTree = "<group>"; };
 		6FC9BC7F1D2199F70099C8D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -247,6 +251,8 @@
 		0BAA41781D2C471F006B6F8B /* CardView */ = {
 			isa = PBXGroup;
 			children = (
+				0BF4462E1D42985500E43028 /* StepCardAuthorView.xib */,
+				0BF446301D42986E00E43028 /* StepCardAuthorView.swift */,
 				0BF446271D3F3E7D00E43028 /* StepCardView.xib */,
 				0BF446291D3F41AE00E43028 /* StepCardView.swift */,
 				0B73DD501D3DC6F400FD570F /* MiniCardView.xib */,
@@ -338,6 +344,7 @@
 				0BA91CEA1D3AC95B003D9924 /* Lato-HairlineItalic.ttf in Resources */,
 				0BA91CEB1D3AC95B003D9924 /* Lato-Italic.ttf in Resources */,
 				0BA91CEC1D3AC95B003D9924 /* Lato-Light.ttf in Resources */,
+				0BF4462F1D42985500E43028 /* StepCardAuthorView.xib in Resources */,
 				0B73DD561D3E66CB00FD570F /* SearchResultCardView.xib in Resources */,
 				0BA91CED1D3AC95B003D9924 /* Lato-LightItalic.ttf in Resources */,
 				0BA91CEE1D3AC95B003D9924 /* Lato-Medium.ttf in Resources */,
@@ -388,6 +395,7 @@
 				0BA91CC71D3AC05F003D9924 /* NavigationController.swift in Sources */,
 				0BF4462A1D3F41AE00E43028 /* StepCardView.swift in Sources */,
 				0B7A3D601D22D6A600C68B93 /* Place.swift in Sources */,
+				0BF446311D42986E00E43028 /* StepCardAuthorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

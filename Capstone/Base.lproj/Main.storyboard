@@ -878,10 +878,10 @@
             </objects>
             <point key="canvasLocation" x="1244" y="-432"/>
         </scene>
-        <!--MapVC-->
+        <!--Map-->
         <scene sceneID="SXK-7r-Z5I">
             <objects>
-                <viewController id="1M5-hn-xb2" customClass="MapVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="1M5-hn-xb2" customClass="MapVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tij-15-QiU"/>
                         <viewControllerLayoutGuide type="bottom" id="VA7-HV-9rF"/>

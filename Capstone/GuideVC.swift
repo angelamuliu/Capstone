@@ -21,7 +21,7 @@ class GuideVC: UIViewController {
     // The custom pages views are dependant on bounds, which are determined in viewDidLayoutSubview, initialization of it is placed there
     // But we only want it to happen once per template using
     var pagesLoaded:Bool = false
-    var stepViews: [StepCardView] = []// Holds the step views for this guide, and is cleaned out when the view is left
+    var stepViews: [UIView] = []// Holds the step views for this guide, and is cleaned out when the view is left
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,22 +68,33 @@ class GuideVC: UIViewController {
     private func setupPage() {
         if guide != nil {
             for i in 0..<guide!.pages.count {
-                if let stepCard = NSBundle.mainBundle().loadNibNamed("StepCardView", owner: self, options: nil).first as? StepCardView {
-                    let page = guide!.pages[i]
-                    page.guide = guide! // To ensure that the page's title is hooked up properly to card
-                    stepCard.useData(page)
-                    
-                    // Position the next card next to the intro. The rest are offscreen in the ether
-                    if i == 0 {
-                        stepCard.frame = CGRect(x: pagesView.bounds.width - Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin, width: pagesView.bounds.width - Constants.stepCard_topLeftMargin*2, height: pagesView.bounds.height - Constants.stepCard_topLeftMargin - Constants.stepCard_bottomMargin)
-                    } else { // offscreen
-                        stepCard.frame = CGRect(x: pagesView.bounds.width + Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin, width: pagesView.bounds.width - Constants.stepCard_topLeftMargin*2, height: pagesView.bounds.height - Constants.stepCard_topLeftMargin - Constants.stepCard_bottomMargin)
+                let page = guide!.pages[i]
+                page.guide = guide! // To ensure that the page's title is hooked up properly to card
+                if i != guide!.pages.count - 1 { // Page
+                    if let stepCard = NSBundle.mainBundle().loadNibNamed("StepCardView", owner: self, options: nil).first as? StepCardView {
+                        stepCard.useData(page)
+                        setupPagePositioning(i, card: stepCard)
+                        pagesView.addSubview(stepCard)
+                        stepViews.append(stepCard)
                     }
-                    
-                    pagesView.addSubview(stepCard)
-                    stepViews.append(stepCard)
+                } else { // The last page = the author
+                    if let authorCard = NSBundle.mainBundle().loadNibNamed("StepCardAuthorView", owner: self, options: nil).first as? StepCardAuthorView {
+                        authorCard.useData(page, guideVC: self)
+                        setupPagePositioning(i, card: authorCard)
+                        pagesView.addSubview(authorCard)
+                        stepViews.append(authorCard)
+                    }
                 }
             }
+        }
+    }
+    
+    // Setups up positioning of the page cards so that the first one next to the intro peeks, and the rest are offscreen
+    func setupPagePositioning(index:Int, card:UIView) {
+        if index == 0 {
+            card.frame = CGRect(x: pagesView.bounds.width - Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin, width: pagesView.bounds.width - Constants.stepCard_topLeftMargin*2, height: pagesView.bounds.height - Constants.stepCard_topLeftMargin - Constants.stepCard_bottomMargin)
+        } else { // offscreen
+            card.frame = CGRect(x: pagesView.bounds.width + Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin, width: pagesView.bounds.width - Constants.stepCard_topLeftMargin*2, height: pagesView.bounds.height - Constants.stepCard_topLeftMargin - Constants.stepCard_bottomMargin)
         }
     }
     
@@ -172,19 +183,19 @@ class GuideVC: UIViewController {
     // Given pages, with the edges being possibly optional (if attempting to scroll from like an edge), positions them
     private func positionPages(viewToLeave:UIView?, viewToEnter:UIView, viewToQueue:UIView?) {
         if viewToLeave != nil {
-            if viewToLeave is StepCardView {
+            if viewToLeave is StepCardView || viewToLeave is StepCardAuthorView {
                 viewToLeave!.frame.origin = CGPoint(x: -viewToLeave!.bounds.width + Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin)
             } else { // Avoid having the intro slide down awkwardly
                 viewToLeave!.frame.origin = CGPoint(x: -viewToLeave!.bounds.width + Constants.stepCard_peekWidth, y: 0)
             }
         }
-        if viewToEnter is StepCardView {
+        if viewToEnter is StepCardView || viewToEnter is StepCardAuthorView {
             viewToEnter.frame.origin = CGPoint(x: Constants.stepCard_topLeftMargin, y: Constants.stepCard_topLeftMargin)
         } else { // The intro is about to enter - position  differently, match what we did in constraints
             viewToEnter.frame.origin = CGPoint(x: 12, y:0)
         }
         if viewToQueue != nil {
-            if viewToQueue is StepCardView {
+            if viewToQueue is StepCardView || viewToQueue is StepCardAuthorView {
                 viewToQueue!.frame.origin = CGPoint(x: self.pagesView.bounds.width - Constants.stepCard_peekWidth, y: Constants.stepCard_topLeftMargin)
             } else {
                 viewToQueue!.frame.origin = CGPoint(x: self.pagesView.bounds.width - Constants.stepCard_peekWidth, y:0)
