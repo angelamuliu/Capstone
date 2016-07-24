@@ -1,42 +1,42 @@
 {
     "Places" : [
         {
-            "Longitude" : -0.127758,
-            "Latitude" : 51.507351,
-            "Category" : "Coffee",
+            "Longitude" : -79.949240,
+            "Latitude" : 40.445591,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "DeGöre Haus",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
+            "Name" : "Razzy Fresh",
+            "Address" : "300 South Craig St, Pittsburgh PA 15213",
+            "Phone" : "412-681-0515",
             "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Close_hour" : "24:00",
+            "Image_url" : "Razzy",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : -0.127758,
-            "Latitude" : 51.507351,
-            "Category" : "Coffee",
+            "Longitude" : -79.948440,
+            "Latitude" : 40.444808,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Katherine Tea",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
-            "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Name" : "Union Grill",
+            "Address" : "413 South Craig St, Pittsburgh PA 15213",
+            "Phone" : "412-681-8620",
+            "Open_hour" : "11:30",
+            "Close_hour" : "22:00",
+            "Image_url" : "Union-grill",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 139.691706,
-            "Latitude" : 35.689487,
-            "Category" : "Coffee",
+            "Longitude" : -79.944673,
+            "Latitude" : 40.443990,
+            "Category" : "Travel",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Katie's Cafe",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
-            "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Name" : "Narita Airport",
+            "Address" : "1-1 Furugome, Narita, Chiba Prefecture 282-0004",
+            "Phone" : "476-34-800",
+            "Open_hour" : "1:00",
+            "Close_hour" : "24:00",
+            "Image_url" : "Narita",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
@@ -68,6 +68,57 @@
     ],
 
     "Guides" : [
+        {
+            "Title" : "Ordering Bubble Tea",
+            "Category" : "Food",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "Bubble-cover",
+            "Description" : "Bubble tea is a deeply customizable drink, where you can choose sweetness, richness, temperature, and more.",
+            "Tags" : ["tag1", "tag2", "tag3"],
+            "Pages" : [
+                {
+                    "Title" : "Select tea base and flavoring",
+                    "Description" : "True to its name, bubble tea has tea in it. Popular options are black or green tea. A flavoring is optional syrup added in.",
+                    "Image_url" : "Bubble-1"
+                },
+                {
+                    "Title" : "Select sweetness",
+                    "Description" : "Even at places without this step listed, you can ask for a less sweet drink. Usually you can give a percentage, such as 60% sweet.",
+                    "Image_url" : "Bubble-2"
+                },
+                {
+                    "Title" : "Select milk",
+                    "Description" : "Adding milk to your tea makes it a richer, creamier drink. Without milk, bubble tea is refreshing and light. Both are popular!",
+                    "Image_url" : "Bubble-3"
+                },
+                {
+                    "Title" : "Select temperature",
+                    "Description" : "Almost all teas can be made either cool or hot. However, tea without milk often tastes weird hot.",
+                    "Image_url" : "Bubble-4"
+                },
+                {
+                    "Title" : "If cool, select ice",
+                    "Description" : "Asking for no ice means you get more tea, as the ice does not fill the container.",
+                    "Image_url" : "Bubble-5"
+                },
+                {
+                    "Title" : "Select toppings",
+                    "Description" : "The most popular topping is bubbles, chewy tapioca balls. Other popular choices include egg pudding, popping bubbles, and jelly.",
+                    "Image_url" : "Bubble-6"
+                },
+                {
+                    "Title" : "Stab top with straw",
+                    "Description" : "On the go, bubble tea always comes in a sealed plastic cup. To drink, stab the top with a straw. Choose a straw that can fit your topping.",
+                    "Image_url" : "Bubble-7"
+                },
+                {
+                    "Title" : "Written by: Angela",
+                    "Description" : "Expertise: Snacks, Food, Ukulele",
+                    "Image_url" : "Author-Angela"
+                }
+            ]
+        },
         {
             "Title" : "Eating Sashimi",
             "Category" : "Food",

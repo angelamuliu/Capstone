@@ -27,7 +27,7 @@ class GuideCardView : CardView {
         // TODO: Replace with something that chooses image based on category
         self.categoryIcon = UIImage.init(named:"category-present-icon")
         self.categoryIconView.image = self.categoryIcon
-        self.categoryLabel.text = "Category"
+        self.categoryLabel.text = guide.category
         
         self.numLocationsLabel.text = "\(guide.places.count)"
         self.locationLabel.text = "Related spots"

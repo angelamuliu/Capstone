@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         setupNotifications(application)
         Clarifai.refreshAccessToken()
         
-//        SQLiteDatabase.createOnDesktop()
+        SQLiteDatabase.createOnDesktop()
         return true
     }
     
