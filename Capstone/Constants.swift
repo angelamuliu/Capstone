@@ -38,6 +38,7 @@ struct Constants {
     static let defaultUserLocation = CLLocation(latitude:40.4495946, longitude: -79.9509742)
     static let radiusForPlacesToDisplay: Float = 2000 // in meters
     static let notificationDelimiterRadius : CLLocationDistance = 5 // in meters
+    static let locationDistanceFilter:Double = 10
     
     // -----------------------------------
     // Global / Reused styling

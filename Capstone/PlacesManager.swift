@@ -27,6 +27,7 @@ class PlacesManager
         self.places.sortInPlace({ $0.getDistanceFromUser(userLocation) < $1.getDistanceFromUser(userLocation) })
     }
     
+    /* filters items for the search functionality */
     func filterByKeyword(keyword:String) -> [Place]
     {
         let searchTerm = keyword.lowercaseString
@@ -36,6 +37,25 @@ class PlacesManager
         {
             if place.containsKeyword(searchTerm)
             {
+                filteredPlaces.append(place)
+            }
+        }
+        
+        return filteredPlaces
+    }
+    
+    /* filters items for the image search tag functionality */
+    func filterByTags(imageTags:[String]) -> [Place]
+    {
+        var filteredPlaces : [Place]
+        filteredPlaces = []
+        let imageTagSet = NSSet(array: imageTags)
+        for place in places
+        {
+            let placeTagsSet = NSSet(array: place.tags!)
+            if(placeTagsSet.intersectsSet(imageTagSet as Set<NSObject>))
+            {
+                print("Match found:" + place.name)
                 filteredPlaces.append(place)
             }
         }

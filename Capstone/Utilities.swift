@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 /* methods that could be useful throughout the app and should not be repeated at each occurence */
 class Utilities
@@ -55,6 +56,7 @@ class Utilities
         places[0].location = CLLocation(latitude: Constants.wesBancoRegion.center.latitude, longitude: Constants.wesBancoRegion.center.longitude)
         places[0].location = CLLocation(latitude: Constants.ajayansHomeRegion.center.latitude, longitude: Constants.ajayansHomeRegion.center.longitude)
         places[0].location = CLLocation(latitude: Constants.mhciLabRegion.center.latitude, longitude: Constants.mhciLabRegion.center.longitude)
+        places[2].tags = ["temple","tag1", "tag2"]
         
         
         return places

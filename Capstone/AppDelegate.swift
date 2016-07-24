@@ -113,6 +113,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let alertMessage = place.guides!.first!.title + " at " + place.name;
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
                 locationManager.startMonitoringForRegion(region)
+                // User must move X meters before a new location event is fired
+                locationManager.distanceFilter = Constants.locationDistanceFilter
             }
         }
     }
