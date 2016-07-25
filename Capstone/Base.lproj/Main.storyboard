@@ -759,8 +759,8 @@
                                                         <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuH-12-lAF">
-                                                        <rect key="frame" x="14" y="287" width="74" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Address label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuH-12-lAF">
+                                                        <rect key="frame" x="14" y="287" width="212" height="15"/>
                                                         <fontDescription key="fontDescription" name="Lora-Regular" family="Lora" pointSize="12"/>
                                                         <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -771,7 +771,7 @@
                                                         <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-Qj-8fg">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-Qj-8fg">
                                                         <rect key="frame" x="234" y="296" width="78" height="27"/>
                                                         <fontDescription key="fontDescription" name="Lora-Regular" family="Lora" pointSize="12"/>
                                                         <state key="normal" title="View on Maps"/>
@@ -803,6 +803,7 @@
                                                     <constraint firstItem="Afd-bz-RqJ" firstAttribute="top" secondItem="TG1-gN-jwt" secondAttribute="bottom" constant="7" id="lFQ-S6-Mic"/>
                                                     <constraint firstItem="hux-a1-P7E" firstAttribute="top" secondItem="CuH-12-lAF" secondAttribute="bottom" id="mq9-bc-zG9"/>
                                                     <constraint firstItem="CuH-12-lAF" firstAttribute="leading" secondItem="SwJ-4R-rss" secondAttribute="leading" constant="14" id="uBk-dq-Hnz"/>
+                                                    <constraint firstItem="KgZ-Qj-8fg" firstAttribute="leading" secondItem="CuH-12-lAF" secondAttribute="trailing" constant="8" id="vLB-lp-OUg"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="NO"/>

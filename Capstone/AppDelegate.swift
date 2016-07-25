@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        center.postNotification(NSNotification(name: Constants.locationChange_EventName, object: nil))
+        center.postNotification(NSNotification(name: Constants.locationChange_EventName, object: nil)) // send event to home VC
         self.lastLocation = locations.last
         self.placesManager.sortPlaces(self.lastLocation!)
     }

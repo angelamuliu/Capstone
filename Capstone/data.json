@@ -1,8 +1,8 @@
 {
     "Places" : [
         {
-            "Longitude" : -79.949240,
-            "Latitude" : 40.445591,
+            "Longitude" : -79.948990,
+            "Latitude" : 40.445689,
             "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Razzy Fresh",
@@ -14,8 +14,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : -79.948440,
-            "Latitude" : 40.444808,
+            "Longitude" : -79.948593,
+            "Latitude" : 40.444798,
             "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
             "Name" : "Union Grill",
@@ -33,36 +33,36 @@
             "Subcategory" : "Coffee & Tea",
             "Name" : "Narita Airport",
             "Address" : "1-1 Furugome, Narita, Chiba Prefecture 282-0004",
-            "Phone" : "476-34-800",
-            "Open_hour" : "1:00",
+            "Phone" : "476-324-800",
+            "Open_hour" : "01:00",
             "Close_hour" : "24:00",
             "Image_url" : "Narita",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : -0.127758,
-            "Latitude" : 51.507351,
-            "Category" : "Coffee",
+            "Longitude" : -79.948876,
+            "Latitude" : 40.445348,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Angela's Bagel Shop",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Name" : "Quiznos",
+            "Address" : "300 S Craig St, Pittsburgh, PA 15213",
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Image_url" : "Quiznos",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : -0.127758,
-            "Latitude" : 51.507351,
+            "Longitude" : -79.948818,
+            "Latitude" : 40.444782,
             "Category" : "Food",
             "Subcategory" : "Fusion",
-            "Name" : "Ajayan's Indian Cuisine",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Name" : "Rose Tea Cafe",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
             "Phone" : "309-309-1020",
             "Open_hour" : "10:00",
-            "Close_hour" : "16:00",
-            "Image_url" : "ramen",
+            "Close_hour" : "22:00",
+            "Image_url" : "RoseTea",
             "Tags" : ["tag1", "tag2", "tag3"]
         }
     ],

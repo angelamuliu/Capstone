@@ -36,13 +36,13 @@ class PlaceVC: UIViewController {
             imageView.image = UIImage(named: loadedPlace.image_url!)
             
             // TODO: Make category icon load from place
-            // TODO: Make distance load
             
             nameLabel.text = loadedPlace.name
             statusLabel.text = loadedPlace.getIsPlaceOpen() ? "Open" : "Closed"
             categoryLabel.text = loadedPlace.category
             addressLabel.text = loadedPlace.address
             hourLabel.text = loadedPlace.hours
+            distanceLabel.text = "\(Int(loadedPlace.distance!)) meters"
         }
         
         // Present its guides if it has any
