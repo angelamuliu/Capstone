@@ -16,7 +16,7 @@ struct Constants {
     
     static let dbpath = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite")
     
-    static let locationChange_EventName = "Location Changed 5m"
+    static let locationChange_EventName = "Location Changed"
     
     // -----------------------------------
     // User keywords (for getting)
@@ -40,6 +40,7 @@ struct Constants {
     static let defaultUserLocation = CLLocation(latitude:40.4495946, longitude: -79.9509742)
     static let radiusForPlacesToDisplay: Float = 2000 // in meters
     static let notificationDelimiterRadius : CLLocationDistance = 5 // in meters
+    static let locationDistanceFilter:Double = 10
     
     // -----------------------------------
     // Global / Reused styling

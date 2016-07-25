@@ -97,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // This one runs forever, even when app in bg
-        locationManager.distanceFilter = CLLocationDistance(5) // Only send location event when distance has changed by 5m
         //locationManager.requestWhenInUseAuthorization()
         // this needs to be called after the authorization call
         locationManager.startUpdatingLocation()
@@ -120,6 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let alertMessage = place.guides!.first!.title + " at " + place.name;
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
                 locationManager.startMonitoringForRegion(region)
+                // User must move X meters before a new location event is fired
+                locationManager.distanceFilter = Constants.locationDistanceFilter // Only send location event when distance has changed by certain amount
             }
         }
     }

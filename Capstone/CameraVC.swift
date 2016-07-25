@@ -104,16 +104,13 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             
                             let classes = tag["classes"] as! NSArray
                             let probs = tag["probs"] as! NSArray
-                            print(classes)
-                            print(probs)
                             
                             // To update the UI we need to get the main thread
                             dispatch_async(dispatch_get_main_queue()) {
                                  self.tagContainer.text = classes.componentsJoinedByString(" ")
+                                let matchedPlaces = self.matchImages(classes as! [String], probs: probs as! [Double])
                                 
-                                // TODO: Once tag search feature is implemented, replace this with the actual results
-                                let tempPlaces = Utilities.getTempPlaces()
-                                for place in (tempPlaces) {
+                                for place in (matchedPlaces) {
                                     if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
                                         searchCard.useData(place)
                                         self.contentStackView.addArrangedSubview(searchCard)
@@ -148,6 +145,24 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func matchImages(tags:[String], probs:[Double])-> [Place]
+    {
+        var counter = 0
+        var tagsToSearch:[String] = []
+        for tag in tags
+        {
+            if(probs[counter] > 0.80 && tag != "no person")
+            {
+                tagsToSearch.append(tag)
+            }
+            counter = counter + 1
+        }
+        
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.placesManager.filterByTags(tagsToSearch)
     }
     
 }
