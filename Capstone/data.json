@@ -64,6 +64,32 @@
             "Close_hour" : "22:00",
             "Image_url" : "RoseTea",
             "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9462548,
+            "Latitude" : 40.4541175,
+            "Category" : "Travel",
+            "Subcategory" : "Fusion",
+            "Name" : "Wes Banco",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "Wesbanco",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9461685,
+            "Latitude" : 40.4535864,
+            "Category" : "Culture",
+            "Subcategory" : "Fusion",
+            "Name" : "Ajayan's House",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "AjayanHouse",
+            "Tags" : ["tag1", "tag2", "tag3"]
         }
     ],
 
@@ -120,28 +146,43 @@
             ]
         },
         {
-            "Title" : "Eating Sashimi",
+            "Title" : "How to Self-Serve Frozen Yogurt",
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "ramen",
-            "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-            "Tags" : ["tag1", "tag2", "tag3"],
+            "Image_url" : "Froyo-cover",
+            "Description" : "How to use the self serve frozen yogurt machines and create your own frozen yogurt masterpiece.",
+            "Tags" : ["business", "tag2", "tag3"],
             "Pages" : [
                 {
-                    "Title" : "Pick up fish",
-                    "Description" : "Using chopsticks, pick up the fish from the top left corner",
-                    "Image_url" : "ramen"
+                    "Title" : "Choose a size of cup.",
+                    "Description" : "Often there are approximately three size: Small, Medium, and Large. Choose one to fill as much as desired. The size doesn’t usually matter much, since price is determined by weight, not size.",
+                    "Image_url" : "Froyo-1"
                 },
                 {
-                    "Title" : "Put fish in mouth",
-                    "Description" : "Put that raw fish in the mouth by opening the mouth first",
-                    "Image_url" : "ramen"
+                    "Title" : "Choose one or more flavors.",
+                    "Description" : "You may choose as many flavors as you want to fill your cup.",
+                    "Image_url" : "Froyo-2"
                 },
                 {
-                    "Title" : "Chew it",
-                    "Description" : "Chew it with the force of one thousand gales",
-                    "Image_url" : "ramen"
+                    "Title" : "Pull down the lever of the machine for each flavor.",
+                    "Description" : "Place cup under the nozzle where the yogurt come out. Put hand on the lever and pull down.",
+                    "Image_url" : "Froyo-3"
+                },
+                {
+                    "Title" : "Add toppings from the toppings bar.",
+                    "Description" : "You can add as many topping as you want as price is determined by the weight of your cup.",
+                    "Image_url" : "Froyo-4"
+                },
+                {
+                    "Title" : "Weight and pay.",
+                    "Description" : "Place your cup on the scale. Pay the amount indicated on the machine or dictated by the cashier.",
+                    "Image_url" : "Froyo-5"
+                },
+                {
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
                 }
             ]
         },

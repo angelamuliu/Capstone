@@ -461,6 +461,47 @@ class SQLiteDatabase {
     }
     
     /**
+     Given a set of search terms (an array of strings), returns guides who have
+     tags that contain said words
+    */
+    func getGuideForTags(tags:[String]) -> [Guide] {
+        var guidesArr = [Guide]()
+        var querySql = "SELECT id, title, category, subcategory, hidden, image_url, description, tags FROM Guide" +
+        " WHERE tags LIKE ?"
+        
+        for tag in tags { // First we made the querySQL as long as it needs to be, one LIKE OR set for each
+            // Honestly kind of bad because we wildcard it - would be better to have tag be its own table
+            if tag == tags.last {
+                querySql.appendContentsOf(";")
+            } else {
+                querySql.appendContentsOf(" OR tags LIKE ?")
+            }
+        }
+        
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        
+        // Now we attach the tag to each of the "slots"
+        for var i = 1; i <= tags.count; i += 1 {
+            let searchTagString = "%\(tags[i-1])%" as AnyObject // Because we need it as a UTF8String
+            sqlite3_bind_text(queryStatement, Int32(i), searchTagString.UTF8String, -1, nil)
+        }
+        
+        var newGuide:Guide
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            newGuide = SQLiteDatabase.guideFromQuery(queryStatement)
+            newGuide.pages = self.getPagesForGuide(newGuide)
+            guidesArr.append(newGuide)
+        }
+        return guidesArr
+    }
+    
+    /**
      Given the pointer, returns a place. Assumes that the columns follow this order:
      Id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags
     */

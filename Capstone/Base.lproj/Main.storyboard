@@ -23,6 +23,7 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
         <mutableArray key="Lora-Regular.ttf">
             <string>Lora-Regular</string>
@@ -200,7 +201,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQD-QQ-KwV" userLabel="tag result container">
                                 <rect key="frame" x="0.0" y="54" width="320" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag results label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goG-H3-ljh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goG-H3-ljh">
                                         <rect key="frame" x="8" y="8" width="304" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="D0z-BC-1f8"/>
@@ -303,7 +304,7 @@
                                 <rect key="frame" x="0.0" y="90" width="320" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-GM-Rdb" userLabel="Content view">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uid-IJ-gHf" userLabel="Photo result">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
@@ -321,6 +322,12 @@
                                                     <constraint firstItem="hit-NB-PPt" firstAttribute="centerX" secondItem="uid-IJ-gHf" secondAttribute="centerX" id="pnG-Ln-aeF"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zB2-R2-dfv">
+                                                <rect key="frame" x="0.0" y="228" width="320" height="17"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="hit-NB-PPt" firstAttribute="width" secondItem="ucJ-GM-Rdb" secondAttribute="width" id="L4d-Pz-lyh"/>
@@ -354,6 +361,7 @@
                     <connections>
                         <outlet property="contentStackView" destination="ucJ-GM-Rdb" id="PvN-Kd-fWW"/>
                         <outlet property="imageView" destination="hit-NB-PPt" id="dxq-XE-TfA"/>
+                        <outlet property="statusLabel" destination="zB2-R2-dfv" id="kEz-1T-FUe"/>
                         <outlet property="tagContainer" destination="goG-H3-ljh" id="PEU-AX-xL1"/>
                     </connections>
                 </viewController>

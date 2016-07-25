@@ -117,6 +117,8 @@ class HomeVC: UIViewController {
     /**
      Called when location has changed to trigger a possible reordering
      Slides cards out and fades in new ones in right order
+     Right now since we have so few places/guides/etc, we load them all and just resort. In the future you'd probably get a new call from the
+     DB when it has changed enough
     */
     private func reorderCards() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
