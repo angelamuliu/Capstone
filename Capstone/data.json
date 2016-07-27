@@ -1,122 +1,243 @@
 {
     "Places" : [
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
-            "Category" : "Coffee",
+            "Longitude" : -79.948990,
+            "Latitude" : 40.445689,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "DeGöre Haus",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
+            "Name" : "Razzy Fresh",
+            "Address" : "300 South Craig St, Pittsburgh PA 15213",
+            "Phone" : "412-681-0515",
             "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Close_hour" : "24:00",
+            "Image_url" : "Razzy",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
-            "Category" : "Coffee",
+            "Longitude" : -79.948593,
+            "Latitude" : 40.444798,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Katherine Tea",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
-            "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Name" : "Union Grill",
+            "Address" : "413 South Craig St, Pittsburgh PA 15213",
+            "Phone" : "412-681-8620",
+            "Open_hour" : "11:30",
+            "Close_hour" : "22:00",
+            "Image_url" : "Union-grill",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
-            "Category" : "Coffee",
+            "Longitude" : -79.944673,
+            "Latitude" : 40.443990,
+            "Category" : "Travel",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Katie's Cafe",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
-            "Phone" : "309-309-1020",
-            "Open_hour" : "12:00",
-            "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Name" : "Narita Airport",
+            "Address" : "1-1 Furugome, Narita, Chiba Prefecture 282-0004",
+            "Phone" : "476-324-800",
+            "Open_hour" : "01:00",
+            "Close_hour" : "24:00",
+            "Image_url" : "Narita",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 100.23298049382,
-            "Latitude" : 928.9893908902,
-            "Category" : "Coffee",
+            "Longitude" : -79.948876,
+            "Latitude" : 40.445348,
+            "Category" : "Food",
             "Subcategory" : "Coffee & Tea",
-            "Name" : "Angela's Bagel Shop",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Name" : "Quiznos",
+            "Address" : "300 S Craig St, Pittsburgh, PA 15213",
             "Phone" : "309-309-1020",
             "Open_hour" : "12:00",
             "Close_hour" : "19:00",
-            "Image_url" : "ramen",
+            "Image_url" : "Quiznos",
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : 399.02930293,
-            "Latitude" : 10.02938712313,
+            "Longitude" : -79.948818,
+            "Latitude" : 40.444782,
             "Category" : "Food",
             "Subcategory" : "Fusion",
-            "Name" : "Ajayan's Indian Cuisine",
-            "Address" : "5535 Beeler St, Pittsburgh PA 15217",
+            "Name" : "Rose Tea Cafe",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
             "Phone" : "309-309-1020",
             "Open_hour" : "10:00",
-            "Close_hour" : "16:00",
-            "Image_url" : "ramen",
+            "Close_hour" : "22:00",
+            "Image_url" : "RoseTea",
             "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9462548,
+            "Latitude" : 40.4541175,
+            "Category" : "Travel",
+            "Subcategory" : "Fusion",
+            "Name" : "Wes Banco",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "Wesbanco",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9461685,
+            "Latitude" : 40.4535864,
+            "Category" : "Culture",
+            "Subcategory" : "Fusion",
+            "Name" : "Ajayan's House",
+            "Address" : "416 S Craig St, Pittsburgh, PA 15213",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "AjayanHouse",
+            "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9461685,
+            "Latitude" : 49.4435864,
+            "Category" : "Culture",
+            "Subcategory" : "Fusion",
+            "Name" : "Meiji Jingu",
+            "Address" : "1-1 Yoyogikamizonocho, Shibuya, Tokyo 151-8557",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "Meiji",
+            "Tags" : ["Shrine", "Nature", "tag3"]
         }
     ],
 
     "Guides" : [
         {
-            "Title" : "Eating Sashimi",
+            "Title" : "Ordering Bubble Tea",
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "ramen",
+            "Image_url" : "Bubble-cover",
+            "Description" : "Bubble tea is a deeply customizable drink, where you can choose sweetness, richness, temperature, and more.",
+            "Tags" : ["tag1", "tag2", "tag3"],
             "Pages" : [
                 {
-                    "Title" : "Pick up fish",
-                    "Description" : "Using chopsticks, pick up the fish from the top left corner",
-                    "Image_url" : "ramen"
+                    "Title" : "Select tea base and flavoring",
+                    "Description" : "True to its name, bubble tea has tea in it. Popular options are black or green tea. A flavoring is optional syrup added in.",
+                    "Image_url" : "Bubble-1"
                 },
                 {
-                    "Title" : "Put fish in mouth",
-                    "Description" : "Put that raw fish in the mouth by opening the mouth first",
-                    "Image_url" : "ramen"
+                    "Title" : "Select sweetness",
+                    "Description" : "Even at places without this step listed, you can ask for a less sweet drink. Usually you can give a percentage, such as 60% sweet.",
+                    "Image_url" : "Bubble-2"
                 },
                 {
-                    "Title" : "Chew it",
-                    "Description" : "Chew it with the force of one thousand gales",
-                    "Image_url" : "ramen"
+                    "Title" : "Select milk",
+                    "Description" : "Adding milk to your tea makes it a richer, creamier drink. Without milk, bubble tea is refreshing and light. Both are popular!",
+                    "Image_url" : "Bubble-3"
+                },
+                {
+                    "Title" : "Select temperature",
+                    "Description" : "Almost all teas can be made either cool or hot. However, tea without milk often tastes weird hot.",
+                    "Image_url" : "Bubble-4"
+                },
+                {
+                    "Title" : "If cool, select ice",
+                    "Description" : "Asking for no ice means you get more tea, as the ice does not fill the container.",
+                    "Image_url" : "Bubble-5"
+                },
+                {
+                    "Title" : "Select toppings",
+                    "Description" : "The most popular topping is bubbles, chewy tapioca balls. Other popular choices include egg pudding, popping bubbles, and jelly.",
+                    "Image_url" : "Bubble-6"
+                },
+                {
+                    "Title" : "Stab top with straw",
+                    "Description" : "On the go, bubble tea always comes in a sealed plastic cup. To drink, stab the top with a straw. Choose a straw that can fit your topping.",
+                    "Image_url" : "Bubble-7"
+                },
+                {
+                    "Title" : "Written by: Angela",
+                    "Description" : "Expertise: Snacks, Food, Ukulele",
+                    "Image_url" : "Author-Angela"
                 }
             ]
         },
         {
-            "Title" : "Drinking Tea",
+            "Title" : "How to Self-Serve Frozen Yogurt",
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "ramen",
+            "Image_url" : "Froyo-cover",
+            "Description" : "How to use the self serve frozen yogurt machines and create your own frozen yogurt masterpiece.",
+            "Tags" : ["tag1", "tag2", "tag3"],
             "Pages" : [
                 {
-                    "Title" : "Add condiments while hot",
-                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "ramen"
+                    "Title" : "Choose a size of cup.",
+                    "Description" : "Often there are approximately three size: Small, Medium, and Large. Choose one to fill as much as desired. The size doesn’t usually matter much, since price is determined by weight, not size.",
+                    "Image_url" : "Froyo-1"
                 },
                 {
-                    "Title" : "Wait until cool",
-                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "ramen"
+                    "Title" : "Choose one or more flavors.",
+                    "Description" : "You may choose as many flavors as you want to fill your cup.",
+                    "Image_url" : "Froyo-2"
+                },
+                {
+                    "Title" : "Pull down the lever of the machine for each flavor.",
+                    "Description" : "Place cup under the nozzle where the yogurt come out. Put hand on the lever and pull down.",
+                    "Image_url" : "Froyo-3"
+                },
+                {
+                    "Title" : "Add toppings from the toppings bar.",
+                    "Description" : "You can add as many topping as you want as price is determined by the weight of your cup.",
+                    "Image_url" : "Froyo-4"
+                },
+                {
+                    "Title" : "Weight and pay.",
+                    "Description" : "Place your cup on the scale. Pay the amount indicated on the machine or dictated by the cashier.",
+                    "Image_url" : "Froyo-5"
+                },
+                {
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
                 }
             ]
         },
         {
-            "Title" : "Buying train ticket",
+            "Title" : "Write a Prayer on Ema",
+            "Category" : "Culture",
+            "Subcategory" : "Traditional",
+            "Hidden" : false,
+            "Image_url" : "Ema-cover",
+            "Description" : "Learn how to write your prayers on a Japanese wishing wood.",
+            "Tags" : ["old", "paper", "money", "book", "text", "handwriting", "calligraphy", "wood", "temple"],
+            "Pages" : [
+                {
+                    "Title" : "What is Ema?",
+                    "Description" : "Ema are the wooden wishing plaques found at Japanese shrines and temples.",
+                    "Image_url" : "Ema-1"
+                },
+                {
+                    "Title" : "Purchase ema",
+                    "Description" : "Locate the visitor’s desk to purchase. They usually cost 500-1000 yen. If no one is at the desk, simply put money in the box. Yes, Japan is really that trusting.",
+                    "Image_url" : "Ema-2"
+                },
+                {
+                    "Title" : "Write prayer and hang",
+                    "Description" : "There are no strict rules here. Simply write a prayer on the front or back of the board and hang it up!",
+                    "Image_url" : "Ema-3"
+                },
+                {
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
+                }
+            ]
+        },
+        {
+            "Title" : "Trains allow 2 bags max. Use luggage delivery",
             "Category" : "Travel",
             "Subcategory" : "Traditional",
             "Hidden" : false,
             "Image_url" : "ramen",
+            "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+            "Tags" : ["tag1", "tag2", "tag3"],
             "Pages" : [
                 {
                     "Title" : "Press button",
@@ -127,6 +248,11 @@
                     "Title" : "Press button again",
                     "Description" : "Beeeeeeeeeeep",
                     "Image_url" : "ramen"
+                },
+                {
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
                 }
             ]
         }
@@ -148,6 +274,26 @@
         {
             "Place" : 2,
             "Guide" : 2
+        },
+        {
+            "Place" : 3,
+            "Guide" : 4
+        },
+        {
+            "Place" : 5,
+            "Guide" : 1
+        },
+        {
+            "Place" : 6,
+            "Guide" : 1
+        },
+        {
+            "Place" : 7,
+            "Guide" : 1
+        },
+        {
+            "Place" : 8,
+            "Guide" : 3
         }
     ]
 }

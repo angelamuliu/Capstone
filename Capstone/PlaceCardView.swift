@@ -19,23 +19,20 @@ class PlaceCardView : CardView {
         super.init()
         
         // Setting text in the top gold part
-        self.topLabel.text = "??? meters away <wip>"
+        self.topLabel.text = place.distance != nil ? "\(Int(place.distance!)) meters away" : "Location disabled"
         
-        // TODO - replace with image_url of place
-        self.image = UIImage(named: "ramen")
+        self.image = UIImage(named: place.image_url!)
         self.imageView.image = self.image
         
         // TODO: Replace with something that chooses image based on category
         self.categoryIcon = UIImage.init(named:"category-present-icon")
         self.categoryIconView.image = self.categoryIcon
-        self.categoryLabel.text = "Category"
+        self.categoryLabel.text = place.category
         
-        // TODO: Replace with actual values
-        self.numLocationsLabel.text = "000"
+        self.numLocationsLabel.text = "\(place.guides!.count)"
         self.locationLabel.text = "Guides"
         
-        self.nameLabel.text = "Really really really really really really really really really really long"
-//        self.nameLabel.text = place.name
+        self.nameLabel.text = place.name
         
         // We need the navigation controller in order to do push
         self.navigationController = navigationController
@@ -51,6 +48,13 @@ class PlaceCardView : CardView {
             self.window?.rootViewController?.presentViewController(placeVC, animated: true, completion: nil)
         }
         
+    }
+    
+    // Called to update the UI card's distance labels
+    func refreshLocation() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.topLabel.text = self.place.distance != nil ? "\(Int(self.place.distance!)) meters away" : "Location disabled"
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {

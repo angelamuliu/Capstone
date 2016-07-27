@@ -19,6 +19,9 @@
 // https://www.raywenderlich.com/123579/sqlite-tutorial-swift
 
 
+// FYI: Inserts, drops, and destructive DB actions will not work on the device
+// For now, simply create, then update the DB found in the assets
+
 
 import Foundation
 
@@ -56,10 +59,7 @@ class SQLiteDatabase {
      object to use to mess with the database
      */
     static func open() throws -> SQLiteDatabase {
-        let fileManager = NSFileManager.defaultManager()
-        let path = fileManager.currentDirectoryPath // Make db in project root
         var db: COpaquePointer = nil
-        
         if Constants.dbpath != nil { // On devices you cannot write in the bundle so it must already exist
             if sqlite3_open(Constants.dbpath!, &db) == SQLITE_OK {
                 return SQLiteDatabase(dbPointer: db)
@@ -90,7 +90,7 @@ class SQLiteDatabase {
     
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     // STATIC FUNCTIONS - DB MAINTENANCE
-    // Used to manage the database itself (e.g. dropping, recreating, connecting
+    // Used to manage the database itself (e.g. dropping, recreating, connecting)
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     
     /**
@@ -186,7 +186,7 @@ class SQLiteDatabase {
         
         let createGuide: String = "CREATE TABLE Guide(Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "Title CHARACTER(255), Category CHARACTER(255), Subcategory CHARACTER(255)," +
-            "Hidden BOOLEAN, Image_url VARCHAR(255)" +
+            "Hidden BOOLEAN, Image_url VARCHAR(255), Description TEXT, Tags VARCHAR(255)" +
         ");"
         quickRunStatement(db, stringStatement: createGuide)
         
@@ -263,7 +263,7 @@ class SQLiteDatabase {
      Given starter content from the JSON, populates the DB with the guides and pages (parts of the guide)
     */
     static private func insertGuidesAndPages(db:COpaquePointer, guidesArr: NSArray) {
-        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url) VALUES (?, ?, ?, ?, ?);"
+        let insertGuideStatementString = "INSERT INTO Guide (Title,Category,Subcategory,Hidden,Image_url,Description,Tags) VALUES (?, ?, ?, ?, ?, ?, ?);"
         let insertPageStatementString = "INSERT INTO Page (Title,Description,Image_url,Guide_id) VALUES (?, ?, ?, ?);"
         
         var insertGuideStatement: COpaquePointer = nil
@@ -277,6 +277,9 @@ class SQLiteDatabase {
                 sqlite3_bind_text(insertGuideStatement, 3, (guideDict.valueForKey("Subcategory")?.UTF8String)!, -1, nil)
                 sqlite3_bind_int(insertGuideStatement, 4, guideDict.valueForKey("Hidden") as! Bool == true ? 1 : 0)
                 sqlite3_bind_text(insertGuideStatement, 5, (guideDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 6, (guideDict.valueForKey("Description")?.UTF8String)!, -1, nil)
+                sqlite3_bind_text(insertGuideStatement, 7, (guideDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" "), -1 ,nil)
+
                 if sqlite3_step(insertGuideStatement) == SQLITE_DONE {
                     print("Successfully inserted guide row")
                     
@@ -395,7 +398,7 @@ class SQLiteDatabase {
     */
     func getGuidesForPlace(place:Place) -> [Guide] {
         var guidesArr = [Guide]()
-        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url FROM Guide as g" +
+        let querySql = "SELECT g.id, g.title, g.category, g.subcategory, g.hidden, g.image_url, g.description, g.tags FROM Guide as g" +
             " INNER JOIN PlaceGuide AS pg ON pg.guide_id = g.id INNER JOIN Place AS p ON pg.place_id = p.id" +
             " WHERE p.id = ?;"
         guard let queryStatement = try? prepareStatement(querySql) else {
@@ -458,6 +461,47 @@ class SQLiteDatabase {
     }
     
     /**
+     Given a set of search terms (an array of strings), returns guides who have
+     tags that contain said words
+    */
+    func getGuideForTags(tags:[String]) -> [Guide] {
+        var guidesArr = [Guide]()
+        var querySql = "SELECT id, title, category, subcategory, hidden, image_url, description, tags FROM Guide" +
+        " WHERE tags LIKE ?"
+        
+        for tag in tags { // First we made the querySQL as long as it needs to be, one LIKE OR set for each
+            // Honestly kind of bad because we wildcard it - would be better to have tag be its own table
+            if tag == tags.last {
+                querySql.appendContentsOf(";")
+            } else {
+                querySql.appendContentsOf(" OR tags LIKE ?")
+            }
+        }
+        
+        guard let queryStatement = try? prepareStatement(querySql) else {
+            return []
+        }
+        defer { sqlite3_finalize(queryStatement) }
+        
+        // Now we attach the tag to each of the "slots"
+        for var i = 1; i <= tags.count; i += 1 {
+            let searchTagString = "%\(tags[i-1])%" as AnyObject // Because we need it as a UTF8String
+            sqlite3_bind_text(queryStatement, Int32(i), searchTagString.UTF8String, -1, nil)
+        }
+        
+        var newGuide:Guide
+        while(true) {
+            guard sqlite3_step(queryStatement) == SQLITE_ROW else {
+                break
+            }
+            newGuide = SQLiteDatabase.guideFromQuery(queryStatement)
+            newGuide.pages = self.getPagesForGuide(newGuide)
+            guidesArr.append(newGuide)
+        }
+        return guidesArr
+    }
+    
+    /**
      Given the pointer, returns a place. Assumes that the columns follow this order:
      Id, longitude, latitude, category, subcategory, name, address, phone, open_hour, close_hour, image_url, tags
     */
@@ -489,11 +533,13 @@ class SQLiteDatabase {
         let row_subcategory = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 3)))
         let row_hidden = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 4)))
         let row_image_url = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 5)))
+        let row_description = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 6)))
+        let row_tags = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(queryStatement, 7)))
         
         if row_hidden != nil && row_hidden! == "0" {
-            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: false, image_url: row_image_url, description: row_description, tags:row_tags)
         } else {
-            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url)
+            return Guide(id: row_id, title: row_title!, category: row_category!, subcategory: row_subcategory, hidden: true, image_url: row_image_url, description: row_description, tags:row_tags)
         }
     }
     
@@ -510,6 +556,14 @@ class SQLiteDatabase {
         return Page(id: row_id, title: row_title!, description: row_description, image_url: row_image_url)
     }
     
+    /**
+     Does exactly as title says it'll do.
+    */
+    func dropMigratePopulate() {
+        SQLiteDatabase.drop(dbPointer)
+        SQLiteDatabase.migrateTables(dbPointer)
+        SQLiteDatabase.populate(dbPointer)
+    }
     
     
 

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Lato-Bold.ttf">
@@ -31,11 +32,16 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8s-lW-YEG" userLabel="Cardview">
                             <rect key="frame" x="0.0" y="0.0" width="324" height="630"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-WI-Ge1">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-WI-Ge1">
                                     <rect key="frame" x="0.0" y="0.0" width="324" height="360"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="360" id="7PJ-Uq-kDm"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="7PJ-Uq-kDm"/>
+                                        </mask>
+                                    </variation>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name of step" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-zu-Y7C">
                                     <rect key="frame" x="18" y="374" width="290" height="24"/>
@@ -64,6 +70,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="YEG-WI-Ge1" firstAttribute="height" secondItem="I8s-lW-YEG" secondAttribute="height" multiplier="0.5" id="2Kt-cM-vu6"/>
                                 <constraint firstItem="YEG-WI-Ge1" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" id="9uY-dq-E0L"/>
                                 <constraint firstAttribute="trailing" secondItem="YEG-WI-Ge1" secondAttribute="trailing" id="EIR-Ht-S1I"/>
                                 <constraint firstItem="gli-Sb-o5U" firstAttribute="leading" secondItem="I8s-lW-YEG" secondAttribute="leading" constant="18" id="JOP-GU-MCE"/>
@@ -114,6 +121,7 @@
                 <outlet property="imageView" destination="YEG-WI-Ge1" id="8nu-BQ-bv1"/>
                 <outlet property="nameLabel" destination="KG6-zu-Y7C" id="Wbs-WU-FNz"/>
                 <outlet property="stepLabel" destination="f6z-Gv-ICZ" id="5VG-id-pTQ"/>
+                <outlet property="stepNumLabel" destination="f6z-Gv-ICZ" id="TcF-Se-Wmb"/>
             </connections>
         </view>
     </objects>

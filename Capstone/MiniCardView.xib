@@ -127,6 +127,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="button" destination="n6X-nz-dal" id="JDF-3M-PsY"/>
                 <outlet property="categoryImageView" destination="hpz-0E-6ge" id="pdj-HN-mAT"/>
                 <outlet property="categoryLabel" destination="Qo7-mQ-zM4" id="UhJ-cg-2fd"/>
                 <outlet property="extraTextLabel" destination="kHK-H5-vTp" id="rM2-EI-kQJ"/>

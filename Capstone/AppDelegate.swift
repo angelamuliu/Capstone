@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var placesManager:PlacesManager = PlacesManager.init(places: [])
     var triggeredLocalNotifications: [NotificationStack]?
     
+    let center = NSNotificationCenter.defaultCenter() // Handles broadcasting custom notifications to other views
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -32,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         setupDatabase()
         setupNotifications(application)
         Clarifai.refreshAccessToken()
+        
+        SQLiteDatabase.createOnDesktop()
         return true
     }
     
@@ -110,18 +114,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             // TODO : Figure out how to know which guide at a place corresponds to a location
             if place.guides != nil && place.guides!.count > 0
             {
-                let alertMessage = place.guides!.first!.title + " at " + place.name;
+                let alertMessage = place.guides!.first!.title + " at " + place.name
+                
+                
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
                 locationManager.startMonitoringForRegion(region)
+                
+                // Changed below - we track any change, but only resort if order changed
                 // User must move X meters before a new location event is fired
-                locationManager.distanceFilter = Constants.locationDistanceFilter
+//                 locationManager.distanceFilter = Constants.locationDistanceFilter // Only send location event when distance has changed by certain amount
+                locationManager.distanceFilter = 1 // Only send location event when distance has changed by certain amount
+
             }
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.lastLocation = locations.last
+        let wasFirst = self.placesManager.places.first
         self.placesManager.sortPlaces(self.lastLocation!)
+        
+        if wasFirst?.id != self.placesManager.places.first?.id { // Only send sort event if order has changed where closest thing is different
+            center.postNotification(NSNotification(name: Constants.locationEvent_reorder, object: nil)) // send event to all VCs, home VC listens
+        } else { // Location changed but order didn't - just update the distances
+            center.postNotification(NSNotification(name: Constants.locationEvent_redraw, object: nil))
+        }
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {

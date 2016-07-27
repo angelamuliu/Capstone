@@ -28,9 +28,9 @@ class MiniCardView : UIView {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var extraTextLabel: UILabel!
     
-    // TODO : Button to bring up whatever... probably pass in a function as a handler elsewhere
+    @IBOutlet weak var button: UIButton!
     
-    var data: MiniCardable?
+    var data: MiniCardable? // The data presented - required
     
     // Since I couldn't find a good way to have the xib load with params passed in for initialization, use this to hook up
     // the data source
@@ -41,6 +41,12 @@ class MiniCardView : UIView {
         categoryImageView.image = data.categoryImage
         categoryLabel.text = data.category
         extraTextLabel.text = data.additionalText
+        
+        if data is Place {
+            button.addTarget(self, action: "goToPlace:", forControlEvents: UIControlEvents.TouchUpInside)
+        } else if data is Guide {
+            button.addTarget(self, action: "goToGuide:", forControlEvents: UIControlEvents.TouchUpInside)
+        }
     }
     
     // This is called when initializing from the xib and required
@@ -48,5 +54,31 @@ class MiniCardView : UIView {
         super.init(coder: aDecoder)
     }
     
+    func goToPlace(sender:UIButton!) {
+        let place = data as? Place
+        let placeVC = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("PlaceVC") as! PlaceVC
+        placeVC.place = place
+        
+        // To avoid weird like... recursive nav controllers and spagetti, we have to
+        // 1. Get the home screen's view controller, which is the ROOT of all views
+        // 2. Pop off the guide modal that is currently shown
+        // 3. Now push on the place
+        let viewControllers = self.window?.rootViewController?.childViewControllers.first
+        self.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.window?.rootViewController?.childViewControllers.first?.navigationController?.pushViewController(placeVC, animated: true)
+    }
+    
+    func goToGuide(sender:UIButton!) {
+        let guide = data as? Guide
+        let guideVC = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("GuideVC") as! GuideVC
+        guideVC.guide = guide
+        self.window?.rootViewController?.presentViewController(guideVC, animated: true, completion: nil)
+    }
+    
     
 }
+
+
+
+
+

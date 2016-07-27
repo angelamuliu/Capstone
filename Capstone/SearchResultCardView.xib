@@ -20,8 +20,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuf-Ft-s7y">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Search Result Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-Sp-EN0">
-                            <rect key="frame" x="12" y="14" width="411" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Result Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-Sp-EN0">
+                            <rect key="frame" x="12" y="14" width="550" height="24"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -49,17 +49,25 @@
                                 <constraint firstAttribute="height" constant="24" id="FlM-Aw-iBW"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="819-oh-bJI">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="819-oh-bJI" secondAttribute="trailing" id="0Ac-Di-dWR"/>
                         <constraint firstItem="laK-hh-xDc" firstAttribute="leading" secondItem="zuf-Ft-s7y" secondAttribute="leading" constant="12" id="6Kh-1h-g2y"/>
                         <constraint firstItem="4By-0p-nRf" firstAttribute="top" secondItem="NLb-Sp-EN0" secondAttribute="bottom" constant="2" id="DCE-Ry-H6s"/>
                         <constraint firstItem="NLb-Sp-EN0" firstAttribute="leading" secondItem="zuf-Ft-s7y" secondAttribute="leading" constant="12" id="Eo1-c6-h47"/>
                         <constraint firstAttribute="trailing" secondItem="Soz-VQ-KGi" secondAttribute="trailing" constant="16" id="Lrc-bY-b1n"/>
                         <constraint firstItem="4By-0p-nRf" firstAttribute="leading" secondItem="laK-hh-xDc" secondAttribute="trailing" constant="5" id="N5R-uB-sr5"/>
                         <constraint firstAttribute="height" constant="72" id="PEU-2l-hcz"/>
+                        <constraint firstItem="819-oh-bJI" firstAttribute="top" secondItem="zuf-Ft-s7y" secondAttribute="top" id="UYa-hq-Kq7"/>
+                        <constraint firstAttribute="bottom" secondItem="819-oh-bJI" secondAttribute="bottom" id="c2p-sg-QQX"/>
                         <constraint firstItem="laK-hh-xDc" firstAttribute="top" secondItem="NLb-Sp-EN0" secondAttribute="bottom" constant="6" id="cfh-EM-MJj"/>
+                        <constraint firstItem="819-oh-bJI" firstAttribute="leading" secondItem="zuf-Ft-s7y" secondAttribute="leading" id="gUM-YK-nhw"/>
                         <constraint firstItem="NLb-Sp-EN0" firstAttribute="top" secondItem="zuf-Ft-s7y" secondAttribute="top" constant="14" id="kNc-nI-pC7"/>
+                        <constraint firstItem="Soz-VQ-KGi" firstAttribute="leading" secondItem="NLb-Sp-EN0" secondAttribute="trailing" constant="8" id="vgf-FW-utx"/>
                         <constraint firstAttribute="bottom" secondItem="Soz-VQ-KGi" secondAttribute="bottom" constant="24" id="wLv-fa-igN"/>
                         <constraint firstItem="Soz-VQ-KGi" firstAttribute="top" secondItem="zuf-Ft-s7y" secondAttribute="top" constant="24" id="xas-zI-yzp"/>
                     </constraints>
@@ -86,6 +94,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="button" destination="819-oh-bJI" id="w6G-Xy-CpJ"/>
                 <outlet property="categoryImageView" destination="laK-hh-xDc" id="lwF-HO-qMr"/>
                 <outlet property="categoryLabel" destination="4By-0p-nRf" id="L6p-Lb-xB3"/>
                 <outlet property="titleLabel" destination="NLb-Sp-EN0" id="Bgc-HR-qXH"/>

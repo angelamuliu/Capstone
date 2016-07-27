@@ -23,16 +23,20 @@ class HomeVC: UIViewController {
     var placeCardList:CardViewList?
     var guideCardList:CardViewList?
     
-    var guideCardIds = [Int]() // Array of guide IDs displayed, without duplication
-    var guides = [Int: Guide]() // Hash that we use with guideCardIds to get guides
-    var guideCards = [GuideCardView]()
-    
     // Since CardViewLists are dependant on bounds, which are determined in viewDidLayoutSubview, initialization of it is placed there. But to prevent random visual shit or unnecessary loading, we check if they've already been added first
     var cardsLoaded:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        
+        // Here we can listen in on location change events which are emitted by AppDelegate, and act accordingly
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserverForName(Constants.locationEvent_reorder, object: nil, queue: nil) { notification in
+            self.reorderCards()
+        }
+        center.addObserverForName(Constants.locationEvent_redraw, object: nil, queue: nil) { notification in
+            self.updatePlaceDistances()
+        }
     }
     
     // See this to understand how to properly deal with viewDidLayoutSubviews and when it's called
@@ -43,34 +47,19 @@ class HomeVC: UIViewController {
             loadCardList()
             cardsLoaded = true
         }
-
     }
     
     // TODO: Customize "radius" for searching for locations lmao, remove placeholder time
     func loadCardList() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // Could use some refactoring
-        for place in appDelegate.placesManager.places {
-            for guide in place.guides! { // Already inserted, but update the guide to have the place
-                if guideCardIds.contains(guide.id) {
-                    guides[guide.id]?.placesManager.places.append(place)
-                } else { // New guide
-                    guideCardIds.append(guide.id)
-                    guide.placesManager.places.append(place)
-                    guides[guide.id] = guide
-                    guideCards.append(GuideCardView.init(guide: guide))
-                }
-            }
-        }
-        
+    
         cardScrollContainer = super.view.subviews.filter({$0 is UIScrollView})[0] as? UIScrollView
         
         placeCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, placesManager: appDelegate.placesManager, navigationController: self.navigationController)
         placeCardList?.redraw()
         placeCardList?.hidden = true
-        
-        guideCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, cards: guideCards)
+
+        guideCardList = CardViewList(topleftPoint: CGPoint(x:Constants.cardlist_padding,y: Constants.cardlist_padding), parentview: cardScrollContainer!, placesManager: appDelegate.placesManager)
         guideCardList?.redraw()
         
         // Let the scrollview know which its presenting and set its scroll height to it
@@ -127,6 +116,60 @@ class HomeVC: UIViewController {
             self.subnav_selectDongle.frame = dongleFrame
             }, completion: { finished in })
     }
+    
+    /**
+     Called when location has changed to trigger a possible reordering
+     Slides cards out and fades in new ones in right order
+     Right now since we have so few places/guides/etc, we load them all and just resort. In the future you'd probably get a new call from the
+     DB when it has changed enough
+    */
+    private func reorderCards() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        print(appDelegate.lastLocation)
+        
+        // Making the place cards slide out and reorder
+        UIView.animateWithDuration(0.35, delay: 0, options: .CurveEaseInOut , animations: {
+            self.placeCardList?.subviews.forEach { (subview) -> () in
+                subview.frame.origin.x = self.view.bounds.width }
+            }, completion: { finished in
+                self.placeCardList?.sortCards(appDelegate.lastLocation!, navigationController: self.navigationController)
+                self.placeCardList?.redraw()
+                self.placeCardList?.alpha = 0
+                UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut , animations: {
+                    self.placeCardList?.alpha = 1
+                    }, completion: { finished in }
+                ) // Close second fade in animation block
+            }
+        ) // Close first animation block
+        
+        // Making the guide cards slide out and reorder
+        UIView.animateWithDuration(0.35, delay: 0, options: .CurveEaseInOut , animations: {
+            self.guideCardList?.subviews.forEach { (subview) -> () in
+                subview.frame.origin.x = self.view.bounds.width }
+            }, completion: { finished in
+                self.guideCardList?.sortCards(appDelegate.lastLocation!, navigationController: nil)
+                self.guideCardList?.redraw()
+                self.guideCardList?.alpha = 0
+                UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut , animations: {
+                    self.guideCardList?.alpha = 1
+                    }, completion: { finished in }
+                ) // Close second fade in animation block
+            }
+        ) // Close first animation block
+    }
+    
+    // Called to update UI of distances as the user's location changes
+    private func updatePlaceDistances() {
+        self.placeCardList!.cards.forEach { (cardView) in
+            if let placeCard = cardView as? PlaceCardView {
+                dispatch_async(dispatch_get_main_queue()) {
+                    placeCard.topLabel.text = placeCard.place.distance != nil ? "\(Int(placeCard.place.distance!)) meters away" : "Location disabled"
+                }
+            }
+        }
+    }
+
+    
     
     
     

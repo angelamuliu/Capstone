@@ -26,6 +26,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var tagContainer: UILabel! // Where the tag result feedback is shoved
     @IBOutlet weak var imageView: UIImageView! // Photo taken container
     @IBOutlet weak var contentStackView: UIStackView! // Main content stack view - append stuff to this
+    @IBOutlet weak var statusLabel: UILabel! // Gives update on image recognition - in progres.... failed, etc
     
     // Variables
     var newMedia: Bool?
@@ -55,6 +56,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // Connect to button to allow user to go back to camera
     @IBAction func retakePhoto(sender: AnyObject) {
+        statusLabel.hidden = false
+        statusLabel.text = ""
         bringUpCamera()
     }
 
@@ -84,6 +87,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            statusLabel.text = "Running image recognition..."
+            
             imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
             
@@ -105,10 +110,22 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             let classes = tag["classes"] as! NSArray
                             let probs = tag["probs"] as! NSArray
                             
+                            let probableTags = self.getProbableTags(classes as! [String], probs: probs as! [Double])
+                            let matchedPlaces = self.matchImages(probableTags)
+                            
+                            guard let db = try? SQLiteDatabase.open() else { return }
+                            let matchedGuides = db.getGuideForTags(probableTags)
+                            db.close()
+                            
                             // To update the UI we need to get the main thread
                             dispatch_async(dispatch_get_main_queue()) {
-                                 self.tagContainer.text = classes.componentsJoinedByString(" ")
-                                let matchedPlaces = self.matchImages(classes as! [String], probs: probs as! [Double])
+                                 self.tagContainer.text = "Seeing: \(probableTags.joinWithSeparator(" ")))"
+                                
+                                if matchedPlaces.isEmpty && matchedGuides.isEmpty {
+                                    self.statusLabel.text = "Could not find any matches"
+                                } else {
+                                    self.statusLabel.hidden = true
+                                }
                                 
                                 for place in (matchedPlaces) {
                                     if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
@@ -117,9 +134,22 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                     }
                                 }
                                 
+                                for guide in matchedGuides {
+                                    if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
+                                        searchCard.useData(guide)
+                                        self.contentStackView.addArrangedSubview(searchCard)
+                                    }
+                                }
+                                
                             }
-                        } catch {print(error)}
-                    } catch {print(error)}
+                        } catch {
+                            print(error)
+                            self.statusLabel.text = "No response from Clarifai"
+                        }
+                    } catch {
+                        print(error)
+                        self.statusLabel.text = "No response from Clarifai"
+                    }
                 })
             } // Close Clarifai completion handler
 
@@ -147,8 +177,15 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func matchImages(tags:[String], probs:[Double])-> [Place]
+    func matchImages(tags:[String])-> [Place]
     {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.placesManager.filterByTags(tags)
+    }
+    
+    // Given a set of tags and probabilities, removes tags where the probability
+    // is below 80% or is "no person"
+    func getProbableTags(tags:[String], probs:[Double]) -> [String] {
         var counter = 0
         var tagsToSearch:[String] = []
         for tag in tags
@@ -159,10 +196,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             }
             counter = counter + 1
         }
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.placesManager.filterByTags(tagsToSearch)
+        return tagsToSearch
     }
     
 }

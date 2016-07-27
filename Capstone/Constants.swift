@@ -16,6 +16,10 @@ struct Constants {
     
     static let dbpath = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite")
     
+    static let locationEvent_reorder = "Location Reorder" // Internal event used to tell home VC to reorder cards
+    static let locationEvent_redraw = "Location Redraw" // Internal event used to tell home VC to redraw the places card so the distance matches
+    static let locationChange_EventName = "Location Changed" // Internal event used to tell home VC to reorder cards
+    
     // -----------------------------------
     // User keywords (for getting)
     static let user_name:String = "name"
@@ -37,8 +41,8 @@ struct Constants {
     static let defaultDescription = "none"
     static let defaultUserLocation = CLLocation(latitude:40.4495946, longitude: -79.9509742)
     static let radiusForPlacesToDisplay: Float = 2000 // in meters
-    static let notificationDelimiterRadius : CLLocationDistance = 5 // in meters
-    static let locationDistanceFilter:Double = 10
+    static let notificationDelimiterRadius : CLLocationDistance = 30 // in meters
+    static let locationDistanceFilter:Double = 10 // Currently unused
     
     // -----------------------------------
     // Global / Reused styling
