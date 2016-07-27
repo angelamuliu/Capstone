@@ -90,6 +90,19 @@
             "Close_hour" : "22:00",
             "Image_url" : "AjayanHouse",
             "Tags" : ["tag1", "tag2", "tag3"]
+        },
+        {
+            "Longitude" : -79.9461685,
+            "Latitude" : 49.4435864,
+            "Category" : "Culture",
+            "Subcategory" : "Fusion",
+            "Name" : "Meiji Jingu",
+            "Address" : "1-1 Yoyogikamizonocho, Shibuya, Tokyo 151-8557",
+            "Phone" : "309-309-1020",
+            "Open_hour" : "10:00",
+            "Close_hour" : "22:00",
+            "Image_url" : "Meiji",
+            "Tags" : ["Shrine", "Nature", "tag3"]
         }
     ],
 
@@ -152,7 +165,7 @@
             "Hidden" : false,
             "Image_url" : "Froyo-cover",
             "Description" : "How to use the self serve frozen yogurt machines and create your own frozen yogurt masterpiece.",
-            "Tags" : ["business", "tag2", "tag3"],
+            "Tags" : ["tag1", "tag2", "tag3"],
             "Pages" : [
                 {
                     "Title" : "Choose a size of cup.",
@@ -187,28 +200,38 @@
             ]
         },
         {
-            "Title" : "Drinking Tea",
-            "Category" : "Food",
+            "Title" : "Write a Prayer on Ema",
+            "Category" : "Culture",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "ramen",
-            "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-            "Tags" : ["tag1", "tag2", "tag3"],
+            "Image_url" : "Ema-cover",
+            "Description" : "Learn how to write your prayers on a Japanese wishing wood.",
+            "Tags" : ["old", "paper", "money", "book", "text", "handwriting", "calligraphy", "wood", "temple"],
             "Pages" : [
                 {
-                    "Title" : "Add condiments while hot",
-                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "ramen"
+                    "Title" : "What is Ema?",
+                    "Description" : "Ema are the wooden wishing plaques found at Japanese shrines and temples.",
+                    "Image_url" : "Ema-1"
                 },
                 {
-                    "Title" : "Wait until cool",
-                    "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    "Image_url" : "ramen"
+                    "Title" : "Purchase ema",
+                    "Description" : "Locate the visitor’s desk to purchase. They usually cost 500-1000 yen. If no one is at the desk, simply put money in the box. Yes, Japan is really that trusting.",
+                    "Image_url" : "Ema-2"
+                },
+                {
+                    "Title" : "Write prayer and hang",
+                    "Description" : "There are no strict rules here. Simply write a prayer on the front or back of the board and hang it up!",
+                    "Image_url" : "Ema-3"
+                },
+                {
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
                 }
             ]
         },
         {
-            "Title" : "Buying train ticket",
+            "Title" : "Trains allow 2 bags max. Use luggage delivery",
             "Category" : "Travel",
             "Subcategory" : "Traditional",
             "Hidden" : false,
@@ -225,35 +248,14 @@
                     "Title" : "Press button again",
                     "Description" : "Beeeeeeeeeeep",
                     "Image_url" : "ramen"
-                }
-            ]
-        },
-        {
-            "Title" : "Katie's how to",
-            "Category" : "Food",
-            "Subcategory" : "Traditional",
-            "Hidden" : false,
-            "Image_url" : "ramen",
-            "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-            "Tags" : ["tag1", "tag2", "tag3"],
-            "Pages" : [
-                {
-                    "Title" : "Pick up fish",
-                    "Description" : "Using chopsticks, pick up the fish from the top left corner",
-                    "Image_url" : "ramen"
                 },
                 {
-                    "Title" : "Put fish in mouth",
-                    "Description" : "Put that raw fish in the mouth by opening the mouth first",
-                    "Image_url" : "ramen"
-                },
-                {
-                    "Title" : "Chew it",
-                    "Description" : "Chew it with the force of one thousand gales",
-                    "Image_url" : "ramen"
+                    "Title" : "Written by: Katie",
+                    "Description" : "Expertise: Travel, Book writing, Fire fighting",
+                    "Image_url" : "Author-Katie"
                 }
             ]
-        },
+        }
     ],
 
     "PlaceGuides" : [
@@ -276,6 +278,22 @@
         {
             "Place" : 3,
             "Guide" : 4
+        },
+        {
+            "Place" : 5,
+            "Guide" : 1
+        },
+        {
+            "Place" : 6,
+            "Guide" : 1
+        },
+        {
+            "Place" : 7,
+            "Guide" : 1
+        },
+        {
+            "Place" : 8,
+            "Guide" : 3
         }
     ]
 }

@@ -178,6 +178,7 @@ class GuideVC: UIViewController {
                     viewToEnter = self.stepViews[self.currentPage + 1]
                     viewToQueue = self.stepViews[self.currentPage + 2]
                 }
+                self.movePeekedPages(self.currentPage-1)
                 self.positionPages(viewToLeave, viewToEnter: viewToEnter, viewToQueue: viewToQueue)
                 self.currentPage += 1
             }
@@ -211,11 +212,16 @@ class GuideVC: UIViewController {
     // Used to fix a visual bug where swiping left to right made cards stack instead of shift
     // Right now we only account for swipe left to right - may need to extend in future to handle both but there's no visual bug with the other direction
     private func movePeekedPages(stepIndex: Int) {
-        if stepIndex <= stepViews.count - 1 && stepIndex != -1 {
-            let viewToMove = stepViews[stepIndex]
-            viewToMove.frame.origin = CGPoint(x: pagesView.bounds.width + viewToMove.bounds.width - Constants.stepCard_peekWidth, y:Constants.stepCard_topLeftMargin)
+        if stepIndex > -2 {
+            if stepIndex <= stepViews.count - 1 && stepIndex != -1 {
+                let viewToMove = stepViews[stepIndex]
+                viewToMove.frame.origin = CGPoint(x: pagesView.bounds.width + viewToMove.bounds.width - Constants.stepCard_peekWidth, y:Constants.stepCard_topLeftMargin)
+            }
+            if stepIndex == -1 { // fix visual bug with intro page not leaving on right to left swipe
+                let viewToMove = self.introView
+                viewToMove.frame.origin = CGPoint(x: -pagesView.bounds.width, y: 0)
+            }
         }
-        
     }
     
     

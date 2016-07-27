@@ -31,8 +31,11 @@ class HomeVC: UIViewController {
         
         // Here we can listen in on location change events which are emitted by AppDelegate, and act accordingly
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserverForName(Constants.locationChange_EventName, object: nil, queue: nil) { notification in
+        center.addObserverForName(Constants.locationEvent_reorder, object: nil, queue: nil) { notification in
             self.reorderCards()
+        }
+        center.addObserverForName(Constants.locationEvent_redraw, object: nil, queue: nil) { notification in
+            self.updatePlaceDistances()
         }
     }
     
@@ -154,6 +157,20 @@ class HomeVC: UIViewController {
             }
         ) // Close first animation block
     }
+    
+    // Called to update UI of distances as the user's location changes
+    private func updatePlaceDistances() {
+        self.placeCardList!.cards.forEach { (cardView) in
+            if let placeCard = cardView as? PlaceCardView {
+                dispatch_async(dispatch_get_main_queue()) {
+                    placeCard.topLabel.text = placeCard.place.distance != nil ? "\(Int(placeCard.place.distance!)) meters away" : "Location disabled"
+                }
+            }
+        }
+    }
+
+    
+    
     
     
     

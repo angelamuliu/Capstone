@@ -52,6 +52,7 @@ class CardView : UIView {
         self.topLabel.text = ""
         self.topLabel.font = UIFont(name: "Lato-Regular", size: 14)
         self.topLabel.textColor = UIColor.whiteColor()
+        self.topLabel.numberOfLines = 0
         
         // ImageView Setup - Uses a placeholder for now
         self.imageView = UIImageView.init(frame: CGRect(x: 0, y:0, width: 100, height: Constants.card_imageHeight))
