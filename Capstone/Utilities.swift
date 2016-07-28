@@ -44,7 +44,7 @@ class Utilities
             
             let guide = Guide(id: index, title: "howto", category: "asd", subcategory: "asd", hidden: false, image_url: "asd", description: "ASDF", tags: "")
             place!.guides = []
-            place!.guides!.append(guide)
+            place!.guides.append(guide)
             places.append(place!)
         }
         

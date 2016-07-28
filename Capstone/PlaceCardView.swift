@@ -29,7 +29,7 @@ class PlaceCardView : CardView {
         self.categoryIconView.image = self.categoryIcon
         self.categoryLabel.text = place.category
         
-        self.numLocationsLabel.text = "\(place.guides!.count)"
+        self.numLocationsLabel.text = "\(place.guides.count)"
         self.locationLabel.text = "Guides"
         
         self.nameLabel.text = place.name

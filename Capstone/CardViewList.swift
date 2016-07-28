@@ -97,7 +97,7 @@ class CardViewList : UIView {
         
         // Could use some refactoring
         for place in placesManager.places {
-            for guide in place.guides! {
+            for guide in place.guides {
                 if guideCardIds.contains(guide.id) == false { // A new guide!
                     guideCardIds.append(guide.id)
                     guides[guide.id] = guide

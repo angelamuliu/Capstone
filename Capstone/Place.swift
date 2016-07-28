@@ -26,7 +26,7 @@ class Place : MiniCardable {
     var image_url: String?
     var tags: [String]?
     
-    var guides: [Guide]? // Connected guides
+    var related_guides:[Guide] = [] // Connected guides
 
     init?(id: Int, longitude: Float, latitude: Float, category: String?, subcategory: String?, name: String, address: String?, phone: String?, open_hour: String?, close_hour: String?, image_url: String?, tags: String?) {
         self.id = id
@@ -56,6 +56,25 @@ class Place : MiniCardable {
     func getDistanceFromUser(userLocation:CLLocation) -> CLLocationDistance {
         return self.location.distanceFromLocation(userLocation)
     }
+    
+    var guides : [Guide] {
+        get {
+            if related_guides.isEmpty {
+                guard let db = try? SQLiteDatabase.open() else
+                {
+                    print("Database did not load. Using failsafe hardcoded values for now.")
+                    return []
+                }
+                related_guides = db.getGuidesForPlace(self)
+                db.close()
+            }
+            return related_guides
+        }
+        set {
+            related_guides = guides
+        }
+    }
+    
     
     // TODO: Not make it milatary time haha
     var hours : String {  //computed property, relies on other stuff to get set

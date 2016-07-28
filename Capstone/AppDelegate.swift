@@ -112,9 +112,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         for place in self.placesManager.places
         {
             // TODO : Figure out how to know which guide at a place corresponds to a location
-            if place.guides != nil && place.guides!.count > 0
+            if place.guides.isEmpty && place.guides.count > 0
             {
-                let alertMessage = place.guides!.first!.title + " at " + place.name
+                let alertMessage = place.guides.first!.title + " at " + place.name
                 
                 
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
