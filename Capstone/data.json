@@ -53,8 +53,8 @@
             "Tags" : ["tag1", "tag2", "tag3"]
         },
         {
-            "Longitude" : -79.948818,
-            "Latitude" : 40.444782,
+            "Longitude" : -79.9488895,
+            "Latitude" : 40.4447502,
             "Category" : "Food",
             "Subcategory" : "Fusion",
             "Name" : "Rose Tea Cafe",
@@ -159,7 +159,7 @@
             ]
         },
         {
-            "Title" : "How to Self-Serve Frozen Yogurt",
+            "Title" : "Self-Serve Frozen Yogurt",
             "Category" : "Food",
             "Subcategory" : "Traditional",
             "Hidden" : false,

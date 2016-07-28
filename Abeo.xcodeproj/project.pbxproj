@@ -72,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		0B09B12F1D26F9400096A8F8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0B0F7F0E1D1C5B0300CFF61F /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B0F7F0E1D1C5B0300CFF61F /* Abeo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abeo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B0F7F111D1C5B0300CFF61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B0F7F161D1C5B0300CFF61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B0F7F181D1C5B0300CFF61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		0B0F7F0F1D1C5B0300CFF61F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0B0F7F0E1D1C5B0300CFF61F /* Capstone.app */,
+				0B0F7F0E1D1C5B0300CFF61F /* Abeo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,9 +271,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0B0F7F0D1D1C5B0300CFF61F /* Capstone */ = {
+		0B0F7F0D1D1C5B0300CFF61F /* Abeo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0B0F7F201D1C5B0300CFF61F /* Build configuration list for PBXNativeTarget "Capstone" */;
+			buildConfigurationList = 0B0F7F201D1C5B0300CFF61F /* Build configuration list for PBXNativeTarget "Abeo" */;
 			buildPhases = (
 				0B0F7F0A1D1C5B0300CFF61F /* Sources */,
 				0B0F7F0B1D1C5B0300CFF61F /* Frameworks */,
@@ -283,9 +283,9 @@
 			);
 			dependencies = (
 			);
-			name = Capstone;
+			name = Abeo;
 			productName = Capstone;
-			productReference = 0B0F7F0E1D1C5B0300CFF61F /* Capstone.app */;
+			productReference = 0B0F7F0E1D1C5B0300CFF61F /* Abeo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -304,7 +304,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0B0F7F091D1C5B0300CFF61F /* Build configuration list for PBXProject "Capstone" */;
+			buildConfigurationList = 0B0F7F091D1C5B0300CFF61F /* Build configuration list for PBXProject "Abeo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -317,7 +317,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0B0F7F0D1D1C5B0300CFF61F /* Capstone */,
+				0B0F7F0D1D1C5B0300CFF61F /* Abeo */,
 			);
 		};
 /* End PBXProject section */
@@ -511,7 +511,7 @@
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Capstone.cmu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Abeo;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -527,7 +527,7 @@
 				INFOPLIST_FILE = Capstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Capstone.cmu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Abeo;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ./Capstone/BridgingHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -537,7 +537,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0B0F7F091D1C5B0300CFF61F /* Build configuration list for PBXProject "Capstone" */ = {
+		0B0F7F091D1C5B0300CFF61F /* Build configuration list for PBXProject "Abeo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B0F7F1E1D1C5B0300CFF61F /* Debug */,
@@ -546,7 +546,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0B0F7F201D1C5B0300CFF61F /* Build configuration list for PBXNativeTarget "Capstone" */ = {
+		0B0F7F201D1C5B0300CFF61F /* Build configuration list for PBXNativeTarget "Abeo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B0F7F211D1C5B0300CFF61F /* Debug */,

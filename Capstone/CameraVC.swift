@@ -26,7 +26,6 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var tagContainer: UILabel! // Where the tag result feedback is shoved
     @IBOutlet weak var imageView: UIImageView! // Photo taken container
     @IBOutlet weak var contentStackView: UIStackView! // Main content stack view - append stuff to this
-    @IBOutlet weak var statusLabel: UILabel! // Gives update on image recognition - in progres.... failed, etc
     
     // Variables
     var newMedia: Bool?
@@ -56,8 +55,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // Connect to button to allow user to go back to camera
     @IBAction func retakePhoto(sender: AnyObject) {
-        statusLabel.hidden = false
-        statusLabel.text = ""
+        tagContainer.text = ""
         bringUpCamera()
     }
 
@@ -87,7 +85,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            statusLabel.text = "Running image recognition..."
+            tagContainer.text = "Running image recognition..."
             
             imageView.contentMode = .ScaleAspectFit
             imageView.image = pickedImage
@@ -119,12 +117,11 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             
                             // To update the UI we need to get the main thread
                             dispatch_async(dispatch_get_main_queue()) {
-                                 self.tagContainer.text = "Seeing: \(probableTags.joinWithSeparator(" ")))"
+                                self.tagContainer.text = "Is this what you're looking for?"
+//                                 self.tagContainer.text = "Seeing: \(probableTags.joinWithSeparator(" ")))"
                                 
                                 if matchedPlaces.isEmpty && matchedGuides.isEmpty {
-                                    self.statusLabel.text = "Could not find any matches"
-                                } else {
-                                    self.statusLabel.hidden = true
+                                    self.tagContainer.text = "Could not find any matches"
                                 }
                                 
                                 for place in (matchedPlaces) {
@@ -144,11 +141,11 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             }
                         } catch {
                             print(error)
-                            self.statusLabel.text = "No response from Clarifai"
+                            self.tagContainer.text = "No response from Clarifai"
                         }
                     } catch {
                         print(error)
-                        self.statusLabel.text = "No response from Clarifai"
+                        self.tagContainer.text = "No response from Clarifai"
                     }
                 })
             } // Close Clarifai completion handler

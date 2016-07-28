@@ -30,7 +30,16 @@ class Place : MiniCardable {
 
     init?(id: Int, longitude: Float, latitude: Float, category: String?, subcategory: String?, name: String, address: String?, phone: String?, open_hour: String?, close_hour: String?, image_url: String?, tags: String?) {
         self.id = id
+        
+        print(name)
+        print(latitude)
+        print(longitude)
+        
+        
         self.location = CLLocation(latitude:CLLocationDegrees(latitude), longitude:CLLocationDegrees(longitude))
+        
+        print(location.coordinate)
+        
         self.name = name
         
         self.category = Place.initializeStringValue(category, defaultValue: Constants.defaultCategory)

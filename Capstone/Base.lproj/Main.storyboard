@@ -23,7 +23,6 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
-            <string>Lato-Regular</string>
         </mutableArray>
         <mutableArray key="Lora-Regular.ttf">
             <string>Lora-Regular</string>
@@ -38,7 +37,7 @@
         <!--Abeo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -186,7 +185,7 @@
         <!--Camera Search-->
         <scene sceneID="DPo-VQ-W0c">
             <objects>
-                <viewController title="Camera Search" id="NZm-uV-KO4" customClass="CameraVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Camera Search" id="NZm-uV-KO4" customClass="CameraVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UQZ-hT-a32"/>
                         <viewControllerLayoutGuide type="bottom" id="auD-xj-L78"/>
@@ -303,8 +302,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nu-za-xpK">
                                 <rect key="frame" x="0.0" y="90" width="320" height="414"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-GM-Rdb" userLabel="Content view">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-GM-Rdb" userLabel="Content view">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uid-IJ-gHf" userLabel="Photo result">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
@@ -322,12 +321,6 @@
                                                     <constraint firstItem="hit-NB-PPt" firstAttribute="centerX" secondItem="uid-IJ-gHf" secondAttribute="centerX" id="pnG-Ln-aeF"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zB2-R2-dfv">
-                                                <rect key="frame" x="0.0" y="228" width="320" height="17"/>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="hit-NB-PPt" firstAttribute="width" secondItem="ucJ-GM-Rdb" secondAttribute="width" id="L4d-Pz-lyh"/>
@@ -361,7 +354,6 @@
                     <connections>
                         <outlet property="contentStackView" destination="ucJ-GM-Rdb" id="PvN-Kd-fWW"/>
                         <outlet property="imageView" destination="hit-NB-PPt" id="dxq-XE-TfA"/>
-                        <outlet property="statusLabel" destination="zB2-R2-dfv" id="kEz-1T-FUe"/>
                         <outlet property="tagContainer" destination="goG-H3-ljh" id="PEU-AX-xL1"/>
                     </connections>
                 </viewController>
@@ -372,7 +364,7 @@
         <!--Search ResultsVC-->
         <scene sceneID="Sv5-Lc-cqB">
             <objects>
-                <viewController id="bPO-8i-mMf" customClass="SearchResultsVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bPO-8i-mMf" customClass="SearchResultsVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rWg-K2-7gN"/>
                         <viewControllerLayoutGuide type="bottom" id="0mW-eA-Azp"/>
@@ -398,7 +390,7 @@
         <!--Notification SettingsVC-->
         <scene sceneID="AIS-3h-Smw">
             <objects>
-                <viewController id="YWQ-LL-tl0" customClass="NotificationSettingsVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YWQ-LL-tl0" customClass="NotificationSettingsVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="epn-lQ-J7w"/>
                         <viewControllerLayoutGuide type="bottom" id="xw6-tI-Du9"/>
@@ -424,7 +416,7 @@
         <!--ProfileVC-->
         <scene sceneID="W6K-d6-XdY">
             <objects>
-                <viewController id="rDl-tm-ORz" customClass="ProfileVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rDl-tm-ORz" customClass="ProfileVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FFW-2G-qQH"/>
                         <viewControllerLayoutGuide type="bottom" id="BIi-Dk-fZO"/>
@@ -450,7 +442,7 @@
         <!--GuideVC-->
         <scene sceneID="9dO-tq-1De">
             <objects>
-                <viewController storyboardIdentifier="GuideVC" id="5Lo-aA-dYN" customClass="GuideVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuideVC" id="5Lo-aA-dYN" customClass="GuideVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xta-rY-Psn"/>
                         <viewControllerLayoutGuide type="bottom" id="TIx-cf-ygZ"/>
@@ -705,7 +697,7 @@
         <!--Spot-->
         <scene sceneID="Xhr-Vv-A8a">
             <objects>
-                <viewController storyboardIdentifier="PlaceVC" title="Spot" id="kIP-ID-QN4" customClass="PlaceVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceVC" title="Spot" id="kIP-ID-QN4" customClass="PlaceVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5pl-rI-MuO"/>
                         <viewControllerLayoutGuide type="bottom" id="dch-Ul-AmO"/>
@@ -890,7 +882,7 @@
         <!--Map-->
         <scene sceneID="SXK-7r-Z5I">
             <objects>
-                <viewController title="Map" id="1M5-hn-xb2" customClass="MapVC" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="1M5-hn-xb2" customClass="MapVC" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tij-15-QiU"/>
                         <viewControllerLayoutGuide type="bottom" id="VA7-HV-9rF"/>
@@ -923,7 +915,7 @@
         <!--Navigation Controller-->
         <scene sceneID="tqI-mT-2CB">
             <objects>
-                <navigationController id="FgI-vs-eH1" customClass="NavigationController" customModule="Capstone" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="FgI-vs-eH1" customClass="NavigationController" customModule="Abeo" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Jf7-o1-sy9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

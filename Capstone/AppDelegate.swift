@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         User.loadUser()
         setupLocationManager()
         setupDatabase()
-        setupNotifications(application)
-        Clarifai.refreshAccessToken()
+//        setupNotifications(application)
+//        Clarifai.refreshAccessToken()
         
         SQLiteDatabase.createOnDesktop()
         return true
@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
+        setupNotifications(application)
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
@@ -112,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         for place in self.placesManager.places
         {
             // TODO : Figure out how to know which guide at a place corresponds to a location
-            if place.guides.isEmpty && place.guides.count > 0
+            if place.guides.count > 0
             {
                 let alertMessage = place.guides.first!.title + " at " + place.name
                 
@@ -120,10 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
                 locationManager.startMonitoringForRegion(region)
                 
+                print(place.name + String(place.location.coordinate))
+                
                 // Changed below - we track any change, but only resort if order changed
                 // User must move X meters before a new location event is fired
 //                 locationManager.distanceFilter = Constants.locationDistanceFilter // Only send location event when distance has changed by certain amount
-                locationManager.distanceFilter = 1 // Only send location event when distance has changed by certain amount
 
             }
         }

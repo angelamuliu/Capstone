@@ -29,7 +29,7 @@ struct Clarifai {
     
     // Expires in 48 hours so we keep having to get new ones
     // TODO: Right now I'll just grab a new one every time the app launches ... proper implementation would be to only grab one if it's older than 2 days and save it with NSUserDefaults or something
-    static var accessToken = ""
+    static var accessToken = "BtmcVUCRdCkmwn4nVzHtEScpVWUSfS"
     
     /**
      Access tokens expire in 48 hours so we can grab a new one if ours is too old
