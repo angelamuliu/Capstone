@@ -235,19 +235,39 @@
             "Category" : "Travel",
             "Subcategory" : "Traditional",
             "Hidden" : false,
-            "Image_url" : "ramen",
-            "Description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+            "Image_url" : "Luggage-cover",
+            "Description" : "Avoid carrying bags up stairs, or on crowded trains! Take advantage of luggage delivery, known as Takuhaibin, a widely used service that delivers luggage straight to your hotel. It can be same day delivery in some cases.",
             "Tags" : ["tag1", "tag2", "tag3"],
             "Pages" : [
                 {
-                    "Title" : "Press button",
-                    "Description" : "Beep boop beep boop beep",
-                    "Image_url" : "ramen"
+                    "Title" : "Tell employees a destination",
+                    "Description" : "You will likely want to deliver to your hotel. You can show your hotel reservation to the employees to let them know",
+                    "Image_url" : "Luggage-1"
                 },
                 {
-                    "Title" : "Press button again",
-                    "Description" : "Beeeeeeeeeeep",
-                    "Image_url" : "ramen"
+                    "Title" : "Ask about arrival time",
+                    "Description" : "Depending on destination and time, luggage may arrive same day or the next. You can show the employee this phrase to ask: 今日到着?",
+                    "Image_url" : "Luggage-2"
+                },
+                {
+                    "Title" : "Wait for shipping form",
+                    "Description" : "The employee will either fill this form for you, or allow you to fill it in English",
+                    "Image_url" : "Luggage-3"
+                },
+                {
+                    "Title" : "Measure and weigh bags",
+                    "Description" : "Hand off bags to the employee to weigh and measure. Depending on weight and size, costs will vary",
+                    "Image_url" : "Luggage-4"
+                },
+                {
+                    "Title" : "Pay and receive receipt",
+                    "Description" : "A bill will be printed, and you will be given a receipt for your records. On average, it costs $17.00 for larger bags",
+                    "Image_url" : "Luggage-5"
+                },
+                {
+                    "Title" : "Pick up bag at destination",
+                    "Description" : "You can show your destination your receipt to ask for your bags. If your bags are not there yet, the hotel lobby can be asked to call the service for you",
+                    "Image_url" : "Luggage-6"
                 },
                 {
                     "Title" : "Written by: Katie",
@@ -265,14 +285,6 @@
         },
         {
             "Place" : 1,
-            "Guide" : 2
-        },
-        {
-            "Place" : 1,
-            "Guide" : 3
-        },
-        {
-            "Place" : 2,
             "Guide" : 2
         },
         {

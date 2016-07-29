@@ -171,6 +171,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
+    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
+        if state == CLRegionState.Inside {
+            let notification = UILocalNotification()
+            notification.alertBody = region.identifier
+            notification.alertTitle = "Abeo"
+            notification.soundName = "Default";
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+            triggeredLocalNotifications?.append(NotificationStack(localNotification: notification, region: region))
+
+//            let foo = UIAlertView(title: "INSIDE", message: "Inside", delegate: self, cancelButtonTitle: "remove")
+//            foo.show()
+        }
+    }
+    
     func locationManager(manager: CLLocationManager,
                          didFailWithError error: NSError) {
     }
