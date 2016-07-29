@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Capstone.xcodeproj">
+      location = "self:/Users/Angela/Programming/iOS_Swift/Capstone/Abeo.xcodeproj">
    </FileRef>
 </Workspace>
