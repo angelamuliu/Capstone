@@ -32,8 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         User.loadUser()
         setupLocationManager()
         setupDatabase()
-//        setupNotifications(application)
-//        Clarifai.refreshAccessToken()
+        // registering app for notifications
+        application.registerUserNotificationSettings(
+            UIUserNotificationSettings(
+                forTypes: [.Alert, .Badge, .Sound],
+                categories: nil))
+        
+        Clarifai.refreshAccessToken()
         
         SQLiteDatabase.createOnDesktop()
         return true
@@ -96,6 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // This one runs forever, even when app in bg
+        locationManager.allowsBackgroundLocationUpdates = true;
         //locationManager.requestWhenInUseAuthorization()
         // this needs to be called after the authorization call
         locationManager.startUpdatingLocation()
@@ -103,10 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func setupNotifications(application:UIApplication) {
         self.triggeredLocalNotifications = []
-        application.registerUserNotificationSettings(
-            UIUserNotificationSettings(
-                forTypes: [.Alert, .Badge, .Sound],
-                categories: nil))
         // cancels all existing notifications
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
@@ -120,12 +122,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 let region = CLCircularRegion(center: place.location.coordinate, radius:Constants.notificationDelimiterRadius, identifier: alertMessage)
                 locationManager.startMonitoringForRegion(region)
-                
                 print(place.name + String(place.location.coordinate))
-                
                 // Changed below - we track any change, but only resort if order changed
                 // User must move X meters before a new location event is fired
-//                 locationManager.distanceFilter = Constants.locationDistanceFilter // Only send location event when distance has changed by certain amount
+                locationManager.distanceFilter = kCLDistanceFilterNone // Only send location event when distance has changed by certain amount
 
             }
         }
@@ -168,20 +168,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if indexToRemove >= 0
         {
             triggeredLocalNotifications?.removeAtIndex(indexToRemove)
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
-        if state == CLRegionState.Inside {
-            let notification = UILocalNotification()
-            notification.alertBody = region.identifier
-            notification.alertTitle = "Abeo"
-            notification.soundName = "Default";
-            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-            triggeredLocalNotifications?.append(NotificationStack(localNotification: notification, region: region))
-
-//            let foo = UIAlertView(title: "INSIDE", message: "Inside", delegate: self, cancelButtonTitle: "remove")
-//            foo.show()
         }
     }
     
