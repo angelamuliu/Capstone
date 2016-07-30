@@ -62,7 +62,8 @@ class CardView : UIView {
         // Title text loading
         self.nameLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: Constants.card_textHeight))
         self.nameLabel.text = ""
-        self.nameLabel.font = UIFont(name: "Lato-Regular", size: 20)
+        self.nameLabel.font = UIFont(name: "Lato-Regular", size: 14)
+//        self.nameLabel.lin
         
         // Category subsection - icon
         self.categoryIconView = UIImageView.init(frame: CGRect(x: 0, y:0, width: 14, height: 14))
