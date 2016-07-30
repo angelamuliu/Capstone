@@ -27,6 +27,8 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var imageView: UIImageView! // Photo taken container
     @IBOutlet weak var contentStackView: UIStackView! // Main content stack view - append stuff to this
     
+    var searchResultViews:[UIView] = [] // Appended search result nibs
+    
     // Variables
     var newMedia: Bool?
     
@@ -56,6 +58,13 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     // Connect to button to allow user to go back to camera
     @IBAction func retakePhoto(sender: AnyObject) {
         tagContainer.text = ""
+        
+        // Clear old search results
+        for searchResult in searchResultViews {
+            searchResult.removeFromSuperview()
+        }
+        searchResultViews.removeAll()
+        
         bringUpCamera()
     }
 
@@ -108,11 +117,15 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             let classes = tag["classes"] as! NSArray
                             let probs = tag["probs"] as! NSArray
                             
+                            print(classes)
+                            
                             let probableTags = self.getProbableTags(classes as! [String], probs: probs as! [Double])
-                            let matchedPlaces = self.matchImages(probableTags)
+                            let shortTags = self.clearShortTags(probableTags)
+                            
+                            let matchedPlaces = self.matchImages(shortTags)
                             
                             guard let db = try? SQLiteDatabase.open() else { return }
-                            let matchedGuides = db.getGuideForTags(probableTags)
+                            let matchedGuides = db.getGuideForTags(shortTags)
                             db.close()
                             
                             // To update the UI we need to get the main thread
@@ -127,6 +140,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                 for place in (matchedPlaces) {
                                     if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
                                         searchCard.useData(place)
+                                        self.searchResultViews.append(searchCard)
                                         self.contentStackView.addArrangedSubview(searchCard)
                                     }
                                 }
@@ -134,6 +148,7 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                 for guide in matchedGuides {
                                     if let searchCard = NSBundle.mainBundle().loadNibNamed("SearchResultCardView", owner: self, options: nil).first as? SearchResultCardView {
                                         searchCard.useData(guide)
+                                        self.searchResultViews.append(searchCard)
                                         self.contentStackView.addArrangedSubview(searchCard)
                                     }
                                 }
@@ -194,6 +209,14 @@ class CameraVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             counter = counter + 1
         }
         return tagsToSearch
+    }
+    
+    // just to ensure the wildcard matches work as necessary - since right now they are too greedy
+    // removing short tags less than 4 characters helps since then we won't get a match like ice = nice
+    // AGAIN Remove this once you have tags in its own table as it should be...
+    func clearShortTags(tags:[String]) -> [String] {
+        return tags.filter({ $0.characters.count >= 4 })
+        
     }
     
 }

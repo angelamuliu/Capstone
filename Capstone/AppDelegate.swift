@@ -174,5 +174,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager,
                          didFailWithError error: NSError) {
     }
+    
+    
+    
 }
 

@@ -243,7 +243,8 @@ class SQLiteDatabase {
                 sqlite3_bind_text(insertStatement, 9, (placeDict.valueForKey("Close_hour")?.UTF8String)!, -1, nil)
                 sqlite3_bind_text(insertStatement, 10, (placeDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
                 
-                sqlite3_bind_text(insertStatement, 11, (placeDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" "), -1 ,nil)
+                let tagsSeperatedBySpace = (placeDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" ")
+                sqlite3_bind_text(insertStatement, 11, tagsSeperatedBySpace, -1 ,nil)
                 
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                     print("Successfully inserted place row.")
@@ -278,7 +279,8 @@ class SQLiteDatabase {
                 sqlite3_bind_int(insertGuideStatement, 4, guideDict.valueForKey("Hidden") as! Bool == true ? 1 : 0)
                 sqlite3_bind_text(insertGuideStatement, 5, (guideDict.valueForKey("Image_url")?.UTF8String)!, -1, nil)
                 sqlite3_bind_text(insertGuideStatement, 6, (guideDict.valueForKey("Description")?.UTF8String)!, -1, nil)
-                sqlite3_bind_text(insertGuideStatement, 7, (guideDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" "), -1 ,nil)
+                let tagsSeperatedBySpace = (guideDict.valueForKey("Tags") as! NSArray).componentsJoinedByString(" ")
+                sqlite3_bind_text(insertGuideStatement, 7, tagsSeperatedBySpace, -1 ,nil)
 
                 if sqlite3_step(insertGuideStatement) == SQLITE_DONE {
                     print("Successfully inserted guide row")
